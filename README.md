@@ -13,6 +13,10 @@ The following **required** functionality is completed:
 	- [ ] Boxes
 	- [ ] Blur
 	- [ ] Ovals
+- [ ] User can see Cues on how to do things	
+   - [ ] On Annotation screen animate how the edit controls show up
+   - [ ] From Annotation screen swipe left to go back to pick a picture from their gallery
+   - [ ] From Annotation screen swipe right to submit the image to a bug tracking system
 - [ ]  Once user is done editing, they can swipe up to send or swipe down to trash
 - [ ]  User can share edited image with
    - [ ] Jira
@@ -25,6 +29,7 @@ The following **required** functionality is completed:
        - [ ] attach the image
 
 The following **optional** features are implemented:
+- [ ]  The original screen shot gets deleted from the phone after creating a bug 
 - [ ]  User can undo annotations 
 - [ ] Use can annotate the picture with the following 
 	- [ ] Circles 
