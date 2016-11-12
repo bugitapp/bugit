@@ -20,12 +20,21 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-xc-LuN">
                                 <state key="normal" title="Access Photo Gallery"/>
+                                <connections>
+                                    <segue destination="LgF-gA-lRg" kind="presentation" id="b2h-Nn-88r"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-2V-OdL">
                                 <state key="normal" title="Anontate Screen Shot"/>
+                                <connections>
+                                    <segue destination="qHP-hN-bFx" kind="presentation" id="6l4-34-Huh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeO-mW-eN5">
                                 <state key="normal" title="Create Bug Report"/>
+                                <connections>
+                                    <segue destination="RPb-ma-yGK" kind="presentation" id="5Zg-jT-zTb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,6 +50,94 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-585" y="-72"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Nob-P4-VqQ">
+            <objects>
+                <viewController id="LgF-gA-lRg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Aa-ll-Bsj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tse-Wu-Y0m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wej-Z1-wHV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select picture from photo gallery here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiM-ea-zrl">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AiM-ea-zrl" firstAttribute="centerY" secondItem="Wej-Z1-wHV" secondAttribute="centerY" id="c1M-9Y-yzI"/>
+                            <constraint firstItem="AiM-ea-zrl" firstAttribute="centerX" secondItem="Wej-Z1-wHV" secondAttribute="centerX" id="kgy-eS-XPd"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bid-Fl-9Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1204" y="584.25787106446785"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ulv-jy-nR8">
+            <objects>
+                <viewController id="qHP-hN-bFx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="deH-GF-CsN"/>
+                        <viewControllerLayoutGuide type="bottom" id="YLE-E1-jJE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o5V-au-SRr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do annotations on image here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-v0-itX">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OzR-v0-itX" firstAttribute="centerY" secondItem="o5V-au-SRr" secondAttribute="centerY" id="IYH-ph-rde"/>
+                            <constraint firstItem="OzR-v0-itX" firstAttribute="centerX" secondItem="o5V-au-SRr" secondAttribute="centerX" id="cOv-qG-gDH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZE-I6-jO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-586" y="584"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="f67-gD-spV">
+            <objects>
+                <viewController id="RPb-ma-yGK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3PH-8t-mmI"/>
+                        <viewControllerLayoutGuide type="bottom" id="YH9-Qp-PQ6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KGa-3N-fQO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create bug report here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7S-bU-8Kk">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c7S-bU-8Kk" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="DQq-IN-xPp"/>
+                            <constraint firstItem="c7S-bU-8Kk" firstAttribute="centerY" secondItem="KGa-3N-fQO" secondAttribute="centerY" id="dsr-bT-4aF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="584"/>
         </scene>
     </scenes>
 </document>
