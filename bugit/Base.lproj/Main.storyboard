@@ -62,7 +62,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -116,12 +116,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4lV-qT-dIn" secondAttribute="trailing" id="0oB-cn-RSA"/>
+                            <constraint firstItem="YLE-E1-jJE" firstAttribute="top" secondItem="4lV-qT-dIn" secondAttribute="bottom" constant="8" symbolic="YES" id="C9f-9S-HRd"/>
+                            <constraint firstItem="4lV-qT-dIn" firstAttribute="leading" secondItem="o5V-au-SRr" secondAttribute="leading" id="K4d-bB-d5a"/>
+                            <constraint firstItem="4lV-qT-dIn" firstAttribute="top" secondItem="deH-GF-CsN" secondAttribute="bottom" constant="8" symbolic="YES" id="Kyh-1Y-yIS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="12b-7O-xkD"/>
                     <connections>
@@ -146,12 +151,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
+                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="8" symbolic="YES" id="Vzm-N3-Wdl"/>
+                            <constraint firstAttribute="trailing" secondItem="LiM-Pp-vOm" secondAttribute="trailing" id="WSr-ae-50L"/>
+                            <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="LiM-Pp-vOm" secondAttribute="bottom" constant="8" symbolic="YES" id="jMQ-68-ohG"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="flatCanvasImageView" destination="LiM-Pp-vOm" id="3VL-Zh-tAw"/>
@@ -159,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="1328"/>
+            <point key="canvasLocation" x="437.60000000000002" y="1327.2863568215894"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
