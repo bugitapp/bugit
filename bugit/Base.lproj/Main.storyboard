@@ -126,7 +126,7 @@
                     <navigationItem key="navigationItem" id="12b-7O-xkD"/>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
-                        <segue destination="LgF-gA-lRg" kind="show" identifier="GallerySegue" id="r6a-Lo-MkP"/>
+                        <segue destination="LgF-gA-lRg" kind="custom" identifier="GallerySegue" customClass="SegueFromLeft" customModule="bugit" customModuleProvider="target" id="r6a-Lo-MkP"/>
                         <segue destination="RPb-ma-yGK" kind="show" identifier="ExportSegue" id="dPL-Rf-hhQ"/>
                     </connections>
                 </viewController>

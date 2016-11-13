@@ -31,6 +31,7 @@
 		171F6A1C1DD84F410085D370 /* SF-UI-Text-Ultrathin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 171F6A051DD84F410085D370 /* SF-UI-Text-Ultrathin.otf */; };
 		171F6A1D1DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 171F6A061DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf */; };
 		171F6A1F1DD84FDD0085D370 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6A1E1DD84FDD0085D370 /* GalleryViewController.swift */; };
+		171F6A211DD852860085D370 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6A201DD852860085D370 /* SegueFromLeft.swift */; };
 		17F8113D1DD821A60084207B /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8113C1DD821A60084207B /* EditorViewController.swift */; };
 		17F811401DD8382D0084207B /* xUIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8113F1DD8382D0084207B /* xUIBezierPath.swift */; };
 		17F811421DD842160084207B /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F811411DD842160084207B /* ExportViewController.swift */; };
@@ -69,6 +70,7 @@
 		171F6A051DD84F410085D370 /* SF-UI-Text-Ultrathin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Ultrathin.otf"; sourceTree = "<group>"; };
 		171F6A061DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-UltrathinItalic.otf"; sourceTree = "<group>"; };
 		171F6A1E1DD84FDD0085D370 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryViewController.swift; path = "View Controllers/GalleryViewController.swift"; sourceTree = "<group>"; };
+		171F6A201DD852860085D370 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromLeft.swift; path = Helpers/SegueFromLeft.swift; sourceTree = "<group>"; };
 		17F8113C1DD821A60084207B /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorViewController.swift; path = "View Controllers/EditorViewController.swift"; sourceTree = "<group>"; };
 		17F8113F1DD8382D0084207B /* xUIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = xUIBezierPath.swift; path = Extensions/xUIBezierPath.swift; sourceTree = "<group>"; };
 		17F811411DD842160084207B /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportViewController.swift; path = "View Controllers/ExportViewController.swift"; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 			path = "SF-UI-Text";
 			sourceTree = "<group>";
 		};
+		171F6A221DD8528B0085D370 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				171F6A201DD852860085D370 /* SegueFromLeft.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		17F8113B1DD821790084207B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				171F6A221DD8528B0085D370 /* Helpers */,
 				171F69ED1DD84F410085D370 /* Resources */,
 				17F8113E1DD8380B0084207B /* Extensions */,
 				17F8113B1DD821790084207B /* View Controllers */,
@@ -403,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171F6A211DD852860085D370 /* SegueFromLeft.swift in Sources */,
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				17F8113D1DD821A60084207B /* EditorViewController.swift in Sources */,
 				17F811401DD8382D0084207B /* xUIBezierPath.swift in Sources */,
