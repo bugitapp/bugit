@@ -32,6 +32,7 @@
 		171F6A1D1DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 171F6A061DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf */; };
 		171F6A1F1DD84FDD0085D370 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6A1E1DD84FDD0085D370 /* GalleryViewController.swift */; };
 		171F6A211DD852860085D370 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6A201DD852860085D370 /* SegueFromLeft.swift */; };
+		171F6A241DD8533C0085D370 /* EditorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6A231DD8533C0085D370 /* EditorNavigationController.swift */; };
 		17F8113D1DD821A60084207B /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8113C1DD821A60084207B /* EditorViewController.swift */; };
 		17F811401DD8382D0084207B /* xUIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8113F1DD8382D0084207B /* xUIBezierPath.swift */; };
 		17F811421DD842160084207B /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F811411DD842160084207B /* ExportViewController.swift */; };
@@ -71,6 +72,7 @@
 		171F6A061DD84F410085D370 /* SF-UI-Text-UltrathinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-UltrathinItalic.otf"; sourceTree = "<group>"; };
 		171F6A1E1DD84FDD0085D370 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryViewController.swift; path = "View Controllers/GalleryViewController.swift"; sourceTree = "<group>"; };
 		171F6A201DD852860085D370 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromLeft.swift; path = Helpers/SegueFromLeft.swift; sourceTree = "<group>"; };
+		171F6A231DD8533C0085D370 /* EditorNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorNavigationController.swift; sourceTree = "<group>"; };
 		17F8113C1DD821A60084207B /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorViewController.swift; path = "View Controllers/EditorViewController.swift"; sourceTree = "<group>"; };
 		17F8113F1DD8382D0084207B /* xUIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = xUIBezierPath.swift; path = Extensions/xUIBezierPath.swift; sourceTree = "<group>"; };
 		17F811411DD842160084207B /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportViewController.swift; path = "View Controllers/ExportViewController.swift"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				1BFFD0C41DD1661900858992 /* Assets.xcassets */,
 				1BFFD0C61DD1661900858992 /* LaunchScreen.storyboard */,
 				1BFFD0C91DD1661900858992 /* Info.plist */,
+				171F6A231DD8533C0085D370 /* EditorNavigationController.swift */,
 			);
 			path = bugit;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				17F8113D1DD821A60084207B /* EditorViewController.swift in Sources */,
 				17F811401DD8382D0084207B /* xUIBezierPath.swift in Sources */,
+				171F6A241DD8533C0085D370 /* EditorNavigationController.swift in Sources */,
 				171F6A1F1DD84FDD0085D370 /* GalleryViewController.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
 				17F811421DD842160084207B /* ExportViewController.swift in Sources */,

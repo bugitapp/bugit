@@ -47,5 +47,7 @@
 		<string>SF-UI-Text-Light.otf</string>
 		<string>SF-UI-Text-Bold.otf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Understand your location of bugs.</string>
 </dict>
 </plist>

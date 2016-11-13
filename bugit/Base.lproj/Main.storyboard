@@ -58,11 +58,11 @@
             </objects>
             <point key="canvasLocation" x="-586" y="-214"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Editor Navigation Controller-->
         <scene sceneID="gyu-7Q-qQW">
             <objects>
-                <navigationController id="SCW-OT-Ow7" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                <navigationController id="SCW-OT-Ow7" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bid-Fl-9Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1487" y="583"/>
+            <point key="canvasLocation" x="-1564" y="1328"/>
         </scene>
         <!--Editor View Controller-->
         <scene sceneID="ulv-jy-nR8">
@@ -159,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="582.45877061469275"/>
+            <point key="canvasLocation" x="438" y="1328"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
