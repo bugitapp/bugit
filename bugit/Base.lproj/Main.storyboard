@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,18 +22,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-xc-LuN">
+                                <rect key="frame" x="114.5" y="42" width="146" height="30"/>
                                 <state key="normal" title="Access Photo Gallery"/>
                                 <connections>
                                     <segue destination="LgF-gA-lRg" kind="presentation" id="b2h-Nn-88r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-2V-OdL">
+                                <rect key="frame" x="112.5" y="80" width="150" height="30"/>
                                 <state key="normal" title="Anontate Screen Shot"/>
                                 <connections>
-                                    <segue destination="qHP-hN-bFx" kind="presentation" id="6l4-34-Huh"/>
+                                    <segue destination="SCW-OT-Ow7" kind="show" id="big-J9-uNm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeO-mW-eN5">
+                                <rect key="frame" x="124" y="118" width="127" height="30"/>
                                 <state key="normal" title="Create Bug Report"/>
                                 <connections>
                                     <segue destination="RPb-ma-yGK" kind="presentation" id="5Zg-jT-zTb"/>
@@ -50,12 +56,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-585" y="-72"/>
+            <point key="canvasLocation" x="-586" y="-214"/>
         </scene>
-        <!--View Controller-->
+        <!--Editor Navigation Controller-->
+        <scene sceneID="gyu-7Q-qQW">
+            <objects>
+                <navigationController id="SCW-OT-Ow7" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qHP-hN-bFx" kind="relationship" relationship="rootViewController" id="p6d-EV-jE7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eJ9-Ci-2UI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-586" y="582"/>
+        </scene>
+        <!--Gallery View Controller-->
         <scene sceneID="Nob-P4-VqQ">
             <objects>
-                <viewController id="LgF-gA-lRg" sceneMemberID="viewController">
+                <viewController id="LgF-gA-lRg" customClass="GalleryViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Aa-ll-Bsj"/>
                         <viewControllerLayoutGuide type="bottom" id="Tse-Wu-Y0m"/>
@@ -65,6 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select picture from photo gallery here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiM-ea-zrl">
+                                <rect key="frame" x="40.5" y="323.5" width="294" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -79,12 +102,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bid-Fl-9Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="584.25787106446785"/>
+            <point key="canvasLocation" x="-1564" y="1328"/>
         </scene>
-        <!--View Controller-->
+        <!--Editor View Controller-->
         <scene sceneID="ulv-jy-nR8">
             <objects>
-                <viewController id="qHP-hN-bFx" sceneMemberID="viewController">
+                <viewController id="qHP-hN-bFx" customClass="EditorViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="deH-GF-CsN"/>
                         <viewControllerLayoutGuide type="bottom" id="YLE-E1-jJE"/>
@@ -93,27 +116,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do annotations on image here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-v0-itX">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OzR-v0-itX" firstAttribute="centerY" secondItem="o5V-au-SRr" secondAttribute="centerY" id="IYH-ph-rde"/>
-                            <constraint firstItem="OzR-v0-itX" firstAttribute="centerX" secondItem="o5V-au-SRr" secondAttribute="centerX" id="cOv-qG-gDH"/>
+                            <constraint firstAttribute="trailing" secondItem="4lV-qT-dIn" secondAttribute="trailing" id="0oB-cn-RSA"/>
+                            <constraint firstItem="YLE-E1-jJE" firstAttribute="top" secondItem="4lV-qT-dIn" secondAttribute="bottom" constant="8" symbolic="YES" id="C9f-9S-HRd"/>
+                            <constraint firstItem="4lV-qT-dIn" firstAttribute="leading" secondItem="o5V-au-SRr" secondAttribute="leading" id="K4d-bB-d5a"/>
+                            <constraint firstItem="4lV-qT-dIn" firstAttribute="top" secondItem="deH-GF-CsN" secondAttribute="bottom" constant="8" symbolic="YES" id="Kyh-1Y-yIS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="12b-7O-xkD"/>
+                    <connections>
+                        <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
+                        <segue destination="LgF-gA-lRg" kind="custom" identifier="GallerySegue" customClass="SegueFromLeft" customModule="bugit" customModuleProvider="target" id="r6a-Lo-MkP"/>
+                        <segue destination="RPb-ma-yGK" kind="show" identifier="ExportSegue" id="dPL-Rf-hhQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZE-I6-jO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586" y="584"/>
+            <point key="canvasLocation" x="-586.39999999999998" y="1328.1859070464768"/>
         </scene>
-        <!--View Controller-->
+        <!--Export View Controller-->
         <scene sceneID="f67-gD-spV">
             <objects>
-                <viewController id="RPb-ma-yGK" sceneMemberID="viewController">
+                <viewController id="RPb-ma-yGK" customClass="ExportViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3PH-8t-mmI"/>
                         <viewControllerLayoutGuide type="bottom" id="YH9-Qp-PQ6"/>
@@ -122,22 +151,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create bug report here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7S-bU-8Kk">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="c7S-bU-8Kk" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="DQq-IN-xPp"/>
-                            <constraint firstItem="c7S-bU-8Kk" firstAttribute="centerY" secondItem="KGa-3N-fQO" secondAttribute="centerY" id="dsr-bT-4aF"/>
+                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
+                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="8" symbolic="YES" id="Vzm-N3-Wdl"/>
+                            <constraint firstAttribute="trailing" secondItem="LiM-Pp-vOm" secondAttribute="trailing" id="WSr-ae-50L"/>
+                            <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="LiM-Pp-vOm" secondAttribute="bottom" constant="8" symbolic="YES" id="jMQ-68-ohG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="flatCanvasImageView" destination="LiM-Pp-vOm" id="3VL-Zh-tAw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60" y="584"/>
+            <point key="canvasLocation" x="437.60000000000002" y="1327.2863568215894"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="r6a-Lo-MkP"/>
+        <segue reference="dPL-Rf-hhQ"/>
+    </inferredMetricsTieBreakers>
 </document>
