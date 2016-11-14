@@ -24,7 +24,7 @@ class JiraManager: AFHTTPSessionManager {
         super.init(coder: aDecoder)
     }
     
-    func projects(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {        
+    func projects(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.projectsPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Projects: \(response)")
@@ -36,6 +36,18 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
 
+    func projectDetails(withProjectKey projectKey: String!, success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
+        _ = get(JiraManager.projectsPath + "/\(projectKey!)", parameters: nil, progress: nil,
+                success: { (task: URLSessionDataTask, response: Any?) in
+                    print("Task: \(task) Project Details: \(response)")
+                    success([])
+            },
+                failure: { (task:URLSessionDataTask?, error: Error) in
+                    print("Error: \(error)")
+                    failure(error as NSError)
+        })
+    }
+    
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {
         requestSerializer.setValue(credentails(withUsername: name, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
     }
