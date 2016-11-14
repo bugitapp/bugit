@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BE601011DD96D9F005167EF /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE601001DD96D9F005167EF /* JiraManager.swift */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
 		1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BF1DD1661900858992 /* ViewController.swift */; };
 		1BFFD0C31DD1661900858992 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFD0C11DD1661900858992 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		01676247167C41103457507D /* Pods_bugit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bugit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B932B8CC16F4F595E0DF3DE /* Pods-bugit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bugit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bugit/Pods-bugit.debug.xcconfig"; sourceTree = "<group>"; };
+		1BE601001DD96D9F005167EF /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JiraManager.swift; path = Managers/JiraManager.swift; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFFD0BD1DD1661900858992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFFD0BF1DD1661900858992 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BE600FF1DD96D84005167EF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1BE601001DD96D9F005167EF /* JiraManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		1BFFD0B11DD1661900858992 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +71,7 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				1BE600FF1DD96D84005167EF /* Managers */,
 				1BFFD0BD1DD1661900858992 /* AppDelegate.swift */,
 				1BFFD0BF1DD1661900858992 /* ViewController.swift */,
 				1BFFD0C11DD1661900858992 /* Main.storyboard */,
@@ -211,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE601011DD96D9F005167EF /* JiraManager.swift in Sources */,
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
 			);
