@@ -13,10 +13,18 @@ class JiraManager: AFHTTPSessionManager {
     static let projectsPath = "project"
     static let authHeader = "Authorization"
     
-    static let sharedInstance = JiraManager(baseURL: URL(string: "https://bugitapp.atlassian.net/rest/api/2"))
+    static let sharedInstance = JiraManager(baseURL: URL(string: "https://bugitapp.atlassian.net/rest/api/2"), username: "junkbipin@yahoo.com", password: "bugit")
     
-    func projects(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
-        requestSerializer.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
+    init(baseURL url: URL?, username name: String!, password pwd: String!) {
+        super.init(baseURL: url, sessionConfiguration: nil)
+        addAuthHeader(withUsername: name, withPassword: pwd)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func projects(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {        
         _ = get(JiraManager.projectsPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Projects: \(response)")
@@ -28,6 +36,10 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
 
+    func addAuthHeader(withUsername name: String!, withPassword password: String!) {
+        requestSerializer.setValue(credentails(withUsername: name, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+    }
+    
     func credentails(withUsername name: String!, withPassword password: String!) -> String {
         return "Basic " + base64Encode(value: name + ":" + password)
     }
