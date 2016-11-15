@@ -49,5 +49,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Understand your location of bugs.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>BugIt needs access to your bug screenshots</string>
 </dict>
 </plist>

@@ -42,6 +42,11 @@
 		1BFFD0C51DD1661900858992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFD0C41DD1661900858992 /* Assets.xcassets */; };
 		1BFFD0C81DD1661900858992 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFD0C61DD1661900858992 /* LaunchScreen.storyboard */; };
 		48C52CDC525B2D0BDCE6BC49 /* Pods_bugit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01676247167C41103457507D /* Pods_bugit.framework */; };
+		D2851C131DDB7A36002C55BC /* ScreenshotAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2851C111DDB7A36002C55BC /* ScreenshotAsset.swift */; };
+		D2851C141DDB7A36002C55BC /* ScreenshotAssetSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2851C121DDB7A36002C55BC /* ScreenshotAssetSearchResults.swift */; };
+		D2851C171DDB7A49002C55BC /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2851C151DDB7A49002C55BC /* ScreenshotCollectionViewCell.swift */; };
+		D2851C181DDB7A49002C55BC /* ScreenshotSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2851C161DDB7A49002C55BC /* ScreenshotSectionHeaderView.swift */; };
+		D2851C1A1DDB7A70002C55BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2851C191DDB7A70002C55BC /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +89,11 @@
 		1BFFD0C71DD1661900858992 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BFFD0C91DD1661900858992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		440017F1FF4CC4700478B187 /* Pods-bugit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bugit.release.xcconfig"; path = "Pods/Target Support Files/Pods-bugit/Pods-bugit.release.xcconfig"; sourceTree = "<group>"; };
+		D2851C111DDB7A36002C55BC /* ScreenshotAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotAsset.swift; path = Models/ScreenshotAsset.swift; sourceTree = "<group>"; };
+		D2851C121DDB7A36002C55BC /* ScreenshotAssetSearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotAssetSearchResults.swift; path = Models/ScreenshotAssetSearchResults.swift; sourceTree = "<group>"; };
+		D2851C151DDB7A49002C55BC /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotCollectionViewCell.swift; path = Views/ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
+		D2851C161DDB7A49002C55BC /* ScreenshotSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotSectionHeaderView.swift; path = Views/ScreenshotSectionHeaderView.swift; sourceTree = "<group>"; };
+		D2851C191DDB7A70002C55BC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,7 @@
 			children = (
 				17CD94281DDACCC2001928B5 /* SF-UI-Display */,
 				17CD94321DDACCC2001928B5 /* SF-UI-Text */,
+				D2851C191DDB7A70002C55BC /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -191,6 +202,8 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				D2851C101DDB7A1F002C55BC /* Models */,
+				D2851C0F1DDB7A11002C55BC /* Views */,
 				17CD94271DDACCC2001928B5 /* Resources */,
 				17CD94411DDACCC2001928B5 /* View Controllers */,
 				1BFFD0BD1DD1661900858992 /* AppDelegate.swift */,
@@ -221,6 +234,24 @@
 				440017F1FF4CC4700478B187 /* Pods-bugit.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D2851C0F1DDB7A11002C55BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2851C151DDB7A49002C55BC /* ScreenshotCollectionViewCell.swift */,
+				D2851C161DDB7A49002C55BC /* ScreenshotSectionHeaderView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D2851C101DDB7A1F002C55BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D2851C111DDB7A36002C55BC /* ScreenshotAsset.swift */,
+				D2851C121DDB7A36002C55BC /* ScreenshotAssetSearchResults.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,11 +403,16 @@
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				17CD945C1DDACCC2001928B5 /* EditorViewController.swift in Sources */,
 				17CD945E1DDACCC2001928B5 /* GalleryViewController.swift in Sources */,
+				D2851C141DDB7A36002C55BC /* ScreenshotAssetSearchResults.swift in Sources */,
 				17CD94651DDACCD3001928B5 /* xUIBezierPath.swift in Sources */,
+				D2851C181DDB7A49002C55BC /* ScreenshotSectionHeaderView.swift in Sources */,
+				D2851C171DDB7A49002C55BC /* ScreenshotCollectionViewCell.swift in Sources */,
+				D2851C1A1DDB7A70002C55BC /* Constants.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
 				17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
+				D2851C131DDB7A36002C55BC /* ScreenshotAsset.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
