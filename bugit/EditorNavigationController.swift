@@ -42,7 +42,7 @@ class EditorNavigationController: UINavigationController {
                                 
                                 if status == INTULocationStatus.success {
                                     // got location successfully
-                                    print(currentLocation)
+                                    print("currentLocation = \(currentLocation)")
                                     
                                     defaults.set([
                                         "lat": currentLocation!.coordinate.latitude,
