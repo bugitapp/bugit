@@ -9,13 +9,23 @@
 import UIKit
 import Photos
 
+
+/*
+ How to populate the Screenshots 'smart album':
+ Run the simulator and take lots of screenshots (File->Take ScreenShot).
+ Next, open the Photos app, select the Albums tab, and drag one screenshot taken earlier into the album main page,
+ but not into one of the existing smart albums; the Screenshots 'smart' album will be created with one screenshot.
+ Drag remaining screenshots into the Screenshots smart album.
+ 
+ */
+
+
 class GalleryViewController: UIViewController {
 
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
-    // MARK: - Properties
     let screenshotReuseIdentifier = String(describing: ScreenshotCollectionViewCell.self)
     let headerReuseIdentifier = String(describing: ScreenshotSectionHeaderView.self)
     let sectionInsets = UIEdgeInsets(top: 40.0, left: 12.0, bottom: 40.0, right: 12.0)
@@ -27,6 +37,7 @@ class GalleryViewController: UIViewController {
             //dlog("b4 sort: \(screenshotAssetSectionsArray)")
             screenshotAssetSectionsArray.sort(by: >)
             //dlog("after sort: \(screenshotAssetSectionsArray)")
+            self.photosCollectionView.reloadData()
         }
     }
     
@@ -35,6 +46,7 @@ class GalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         dlog("in")
         let titleLabel = UILabel()
         let titleText = NSAttributedString(string: "Gallery", attributes: [
@@ -44,16 +56,48 @@ class GalleryViewController: UIViewController {
         titleLabel.attributedText = titleText
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
-        
-        fetchScreenshotAssets()
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(forName: userDidAllowGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
+            dlog("authorized for photos")
+            self.fetchScreenshotAssets()
+        }
+        
+        NotificationCenter.default.addObserver(forName: userDidDenyGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
+            dlog("denied photos")
+            self.showBasicAlert(title: "Problem", message: "Bugit cannot function without access to Photos. Pleae go to the Settings app and allow Bugit access to Photos.")
+        }
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        checkPhotoLibraryPermission()
+        
+    }
+
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(observer: self)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
+    
+    
     /*
     // MARK: - Navigation
 
@@ -63,7 +107,52 @@ class GalleryViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func showBasicAlert(title: String, message: String) {
+        
+        let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            dlog("OK pressed")
+        }
+        alertVc.addAction(OKAction)
+        
+        self.present(alertVc, animated: true)
+        
+    }
 
+    func checkPhotoLibraryPermission() {
+        let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch status {
+        case .authorized:
+        //handle authorized status
+            dlog("authorized")
+            NotificationCenter.default.post(name: userDidAllowGalleryLoadNotification, object: nil, userInfo: nil)
+        
+        case .notDetermined, .denied, .restricted:
+            // ask for permissions
+            dlog("asking")
+            
+            PHPhotoLibrary.requestAuthorization() { status in
+                
+                dlog("statusblock: \(status), thread: \(Thread.current)")
+                
+                switch status {
+                    
+                case .authorized:
+                    dlog("authorized")
+                    NotificationCenter.default.post(name: userDidAllowGalleryLoadNotification, object: nil, userInfo: nil)
+
+                case .denied, .restricted:
+                    dlog("denied")
+                    NotificationCenter.default.post(name: userDidDenyGalleryLoadNotification, object: nil, userInfo: nil)
+
+                case .notDetermined:
+                    dlog("shouldn't happen, not ask asking again")
+                }
+            }
+        }
+    }
     
     func fetchScreenshotAssets() {
         
@@ -72,12 +161,6 @@ class GalleryViewController: UIViewController {
         let albumType: PHAssetCollectionType = .smartAlbum
         let albumSubType: PHAssetCollectionSubtype = .smartAlbumScreenshots
         
-        /*
-         How to populate the Screenshots 'smart album':
-         Run the simulator and take lots of screenshots (File->Take ScreenShot).
-         Next, open the default system Screenshots album in Photos, and drag in the screenshots.
-         
-         */
         
         /* junk: testing another album
          var fetchOptions: PHFetchOptions? = nil
@@ -145,7 +228,7 @@ class GalleryViewController: UIViewController {
             assetSearchResults.append(assetResults)
             
         }
-        dlog("dateAssetSearchResults: \(assetSearchResults)")
+        dlog("dateAssetSearchResults: \(assetSearchResults), thread: \(Thread.current)")
         screenshotAssetSectionsArray = assetSearchResults
         
     }
@@ -219,12 +302,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                                   targetSize: PHImageManagerMaximumSize,
                                   contentMode: .aspectFit,
                                   options: options) { (finalResult: UIImage?, metaDict: [AnyHashable : Any]?) in
-                                    image = finalResult
-                                    dlog("setting image: \(image) for indexPath: \(indexPath)")
+                                      image = finalResult
+                                      //dlog("setting image: \(image) for indexPath: \(indexPath), thread: \(Thread.current)")
                                     
         }
-        
-        dlog("returning image: \(image) for indexPath: \(indexPath)")
         return image
     }
     
@@ -238,9 +319,8 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = photosCollectionView.bounds.width - paddingSpace
         let widthPerItem = (availableWidth / itemsPerRow) - 2.0
-        dlog("indexPath: \(indexPath), totalPad: \(paddingSpace), availableWdith: \(availableWidth)")
-        
-        dlog("indexPath: \(indexPath), width: \(widthPerItem)")
+        //dlog("indexPath: \(indexPath), totalPad: \(paddingSpace), availableWdith: \(availableWidth)")
+        //dlog("indexPath: \(indexPath), width: \(widthPerItem)")
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
