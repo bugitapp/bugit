@@ -11,6 +11,8 @@ import AFNetworking
 
 class JiraManager: AFHTTPSessionManager {
     static let projectsPath = "project"
+    static let issueMetadataPath = "issue/createmeta"
+
     static let authHeader = "Authorization"
     
     static let sharedInstance = JiraManager(baseURL: URL(string: "https://bugitapp.atlassian.net/rest/api/2"), username: "junkbipin@yahoo.com", password: "bugit")
@@ -41,6 +43,18 @@ class JiraManager: AFHTTPSessionManager {
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Project Details: \(response)")
                     success([])
+            },
+                failure: { (task:URLSessionDataTask?, error: Error) in
+                    print("Error: \(error)")
+                    failure(error as NSError)
+        })
+    }
+    
+    func issueMetadata(success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+        _ = get(JiraManager.issueMetadataPath, parameters: nil, progress: nil,
+                success: { (task: URLSessionDataTask, response: Any?) in
+                    print("Task: \(task) Projects: \(response)")
+                    success()
             },
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")
