@@ -11,15 +11,17 @@ import UIKit
 class ExportViewController: UIViewController {
     
     @IBOutlet weak var flatCanvasImageView: UIImageView!
-    var flatCanvasImage: UIImage? = nil
+    var screenshotAsset: ScreenshotAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dlog("screenshotAsset: \(screenshotAsset)")
+
         // Do any additional setup after loading the view.
         
         // Need to do this otherwise it unwraps Nil on previous prepare for segue
-        flatCanvasImageView.image = flatCanvasImage
+        flatCanvasImageView.image = screenshotAsset?.screenshotImage
         
         let titleLabel = UILabel()
         let titleText = NSAttributedString(string: "Export", attributes: [

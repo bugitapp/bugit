@@ -13,6 +13,7 @@ class ScreenshotAsset: CustomStringConvertible, CustomDebugStringConvertible {
     
     var screenshotImage: UIImage?
     var screenshotAsset: PHAsset?
+    var editedImage: UIImage?
     
     
     var description: String {

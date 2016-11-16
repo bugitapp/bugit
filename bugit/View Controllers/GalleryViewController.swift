@@ -98,15 +98,27 @@ class GalleryViewController: UIViewController {
 
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let segueId = segue.identifier {
+            
+            if segueId == "GalleryEditorPushSegue" {
+                
+                let editorVc = segue.destination as! EditorViewController
+                let screenshotAsset = sender as! ScreenshotAsset
+                editorVc.screenshotAsset = screenshotAsset
+                
+            }
+            
+        }
     }
-    */
+    
     
     func showBasicAlert(title: String, message: String) {
         
@@ -282,6 +294,19 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         
         return true
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let phasset = asset(for: indexPath)
+        let image = synchronousImage(for: phasset, at: indexPath)
+        let screenshotAsset = ScreenshotAsset()
+        screenshotAsset.screenshotAsset = phasset
+        screenshotAsset.screenshotImage = image
+        
+        self.performSegue(withIdentifier: "GalleryEditorPushSegue", sender: screenshotAsset)
+    }
+
     
     
     func asset(for indexPath: IndexPath) -> PHAsset {

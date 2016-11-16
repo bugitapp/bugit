@@ -11,6 +11,7 @@ import UIKit
 class EditorViewController: UIViewController {
 
     @IBOutlet weak var canvasImageView: UIImageView!
+    var screenshotAsset: ScreenshotAsset?
     
     var tapBegan = CGPoint(x:0, y:0)
     var tapEnded = CGPoint(x:0, y:0)
@@ -38,14 +39,17 @@ class EditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dlog("screenshotAsset: \(screenshotAsset)")
         // Do any additional setup after loading the view.
         
-        // TODO: Add image from Gallery
-        canvasImageView.image = UIImage.init(named: "sample")
         
+        canvasImageView.image = screenshotAsset?.screenshotImage
+    
         // Gesture overload if we use swipes
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Collage"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Gallery"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Export"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToExport))
+        
+        dlog("\(navigationItem.leftBarButtonItem)")
         
         /*
         // Gesture: Go to Gallery
@@ -86,20 +90,22 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func goToGallery() {
-        self.performSegue(withIdentifier: "GallerySegue", sender: self)
+        //self.performSegue(withIdentifier: "EditorGalleryPopSegue", sender: self)
+        //let _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func goToExport() {
-        self.performSegue(withIdentifier: "ExportSegue", sender: self)
+        self.performSegue(withIdentifier: "EditorExportPushSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ExportSegue" {
+        if segue.identifier == "EditorExportPushSegue" {
             // Get a reference to the detail view controller
             let destinationViewController = segue.destination as! ExportViewController
             
             // Pass the flat canvas to export
-            destinationViewController.flatCanvasImage = takeSnapshotOfView(view: canvasImageView)
+            screenshotAsset?.editedImage = takeSnapshotOfView(view: canvasImageView)
+            destinationViewController.screenshotAsset = screenshotAsset
         }
     }
     

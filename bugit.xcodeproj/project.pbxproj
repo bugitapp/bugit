@@ -158,9 +158,9 @@
 		17CD94411DDACCC2001928B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				17CD94441DDACCC2001928B5 /* GalleryViewController.swift */,
 				17CD94421DDACCC2001928B5 /* EditorViewController.swift */,
 				17CD94431DDACCC2001928B5 /* ExportViewController.swift */,
-				17CD94441DDACCC2001928B5 /* GalleryViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
