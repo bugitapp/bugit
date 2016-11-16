@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,21 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-xc-LuN">
-                                <rect key="frame" x="114.5" y="42" width="146" height="30"/>
                                 <state key="normal" title="Access Photo Gallery"/>
                                 <connections>
                                     <segue destination="LgF-gA-lRg" kind="presentation" id="b2h-Nn-88r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-2V-OdL">
-                                <rect key="frame" x="112.5" y="80" width="150" height="30"/>
                                 <state key="normal" title="Anontate Screen Shot"/>
                                 <connections>
                                     <segue destination="SCW-OT-Ow7" kind="show" id="big-J9-uNm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeO-mW-eN5">
-                                <rect key="frame" x="124" y="118" width="127" height="30"/>
                                 <state key="normal" title="Create Bug Report"/>
                                 <connections>
                                     <segue destination="RPb-ma-yGK" kind="presentation" id="5Zg-jT-zTb"/>
@@ -62,7 +56,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -87,7 +81,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select picture from photo gallery here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiM-ea-zrl">
-                                <rect key="frame" x="40.5" y="323.5" width="294" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,9 +109,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
-                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn"/>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -151,14 +142,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
-                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
+                                <frame key="frameInset" minX="121" minY="37" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get Issue Metadata"/>
+                                <connections>
+                                    <action selector="onGetIssueMetadataTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="zUc-Z2-psa"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LiM-Pp-vOm" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
-                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="8" symbolic="YES" id="Vzm-N3-Wdl"/>
+                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="297" id="Vzm-N3-Wdl"/>
                             <constraint firstAttribute="trailing" secondItem="LiM-Pp-vOm" secondAttribute="trailing" id="WSr-ae-50L"/>
                             <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="LiM-Pp-vOm" secondAttribute="bottom" constant="8" symbolic="YES" id="jMQ-68-ohG"/>
                         </constraints>
@@ -173,7 +170,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r6a-Lo-MkP"/>
-        <segue reference="dPL-Rf-hhQ"/>
+        <segue reference="5Zg-jT-zTb"/>
+        <segue reference="b2h-Nn-88r"/>
     </inferredMetricsTieBreakers>
 </document>

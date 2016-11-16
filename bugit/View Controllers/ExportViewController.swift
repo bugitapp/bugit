@@ -36,7 +36,15 @@ class ExportViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    /// MARK: - Outlets
+    
+    @IBAction func onGetIssueMetadataTapped(_ sender: AnyObject) {
+        JiraManager.sharedInstance.issueMetadata(success: { 
+            print("Got issue metadata")
+        }) { (error:NSError) in
+            print("Erorr getting metadata: \(error)")
+        }
+    }
     /*
     // MARK: - Navigation
 
