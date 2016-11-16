@@ -36,6 +36,7 @@
 		17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */; };
 		17CD94651DDACCD3001928B5 /* xUIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94611DDACCD3001928B5 /* xUIBezierPath.swift */; };
 		17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */; };
+		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
 		1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BF1DD1661900858992 /* ViewController.swift */; };
 		1BFFD0C31DD1661900858992 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFD0C11DD1661900858992 /* Main.storyboard */; };
@@ -76,6 +77,7 @@
 		17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorNavigationController.swift; sourceTree = "<group>"; };
 		17CD94611DDACCD3001928B5 /* xUIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIBezierPath.swift; sourceTree = "<group>"; };
 		17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFFD0BD1DD1661900858992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFFD0BF1DD1661900858992 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		1B98F94B1DDC39540003BB12 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1B98F94C1DDC39540003BB12 /* JiraManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		1BFFD0B11DD1661900858992 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +201,7 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				1B98F94B1DDC39540003BB12 /* Managers */,
 				17CD94271DDACCC2001928B5 /* Resources */,
 				17CD94411DDACCC2001928B5 /* View Controllers */,
 				1BFFD0BD1DD1661900858992 /* AppDelegate.swift */,
@@ -375,6 +386,7 @@
 				17CD94651DDACCD3001928B5 /* xUIBezierPath.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
+				1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */,
 				17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
 			);
