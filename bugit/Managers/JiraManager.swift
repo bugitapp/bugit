@@ -21,6 +21,7 @@ class JiraManager: AFHTTPSessionManager {
     init(baseURL url: URL?, username name: String!, password pwd: String!) {
         super.init(baseURL: url, sessionConfiguration: nil)
         addAuthHeader(withUsername: name, withPassword: pwd)
+        requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,7 +75,9 @@ class JiraManager: AFHTTPSessionManager {
         
         _ = post(JiraManager.issueCreatePath, parameters: nil,
             constructingBodyWith: { (formData: AFMultipartFormData) in
-                formData.appendPart(withHeaders: ["Content-Type" : "application/json"], body: issueData!)
+                if let issueData = issueData {
+                    formData.appendPart(withHeaders: ["Content-Type" : "application/json"], body: issueData)
+                }
             },
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
