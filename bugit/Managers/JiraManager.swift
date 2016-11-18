@@ -12,6 +12,7 @@ import AFNetworking
 class JiraManager: AFHTTPSessionManager {
     static let projectsPath = "project"
     static let issueMetadataPath = "issue/createmeta"
+    static let issueCreatePath = "issue"
 
     static let authHeader = "Authorization"
     
@@ -59,6 +60,30 @@ class JiraManager: AFHTTPSessionManager {
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")
                     failure(error as NSError)
+        })
+    }
+    
+    func createIssue(issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+        var issueData : Data?
+        do {
+            issueData = try JSONSerialization.data(withJSONObject: issue.toJSON(), options: JSONSerialization.WritingOptions.prettyPrinted)
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
+        _ = post(JiraManager.issueCreatePath, parameters: nil,
+            constructingBodyWith: { (formData: AFMultipartFormData) in
+                formData.appendPart(withHeaders: ["Content-Type" : "application/json"], body: issueData!)
+            },
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                print("Task: \(task) Projects: \(response)")
+                success()
+            },
+            failure: { (task: URLSessionDataTask?, error: Error) in
+                print("Error: \(error)")
+                failure(error as NSError)
         })
     }
     
