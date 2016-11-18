@@ -39,11 +39,17 @@ class ExportViewController: UIViewController {
     /// MARK: - Outlets
     
     @IBAction func onGetIssueMetadataTapped(_ sender: AnyObject) {
-        JiraManager.sharedInstance.issueMetadata(success: { 
-            print("Got issue metadata")
-        }) { (error:NSError) in
-            print("Erorr getting metadata: \(error)")
-        }
+        let issue = IssueModel()
+        issue.project = "TPO"
+        issue.summary = "Fox jumps over dog"
+        issue.issueDescription = "A quick brown fox jumped over the lazy dog."
+        issue.labels = ["canines"]
+        JiraManager.sharedInstance.createIssue(issue: issue,
+            success: {
+                print("Got issue metadata")
+            }) { (error:NSError) in
+                print("Erorr getting metadata: \(error)")
+            }
     }
     /*
     // MARK: - Navigation
