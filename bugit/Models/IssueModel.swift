@@ -20,4 +20,29 @@ class IssueModel: NSObject {
     var environment: String?
     var components: [String : String]?
     
+    func toJSON() -> Dictionary<String, Any> {
+        var json = Dictionary<String, Any>()
+        if let project = project {
+            json["project"] = project
+        }
+        if let summary = summary {
+            json["summary"] = summary
+        }
+        if let assignee = assignee {
+            json["assignee"] = assignee
+        }
+        if let reporter = reporter {
+            json["reporter"] = reporter
+        }
+        if let labels = labels {
+            json["labels"] = labels
+        }
+        if let environment = environment {
+            json["environment"] = environment
+        }
+        if let issueDescription = issueDescription {
+            json["description"] = issueDescription
+        }
+        return json
+    }
 }
