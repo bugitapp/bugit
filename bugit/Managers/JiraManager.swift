@@ -62,6 +62,18 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
     
+    func issueMetadata(success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+        _ = get(JiraManager.issueMetadataPath, parameters: nil, progress: nil,
+                success: { (task: URLSessionDataTask, response: Any?) in
+                    print("Task: \(task) Projects: \(response)")
+                    success()
+            },
+                failure: { (task:URLSessionDataTask?, error: Error) in
+                    print("Error: \(error)")
+                    failure(error as NSError)
+        })
+    }
+    
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {
         requestSerializer.setValue(credentails(withUsername: name, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
     }
