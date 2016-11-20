@@ -16,7 +16,8 @@ class EditorViewController: UIViewController {
     var tapEnded = CGPoint(x:0, y:0)
     
     @IBOutlet weak var trayView: UIView!
-    @IBOutlet weak var trayArrowImageView: UIImageView!
+    @IBOutlet weak var trayArrowImageView: UIButton!
+    @IBOutlet weak var trayToolsView: UIView!
     
     var trayOriginalCenter: CGPoint!
     var trayDownOffset: CGFloat!
@@ -70,6 +71,18 @@ class EditorViewController: UIViewController {
         // Gesture: Tap to track where arrow should go
         let drawPan = UIPanGestureRecognizer(target: self, action: #selector(onTap))
         view.addGestureRecognizer(drawPan)
+        
+        setupToolbox()
+    }
+    
+    func setupToolbox() {
+        trayDownOffset = 170
+        trayUp = trayView.center
+        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
+        
+        trayView.layer.shadowOffset = CGSize(-15, 20);
+        trayView.layer.shadowRadius = 5;
+        trayView.layer.shadowOpacity = 0.5;
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,47 +116,28 @@ class EditorViewController: UIViewController {
         }
     }
     
-    // MARK: - Tray
+    // MARK: - Gestures
+    
+    // Using Simultaneous Gesture Recognizers
+    // Ref: https://courses.codepath.com/courses/ios_for_designers/pages/using_gesture_recognizers#heading-using-simultaneous-gesture-recognizers
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     // Tray slide up and down with down bounce
     // Ref: https://guides.codepath.com/ios/Using-Gesture-Recognizers
     @IBAction func onTrayPanGesture(_ sender: UIPanGestureRecognizer) {
         let location = sender.location(in: view)
-        print("onTrayPanGesture.location = \(location)")
-        
-        // Tell which way a user is panning by looking at the gesture property
-        // Like translation, velocity has a value for both x and y components
-        // If the y component of the velocity is a positive value, the user is panning down.
-        // If the y component is negative, the user is panning up.
         let velocity = sender.velocity(in: view)
-        print("onTrayPanGesture.velocity = \(velocity)")
-        
-        // This will tell us how far our finger has moved from the original "touch-down" point as we drag.
         let translation = sender.translation(in: view)
-        print("onTrayPanGesture.translation = \(translation)")
         
         if sender.state == .began {
-            print("onTrayPanGesture.Gesture began")
-            
             trayOriginalCenter = trayView.center
-            
-            // Rotate tray arrow up
             trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
-            
         } else if sender.state == .changed {
-            print("onTrayPanGesture.Gesture is changing")
-            
-            // Ignore the x translation because we only want the tray to move up and down hence translation.y
             trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
-            
         } else if sender.state == .ended {
-            print("onTrayPanGesture.Gesture ended")
-            
-            // Rotate tray arrow down
             trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
-            
-            // Ref: https://guides.codepath.com/ios/Animating-View-Properties
-            // Ref2: https://guides.codepath.com/ios/Animating-View-Properties#spring-animation
             if velocity.y > 0 {
                 UIView.animate(withDuration:0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
