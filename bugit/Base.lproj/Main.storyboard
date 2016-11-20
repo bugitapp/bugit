@@ -143,21 +143,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm"/>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
-                                <frame key="frameInset" minX="121" minY="37" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Issue Metadata"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YAw-5G-EKW"/>
+                                    <constraint firstAttribute="width" constant="133" id="iYh-98-mvw"/>
+                                </constraints>
+                                <state key="normal" title="Get Projects"/>
                                 <connections>
                                     <action selector="onGetIssueMetadataTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="zUc-Z2-psa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM8-0j-JP2">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="fmq-XE-hEF"/>
+                                    <constraint firstAttribute="height" constant="30" id="xW7-TJ-r73"/>
+                                </constraints>
+                                <state key="normal" title="Create Issue"/>
+                                <connections>
+                                    <action selector="onCreateIssueTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="Yo0-b7-PVQ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LiM-Pp-vOm" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
+                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="20" id="RZr-IH-Zll"/>
+                            <constraint firstItem="vM8-0j-JP2" firstAttribute="top" secondItem="Gnr-RP-wGe" secondAttribute="bottom" constant="8" id="TQs-N5-x5M"/>
                             <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="297" id="Vzm-N3-Wdl"/>
                             <constraint firstAttribute="trailing" secondItem="LiM-Pp-vOm" secondAttribute="trailing" id="WSr-ae-50L"/>
+                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="diO-tb-Rv1"/>
                             <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="LiM-Pp-vOm" secondAttribute="bottom" constant="8" symbolic="YES" id="jMQ-68-ohG"/>
+                            <constraint firstItem="vM8-0j-JP2" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="opu-do-R1Z"/>
                         </constraints>
                     </view>
                     <connections>
