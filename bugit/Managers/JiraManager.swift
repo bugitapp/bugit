@@ -21,7 +21,6 @@ class JiraManager: AFHTTPSessionManager {
     init(baseURL url: URL?, username name: String!, password pwd: String!) {
         super.init(baseURL: url, sessionConfiguration: nil)
         addAuthHeader(withUsername: name, withPassword: pwd)
-        requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,27 +66,44 @@ class JiraManager: AFHTTPSessionManager {
     func createIssue(issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
         var issueData : Data?
         do {
-            issueData = try JSONSerialization.data(withJSONObject: issue.toJSON(), options: JSONSerialization.WritingOptions.prettyPrinted)
+            issueData = try JSONSerialization.data(withJSONObject: issue.toJSON(), options: [])
+            let issueString = String(data: issueData!, encoding: .utf8)
+            print("Post Data: \(issueString!)")
         }
         catch {
             print(error.localizedDescription)
         }
         
-        _ = post(JiraManager.issueCreatePath, parameters: nil,
-            constructingBodyWith: { (formData: AFMultipartFormData) in
-                if let issueData = issueData {
-                    formData.appendPart(withHeaders: ["Content-Type" : "application/json"], body: issueData)
-                }
-            },
-            progress: nil,
-            success: { (task: URLSessionDataTask, response: Any?) in
-                print("Task: \(task) Projects: \(response)")
-                success()
-            },
-            failure: { (task: URLSessionDataTask?, error: Error) in
-                print("Error: \(error)")
-                failure(error as NSError)
-        })
+        let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue")
+        var req = URLRequest(url: url!)
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("application/json", forHTTPHeaderField: "Accept")
+        req.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
+        req.httpMethod = "POST"
+        req.httpBody = issueData
+        
+        let issueTask = dataTask(with: req) { (response: URLResponse, obj: Any?, error: Error?) in
+            print("Response: \(response)")
+            print("Object: \(obj)")
+            print("Object: \(error)")
+        }
+        issueTask.resume()
+        
+//        _ = post(JiraManager.issueCreatePath, parameters: nil,
+//            constructingBodyWith: { (formData: AFMultipartFormData) in
+//                if let issueData = issueData {
+//                    formData.appendPart(withHeaders: ["Accepts" : "application/json"], body: issueData)
+//                }
+//            },
+//            progress: nil,
+//            success: { (task: URLSessionDataTask, response: Any?) in
+//                print("Task: \(task) Projects: \(response)")
+//                success()
+//            },
+//            failure: { (task: URLSessionDataTask?, error: Error) in
+//                print("Error: \(error)")
+//                failure(error as NSError)
+//        })
     }
     
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {
