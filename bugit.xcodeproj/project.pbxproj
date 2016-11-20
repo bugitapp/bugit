@@ -47,6 +47,7 @@
 		84A488F51DE120CA00736938 /* xCG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F21DE120CA00736938 /* xCG.swift */; };
 		84A488F61DE120CA00736938 /* xDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F31DE120CA00736938 /* xDate.swift */; };
 		84A488F71DE120CA00736938 /* xUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F41DE120CA00736938 /* xUIColor.swift */; };
+		84DA3A6E1DE2577500632909 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA3A6D1DE2577500632909 /* ShapeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		84A488F21DE120CA00736938 /* xCG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xCG.swift; sourceTree = "<group>"; };
 		84A488F31DE120CA00736938 /* xDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xDate.swift; sourceTree = "<group>"; };
 		84A488F41DE120CA00736938 /* xUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIColor.swift; sourceTree = "<group>"; };
+		84DA3A6D1DE2577500632909 /* ShapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				1BFFD0C41DD1661900858992 /* Assets.xcassets */,
 				1BFFD0C61DD1661900858992 /* LaunchScreen.storyboard */,
 				1BFFD0C91DD1661900858992 /* Info.plist */,
+				84DA3A6D1DE2577500632909 /* ShapeView.swift */,
 			);
 			path = bugit;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				84A488F51DE120CA00736938 /* xCG.swift in Sources */,
 				84A488F61DE120CA00736938 /* xDate.swift in Sources */,
 				84A488F71DE120CA00736938 /* xUIColor.swift in Sources */,
+				84DA3A6E1DE2577500632909 /* ShapeView.swift in Sources */,
 				1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */,
 				17CD94651DDACCD3001928B5 /* xUIBezierPath.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,

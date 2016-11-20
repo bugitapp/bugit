@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum ToolsInTray: Int {
+    case Arrow
+    case Text
+    case Circle
+    case Square
+    case Handsfree
+}
+
 class EditorViewController: UIViewController {
 
     @IBOutlet weak var canvasImageView: UIImageView!
@@ -25,6 +33,8 @@ class EditorViewController: UIViewController {
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
+    
+    var selectedTool = ToolsInTray(rawValue: 0) // Arrow tool by default
     
     /*
     override func viewWillAppear(_ animated: Bool) {
@@ -70,11 +80,22 @@ class EditorViewController: UIViewController {
         topEdgePan.edges = .top
         view.addGestureRecognizer(topEdgePan)
         
-        // Gesture: Tap to track where arrow should go
-        let drawPan = UIPanGestureRecognizer(target: self, action: #selector(onTap))
+        // Gesture: Pan to track where arrow should go
+        let drawPan = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         view.addGestureRecognizer(drawPan)
         
+        // Gesture: Tap to draw shapes
+        let drawTap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        self.view.addGestureRecognizer(drawTap)
+        
         setupToolbox()
+        
+        // Arrow is default
+        if let foundView = view.viewWithTag(701) {
+            changeTool(foundView as! UIButton)
+        }
+        
+        print("selectedTool = \(selectedTool)")
     }
     
     func setupToolbox() {
@@ -185,14 +206,30 @@ class EditorViewController: UIViewController {
     @IBAction func changeTool(_ sender: UIButton) {
         print("changeTool.sender.tag = \(sender.tag)")
         
+        // Clear previous button backgrounds
+        for view in trayToolsView.subviews as [UIView] {
+            if let btn = view as? UIButton {
+                btn.backgroundColor = UIColor.clear
+                btn.tintColor = UIColor.blue
+            }
+        }
+        
+        // Selected object has palette background color
+        sender.backgroundColor = trayView.backgroundColor
+        sender.tintColor = UIColor.white
+        
         if sender.tag == 701 {
             // Arrow
+            selectedTool = ToolsInTray(rawValue: 0)
         } else if sender.tag == 702 {
-            // text
+            // Text
+            selectedTool = ToolsInTray(rawValue: 1)
         } else if sender.tag == 703 {
-            // circle
+            // Circle
+            selectedTool = ToolsInTray(rawValue: 2)
         } else if sender.tag == 704 {
-            // square
+            // Square
+            selectedTool = ToolsInTray(rawValue: 3)
         }
     }
     
@@ -207,49 +244,74 @@ class EditorViewController: UIViewController {
         return image
     }
     
-    @IBAction func onTap(_ sender: UIPanGestureRecognizer) {
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
         print("tapped")
-        print("sender.state = \(sender.state)")
-        let translation = sender.translation(in: view)
+        print("didTap.sender.state = \(sender.state)")
+        print("didTap.selectedTool = \(selectedTool)")
         
+        let point = sender.location(in: canvasImageView) as CGPoint
+        
+        // Square
+        if selectedTool == ToolsInTray.Square {
+            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Square)
+            self.view.addSubview(shapeView)
+        }
+        
+        // Circle
+        if selectedTool == ToolsInTray.Circle {
+            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
+            self.view.addSubview(shapeView)
+        }
+    }
+    
+    @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
+        print("panned")
+        print("onPan.sender.state = \(sender.state)")
+        
+        let translation = sender.translation(in: view)
         let point = sender.location(in: canvasImageView) as CGPoint
         //print("point = \(point)")
         
-        if sender.state == UIGestureRecognizerState.began {
-            print("tapped.began")
+        if selectedTool == ToolsInTray.Arrow {
             
-            tapBegan = point as CGPoint
-            print("tapBegan = \(tapBegan)")
-            
-            elOriginalCenter = tapBegan
-            
-        } else if sender.state == .changed {
-            
-            //drawArrow(from: tapBegan, to: tapEnded)
-            
-            //sender.view!.center = CGPoint(elOriginalCenter.x + translation.x, elOriginalCenter.y + translation.y)
-            
-            //CATransaction.begin()
-            //CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-            //lineLayer.path = pathFromBallToAnchor()
-            
-            tapEnded = point as CGPoint
-            //drawArrow(from: tapBegan, to: tapEnded)
-            
-            //CATransaction.commit()
-            // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
-            
-        } else if sender.state == UIGestureRecognizerState.ended {
-            print("tapped.ended")
-            
-            tapEnded = point as CGPoint
-            print("tapEnded = \(tapEnded)")
-            print("tapBegan = \(tapBegan)")
-            
-            // Draw Arrow
-            drawArrow(from: tapBegan, to: tapEnded)
-            
-            // TODO: How to move the arrow around once it's been drawn?
+            if sender.state == UIGestureRecognizerState.began {
+                print("onPan.began")
+                
+                tapBegan = point as CGPoint
+                print("panBegan = \(tapBegan)")
+                
+                //elOriginalCenter = tapBegan
+                
+                //drawArrow(from: CGPoint(x: 120, y: 120), to: CGPoint(x: 20, y: 20))
+                
+            } else if sender.state == .changed {
+                
+                //drawArrow(from: tapBegan, to: tapEnded)
+                
+                //sender.view!.center = CGPoint((sender.view?.center.x)! + translation.x, (sender.view?.center.y)! + translation.y)
+                
+                //CATransaction.begin()
+                //CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+                //lineLayer.path = pathFromBallToAnchor()
+                
+                //tapEnded = point as CGPoint
+                //drawArrow(from: tapBegan, to: tapEnded)
+                
+                //CATransaction.commit()
+                // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
+                
+            } else if sender.state == UIGestureRecognizerState.ended {
+                print("onPan.ended")
+                
+                tapEnded = point as CGPoint
+                print("tapEnded = \(tapEnded)")
+                print("tapBegan = \(tapBegan)")
+                
+                // Draw Arrow
+                drawArrow(from: tapBegan, to: tapEnded)
+                
+                // TODO: How to move the arrow around once it's been drawn?
+            }
         }
     }
     
