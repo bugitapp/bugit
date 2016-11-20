@@ -23,7 +23,7 @@ class IssueModel: NSObject {
     func toJSON() -> Dictionary<String, Any> {
         var json = Dictionary<String, Any>()
         if let project = project {
-            json["project"] = project
+            json["project"] = ["key" : project]
         }
         if let summary = summary {
             json["summary"] = summary
@@ -43,6 +43,11 @@ class IssueModel: NSObject {
         if let issueDescription = issueDescription {
             json["description"] = issueDescription
         }
-        return json
+        if let issueType = issueTypeId {
+            json["issuetype"] = ["name" : issueType]
+        }
+        var fields = Dictionary<String, Any>()
+        fields["fields"] = json
+        return fields
     }
 }
