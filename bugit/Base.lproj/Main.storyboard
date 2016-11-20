@@ -141,21 +141,33 @@
                                                 <rect key="frame" x="13" y="68" width="46" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Arrow"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="QmR-MB-aQW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-Hl-AXK">
                                                 <rect key="frame" x="13" y="102" width="46" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Text"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="whB-N0-ROa"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-LV-hR9">
                                                 <rect key="frame" x="13" y="137" width="46" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Circle"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="sEv-Gy-zbC"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8J-nk-nt9">
                                                 <rect key="frame" x="12" y="170" width="49" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Square"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="m13-6y-CP9"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tools" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2T-TK-XUs">
                                                 <rect key="frame" x="0.0" y="39" width="72" height="21"/>
@@ -167,40 +179,62 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDJ-nt-iJU">
+                                    <button opaque="NO" tag="801" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDJ-nt-iJU" userLabel="Button - Grey">
                                         <rect key="frame" x="86" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="gray"/>
                                         <state key="normal" image="Pen-Grey"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="vwJ-xh-Eg0"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-fj-CaQ">
+                                    <button opaque="NO" tag="802" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-fj-CaQ" userLabel="Button - LightBlue">
                                         <rect key="frame" x="123" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-LightBlue"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="tcw-Bv-WDs"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-N1-NV0">
+                                    <button opaque="NO" tag="803" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-N1-NV0" userLabel="Button - LightGreen">
                                         <rect key="frame" x="160" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-LightGreen"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="x9f-4a-Nfk"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cof-Mr-DTB">
+                                    <button opaque="NO" tag="804" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cof-Mr-DTB" userLabel="Button - Red">
                                         <rect key="frame" x="197" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Red"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="lvu-Z8-O3x"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07x-r0-sJH">
+                                    <button opaque="NO" tag="805" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07x-r0-sJH" userLabel="Button - Yellow">
                                         <rect key="frame" x="234" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Yellow"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="mCD-X2-k4A"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRb-0w-dr2">
+                                    <button opaque="NO" tag="806" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRb-0w-dr2" userLabel="Button - Black">
                                         <rect key="frame" x="271" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Black"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="Wj3-Bt-TA0"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Wi-vzL">
-                                        <rect key="frame" x="318" y="39" width="29" height="183"/>
+                                    <button opaque="NO" tag="800" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Wi-vzL" userLabel="Button - Eraser">
+                                        <rect key="frame" x="314" y="64" width="29" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Eraser"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="S2Z-vr-tmI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.0" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>

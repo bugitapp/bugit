@@ -127,7 +127,7 @@ class EditorViewController: UIViewController {
     // Tray slide up and down with down bounce
     // Ref: https://guides.codepath.com/ios/Using-Gesture-Recognizers
     @IBAction func onTrayPanGesture(_ sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: view)
+        //let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
         
@@ -151,6 +151,43 @@ class EditorViewController: UIViewController {
         }
     }
     
+    // MARK: - Toolbox
+    
+    @IBAction func changeColor(_ sender: UIButton) {
+        print("changeColor.sender.tag = \(sender.tag)")
+        
+        if sender.tag == 801 {
+            trayView.backgroundColor = UIColor.init(netHex: 0xC0C0C0) // grey
+        } else if sender.tag == 802 {
+            trayView.backgroundColor = UIColor.init(netHex: 0x82CAFA) // light blue
+        } else if sender.tag == 803 {
+            trayView.backgroundColor = UIColor.init(netHex: 0x59E817) // light green
+        } else if sender.tag == 804 {
+            trayView.backgroundColor = UIColor.init(netHex: 0xFF0000) // red
+        } else if sender.tag == 805 {
+            trayView.backgroundColor = UIColor.init(netHex: 0xFFFF00) // yellow
+        } else if sender.tag == 806 {
+            trayView.backgroundColor = UIColor.init(netHex: 0x000000) // black
+        } else {
+            // erase
+        }
+    }
+    
+    @IBAction func changeTool(_ sender: UIButton) {
+        print("changeTool.sender.tag = \(sender.tag)")
+        
+        if sender.tag == 701 {
+            // Arrow
+        } else if sender.tag == 702 {
+            // text
+        } else if sender.tag == 703 {
+            // circle
+        } else if sender.tag == 704 {
+            // square
+        }
+    }
+    
+    
     // MARK: - Draw
     
     func drawArrow(from: CGPoint, to: CGPoint) {
@@ -164,7 +201,8 @@ class EditorViewController: UIViewController {
         let arrow = UIBezierPath.arrow(from: from, to: to, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = arrow.cgPath
-        shapeLayer.fillColor = UIColor.red.cgColor
+        //shapeLayer.fillColor = UIColor.red.cgColor
+        shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
         
         canvasImageView.layer.addSublayer(shapeLayer)
     }
