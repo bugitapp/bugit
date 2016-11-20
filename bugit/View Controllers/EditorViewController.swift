@@ -18,6 +18,8 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowImageView: UIButton!
     @IBOutlet weak var trayToolsView: UIView!
+
+    var elOriginalCenter: CGPoint!
     
     var trayOriginalCenter: CGPoint!
     var trayDownOffset: CGFloat!
@@ -83,6 +85,12 @@ class EditorViewController: UIViewController {
         trayView.layer.shadowOffset = CGSize(-15, 20);
         trayView.layer.shadowRadius = 5;
         trayView.layer.shadowOpacity = 0.5;
+        
+        // Put Tray into Down position
+        UIView.animate(withDuration:0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                       animations: { () -> Void in
+                        self.trayView.center = self.trayDown
+        }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,14 +147,15 @@ class EditorViewController: UIViewController {
         } else if sender.state == .ended {
             trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
             if velocity.y > 0 {
-                UIView.animate(withDuration:0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayDown
                 }, completion: nil)
             } else {
-                UIView.animate(withDuration: 0.3) {
-                    self.trayView.center = self.trayUp
-                }
+                UIView.animate(withDuration:0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                               animations: { () -> Void in
+                                self.trayView.center = self.trayUp
+                }, completion: nil)
             }
         }
     }
@@ -187,8 +196,62 @@ class EditorViewController: UIViewController {
         }
     }
     
-    
     // MARK: - Draw
+    
+    func takeSnapshotOfView(view:UIView) -> UIImage? {
+        UIGraphicsBeginImageContext(CGSize(width: view.frame.size.width, height: view.frame.size.height))
+        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height), afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    @IBAction func onTap(_ sender: UIPanGestureRecognizer) {
+        print("tapped")
+        print("sender.state = \(sender.state)")
+        let translation = sender.translation(in: view)
+        
+        let point = sender.location(in: canvasImageView) as CGPoint
+        //print("point = \(point)")
+        
+        if sender.state == UIGestureRecognizerState.began {
+            print("tapped.began")
+            
+            tapBegan = point as CGPoint
+            print("tapBegan = \(tapBegan)")
+            
+            elOriginalCenter = tapBegan
+            
+        } else if sender.state == .changed {
+            
+            //drawArrow(from: tapBegan, to: tapEnded)
+            
+            //sender.view!.center = CGPoint(elOriginalCenter.x + translation.x, elOriginalCenter.y + translation.y)
+            
+            //CATransaction.begin()
+            //CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+            //lineLayer.path = pathFromBallToAnchor()
+            
+            tapEnded = point as CGPoint
+            //drawArrow(from: tapBegan, to: tapEnded)
+            
+            //CATransaction.commit()
+            // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            print("tapped.ended")
+            
+            tapEnded = point as CGPoint
+            print("tapEnded = \(tapEnded)")
+            print("tapBegan = \(tapBegan)")
+            
+            // Draw Arrow
+            drawArrow(from: tapBegan, to: tapEnded)
+            
+            // TODO: How to move the arrow around once it's been drawn?
+        }
+    }
     
     func drawArrow(from: CGPoint, to: CGPoint) {
         // TODO: Should be set from Settings?
@@ -204,42 +267,9 @@ class EditorViewController: UIViewController {
         //shapeLayer.fillColor = UIColor.red.cgColor
         shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
         
+        shapeLayer.setValue(100, forKey: "tag")
+        
         canvasImageView.layer.addSublayer(shapeLayer)
-    }
-    
-    func takeSnapshotOfView(view:UIView) -> UIImage? {
-        UIGraphicsBeginImageContext(CGSize(width: view.frame.size.width, height: view.frame.size.height))
-        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height), afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
-    @IBAction func onTap(_ sender: UIPanGestureRecognizer) {
-        print("tapped")
-        print("sender.state = \(sender.state)")
-        
-        let point = sender.location(in: canvasImageView) as CGPoint
-        //print("point = \(point)")
-        
-        if sender.state == UIGestureRecognizerState.began {
-            print("tapped.began")
-            
-            tapBegan = point as CGPoint
-            print("tapBegan = \(tapBegan)")
-        } else if sender.state == UIGestureRecognizerState.ended {
-            print("tapped.ended")
-            
-            tapEnded = point as CGPoint
-            print("tapEnded = \(tapEnded)")
-            print("tapBegan = \(tapBegan)")
-            
-            // Draw Arrow
-            drawArrow(from: tapBegan, to: tapEnded)
-            
-            // TODO: How to move the arrow around once it's been drawn?
-        }
     }
 
 }
