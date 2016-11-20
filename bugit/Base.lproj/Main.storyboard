@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,18 +22,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-xc-LuN">
+                                <rect key="frame" x="115" y="42" width="146" height="30"/>
                                 <state key="normal" title="Access Photo Gallery"/>
                                 <connections>
                                     <segue destination="LgF-gA-lRg" kind="presentation" id="b2h-Nn-88r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-2V-OdL">
+                                <rect key="frame" x="113" y="80" width="150" height="30"/>
                                 <state key="normal" title="Anontate Screen Shot"/>
                                 <connections>
                                     <segue destination="SCW-OT-Ow7" kind="show" id="big-J9-uNm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeO-mW-eN5">
+                                <rect key="frame" x="124" y="118" width="127" height="30"/>
                                 <state key="normal" title="Create Bug Report"/>
                                 <connections>
                                     <segue destination="RPb-ma-yGK" kind="presentation" id="5Zg-jT-zTb"/>
@@ -81,6 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select picture from photo gallery here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiM-ea-zrl">
+                                <rect key="frame" x="41" y="323" width="294" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -109,7 +116,121 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
+                            </imageView>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJ5-pC-Mlr">
+                                <rect key="frame" x="10" y="456" width="356" height="211"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-xi-pb8">
+                                        <rect key="frame" x="0.0" y="0.0" width="356" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="down_arrow"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atj-Xf-o3E">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="211"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="701" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-34-XpZ">
+                                                <rect key="frame" x="0.0" y="68" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Arrow"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="QmR-MB-aQW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="702" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-Hl-AXK">
+                                                <rect key="frame" x="0.0" y="102" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Text"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="whB-N0-ROa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="703" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-LV-hR9">
+                                                <rect key="frame" x="0.0" y="137" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Circle"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="sEv-Gy-zbC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="704" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8J-nk-nt9">
+                                                <rect key="frame" x="0.0" y="170" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Square"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="m13-6y-CP9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </view>
+                                    <button opaque="NO" tag="801" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDJ-nt-iJU" userLabel="Button - Grey">
+                                        <rect key="frame" x="86" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="gray"/>
+                                        <state key="normal" image="Pen-Grey"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="vwJ-xh-Eg0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="802" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-fj-CaQ" userLabel="Button - LightBlue">
+                                        <rect key="frame" x="123" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Pen-LightBlue"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="tcw-Bv-WDs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="803" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-N1-NV0" userLabel="Button - LightGreen">
+                                        <rect key="frame" x="160" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Pen-LightGreen"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="x9f-4a-Nfk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="804" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cof-Mr-DTB" userLabel="Button - Red">
+                                        <rect key="frame" x="197" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Pen-Red"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="lvu-Z8-O3x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="805" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07x-r0-sJH" userLabel="Button - Yellow">
+                                        <rect key="frame" x="234" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Pen-Yellow"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="mCD-X2-k4A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="806" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRb-0w-dr2" userLabel="Button - Black">
+                                        <rect key="frame" x="271" y="28" width="29" height="183"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Pen-Black"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="Wj3-Bt-TA0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="800" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Wi-vzL" userLabel="Button - Eraser">
+                                        <rect key="frame" x="314" y="64" width="29" height="147"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Eraser"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="qHP-hN-bFx" eventType="touchUpInside" id="S2Z-vr-tmI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.0" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KWd-Qg-qZ4" appends="YES" id="ayv-HC-ZRm"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -122,11 +243,19 @@
                     <navigationItem key="navigationItem" id="12b-7O-xkD"/>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
+                        <outlet property="trayArrowImageView" destination="ajd-xi-pb8" id="pvT-Qe-p0w"/>
+                        <outlet property="trayToolsView" destination="atj-Xf-o3E" id="0MC-7M-n7x"/>
+                        <outlet property="trayView" destination="BJ5-pC-Mlr" id="cAZ-o2-cSn"/>
                         <segue destination="LgF-gA-lRg" kind="custom" identifier="GallerySegue" customClass="SegueFromLeft" customModule="bugit" customModuleProvider="target" id="r6a-Lo-MkP"/>
                         <segue destination="RPb-ma-yGK" kind="show" identifier="ExportSegue" id="dPL-Rf-hhQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZE-I6-jO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="KWd-Qg-qZ4">
+                    <connections>
+                        <action selector="onTrayPanGesture:" destination="qHP-hN-bFx" id="bcw-6j-aHc"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-586.39999999999998" y="1328.1859070464768"/>
         </scene>
@@ -185,8 +314,18 @@
             <point key="canvasLocation" x="437.60000000000002" y="1327.2863568215894"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Eraser" width="55" height="167"/>
+        <image name="Pen-Black" width="53" height="332"/>
+        <image name="Pen-Grey" width="53" height="332"/>
+        <image name="Pen-LightBlue" width="53" height="332"/>
+        <image name="Pen-LightGreen" width="53" height="332"/>
+        <image name="Pen-Red" width="53" height="332"/>
+        <image name="Pen-Yellow" width="53" height="332"/>
+        <image name="down_arrow" width="20" height="14"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Zg-jT-zTb"/>
-        <segue reference="b2h-Nn-88r"/>
+        <segue reference="r6a-Lo-MkP"/>
+        <segue reference="dPL-Rf-hhQ"/>
     </inferredMetricsTieBreakers>
 </document>
