@@ -256,25 +256,24 @@ class EditorViewController: UIViewController {
         
         // Text
         if selectedTool == ToolsInTray.Text {
-            //1. Create the alert controller.
-            let alert = UIAlertController(title: "Add Text", message: "Enter a text", preferredStyle: .alert)
-            
-            //2. Add the text field. You can configure it however you need.
+            let alert = UIAlertController(title: "Enter Text to Add", message: "", preferredStyle: .alert)
             alert.addTextField { (textField) in
                 textField.text = "Hello World!"
             }
-            
-            // 3. Grab the value from the text field, and print it when the user clicks OK.
+            // Entry for text
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 print("Text field: \(textField?.text)")
                 
                 let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
-                let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
-                self.view.addSubview(textView)
+                //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
+                
+                let newImage = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
+                self.view.layer.addSublayer(newImage)
             }))
+            // Back out
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            // 4. Present the alert.
             self.present(alert, animated: true, completion: nil)
         }
         

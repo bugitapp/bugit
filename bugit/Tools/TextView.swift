@@ -59,7 +59,7 @@ class TextView: UIView {
     
     func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
         let textColor = UIColor.white
-        let textFont = UIFont(name: "Helvetica Bold", size: 12)!
+        let textFont = UIFont(name: "OpenSans", size: 12)! // TODO: Allow configuration of this in Alert box?
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -77,6 +77,22 @@ class TextView: UIView {
         UIGraphicsEndImageContext()
         
         return newImage!
+    }
+    
+    func generateText(drawText text: String, inImage image: UIImageView) -> CATextLayer {
+        let textLayer = CATextLayer()
+        textLayer.frame = image.bounds
+        
+        textLayer.string = text
+        
+        textLayer.font = CTFontCreateWithName("OpenSans" as CFString?, 12, nil)
+        
+        textLayer.foregroundColor = UIColor.black.cgColor // self.fillColor as! CGColor?
+        textLayer.isWrapped = true
+        textLayer.alignmentMode = kCAAlignmentLeft
+        textLayer.contentsScale = UIScreen.main.scale
+        
+        return textLayer
     }
     
     // MARK: Gestures
