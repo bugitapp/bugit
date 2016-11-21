@@ -13,7 +13,7 @@ enum ToolsInTray: Int {
     case Text
     case Circle
     case Square
-    case Handsfree
+    case Freehand
 }
 
 class EditorViewController: UIViewController {
@@ -230,6 +230,9 @@ class EditorViewController: UIViewController {
         } else if sender.tag == 704 {
             // Square
             selectedTool = ToolsInTray(rawValue: 3)
+        } else if sender.tag == 704 {
+            // Freehand
+            selectedTool = ToolsInTray(rawValue: 3)
         }
     }
     
@@ -250,6 +253,30 @@ class EditorViewController: UIViewController {
         print("didTap.selectedTool = \(selectedTool)")
         
         let point = sender.location(in: canvasImageView) as CGPoint
+        
+        // Text
+        if selectedTool == ToolsInTray.Text {
+            //1. Create the alert controller.
+            let alert = UIAlertController(title: "Add Text", message: "Enter a text", preferredStyle: .alert)
+            
+            //2. Add the text field. You can configure it however you need.
+            alert.addTextField { (textField) in
+                textField.text = "Hello World!"
+            }
+            
+            // 3. Grab the value from the text field, and print it when the user clicks OK.
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+                print("Text field: \(textField?.text)")
+                
+                let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
+                let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
+                self.view.addSubview(textView)
+            }))
+            
+            // 4. Present the alert.
+            self.present(alert, animated: true, completion: nil)
+        }
         
         // Square
         if selectedTool == ToolsInTray.Square {
