@@ -231,10 +231,11 @@ class EditorViewController: UIViewController {
         } else if sender.tag == 704 {
             // Square
             selectedTool = ToolsInTray(rawValue: 3)
-        } else if sender.tag == 704 {
+        } else if sender.tag == 705 {
             // Freehand
-            selectedTool = ToolsInTray(rawValue: 3)
+            selectedTool = ToolsInTray(rawValue: 4)
         }
+        print("changeTool.selectedTool = \(selectedTool)")
     }
     
     // MARK: - Draw
@@ -288,7 +289,7 @@ class EditorViewController: UIViewController {
         if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
             self.view.addSubview(shapeView)
-        }
+        }   
     }
     
     @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
@@ -332,6 +333,9 @@ class EditorViewController: UIViewController {
                 
                 // TODO: How to move the arrow around once it's been drawn?
             }
+        } else if selectedTool == ToolsInTray.Freehand {
+            let drawView = DrawView(origin: point, paletteColor: trayView.backgroundColor!)
+            self.view.addSubview(drawView)
         }
     }
     
