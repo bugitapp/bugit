@@ -88,22 +88,6 @@ class JiraManager: AFHTTPSessionManager {
             print("Object: \(error)")
         }
         issueTask.resume()
-        
-//        _ = post(JiraManager.issueCreatePath, parameters: nil,
-//            constructingBodyWith: { (formData: AFMultipartFormData) in
-//                if let issueData = issueData {
-//                    formData.appendPart(withHeaders: ["Accepts" : "application/json"], body: issueData)
-//                }
-//            },
-//            progress: nil,
-//            success: { (task: URLSessionDataTask, response: Any?) in
-//                print("Task: \(task) Projects: \(response)")
-//                success()
-//            },
-//            failure: { (task: URLSessionDataTask?, error: Error) in
-//                print("Error: \(error)")
-//                failure(error as NSError)
-//        })
     }
     
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {
