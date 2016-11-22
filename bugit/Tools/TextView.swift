@@ -13,6 +13,7 @@ class TextView: UIView {
     let size: CGFloat = 21
     var fillColor: UIColor!
     var outlineColor: UIColor!
+    var originClick: CGPoint!
     
     init(origin: CGPoint, paletteColor: UIColor) {
         super.init(frame: CGRect(0.0, 0.0, size, size))
@@ -20,6 +21,7 @@ class TextView: UIView {
         self.outlineColor = paletteColor
         self.fillColor = UIColor.clear
         
+        originClick = origin
         self.center = origin
         
         self.backgroundColor = UIColor.clear
@@ -81,13 +83,13 @@ class TextView: UIView {
     
     func generateText(drawText text: String, inImage image: UIImageView) -> CATextLayer {
         let textLayer = CATextLayer()
-        textLayer.frame = image.bounds
+        textLayer.frame = CGRect(origin: originClick!, size: CGSize(100, 100)) // image.bounds
         
         textLayer.string = text
         
         textLayer.font = CTFontCreateWithName("OpenSans" as CFString?, 12, nil)
         
-        textLayer.foregroundColor = UIColor.black.cgColor // self.fillColor as! CGColor?
+        textLayer.foregroundColor = self.outlineColor.cgColor
         textLayer.isWrapped = true
         textLayer.alignmentMode = kCAAlignmentLeft
         textLayer.contentsScale = UIScreen.main.scale

@@ -89,27 +89,30 @@ class EditorViewController: UIViewController {
         let drawTap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         self.view.addGestureRecognizer(drawTap)
         
-        setupToolbox()
-        
-        // Arrow is default
+        // Tool Arrow is default
         if let foundView = view.viewWithTag(701) {
             changeTool(foundView as! UIButton)
         }
         
         print("selectedTool = \(selectedTool)")
+        
+        setupToolbox()
     }
     
     func setupToolbox() {
-        trayDownOffset = 170
+        trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
         trayUp = trayView.center
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
         
-        trayView.layer.shadowOffset = CGSize(-15, 20);
-        trayView.layer.shadowRadius = 5;
-        trayView.layer.shadowOpacity = 0.5;
+        //trayView.layer.shadowOffset = CGSize(0, 3);
+        //trayView.layer.shadowRadius = 3;
+        //trayView.layer.shadowOpacity = 0.5;
+        
+        trayView.layer.borderWidth = 1
+        trayView.layer.borderColor = UIColor.black.cgColor
         
         // Put Tray into Down position
-        UIView.animate(withDuration:0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                        animations: { () -> Void in
                         self.trayView.center = self.trayDown
         }, completion: nil)
@@ -149,13 +152,10 @@ class EditorViewController: UIViewController {
     // MARK: - Gestures
     
     // Using Simultaneous Gesture Recognizers
-    // Ref: https://courses.codepath.com/courses/ios_for_designers/pages/using_gesture_recognizers#heading-using-simultaneous-gesture-recognizers
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
-    // Tray slide up and down with down bounce
-    // Ref: https://guides.codepath.com/ios/Using-Gesture-Recognizers
     @IBAction func onTrayPanGesture(_ sender: UIPanGestureRecognizer) {
         //let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
@@ -231,10 +231,11 @@ class EditorViewController: UIViewController {
         } else if sender.tag == 704 {
             // Square
             selectedTool = ToolsInTray(rawValue: 3)
-        } else if sender.tag == 704 {
+        } else if sender.tag == 705 {
             // Freehand
-            selectedTool = ToolsInTray(rawValue: 3)
+            selectedTool = ToolsInTray(rawValue: 4)
         }
+        print("changeTool.selectedTool = \(selectedTool)")
     }
     
     // MARK: - Draw
@@ -262,15 +263,15 @@ class EditorViewController: UIViewController {
                 textField.text = "Hello World!"
             }
             // Entry for text
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 print("Text field: \(textField?.text)")
                 
                 let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
                 
-                let newImage = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
-                self.view.layer.addSublayer(newImage)
+                let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
+                self.view.layer.addSublayer(newText)
             }))
             // Back out
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -288,7 +289,7 @@ class EditorViewController: UIViewController {
         if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
             self.view.addSubview(shapeView)
-        }
+        }   
     }
     
     @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
@@ -332,6 +333,9 @@ class EditorViewController: UIViewController {
                 
                 // TODO: How to move the arrow around once it's been drawn?
             }
+        } else if selectedTool == ToolsInTray.Freehand {
+            let drawView = DrawView(origin: point, paletteColor: trayView.backgroundColor!)
+            self.view.addSubview(drawView)
         }
     }
     
