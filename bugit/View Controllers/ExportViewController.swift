@@ -13,6 +13,14 @@ class ExportViewController: UIViewController {
     @IBOutlet weak var flatCanvasImageView: UIImageView!
     var flatCanvasImage: UIImage? = nil
     
+    @IBOutlet weak var trayView: UIView!
+    @IBOutlet weak var trayArrowImageView: UIButton!
+    
+    var trayOriginalCenter: CGPoint!
+    var trayDownOffset: CGFloat!
+    var trayUp: CGPoint!
+    var trayDown: CGPoint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +37,23 @@ class ExportViewController: UIViewController {
         titleLabel.attributedText = titleText
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        setupToolbox()
+    }
+    
+    func setupToolbox() {
+        trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
+        trayUp = trayView.center
+        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
+        
+        trayView.layer.borderWidth = 1
+        trayView.layer.borderColor = UIColor.black.cgColor
+        
+        // Put Tray into Down position
+        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                       animations: { () -> Void in
+                        self.trayView.center = self.trayDown
+        }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,14 +86,32 @@ class ExportViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
+    // MARK: - Preview Tray
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onTrayPanGesture(_ sender: UIPanGestureRecognizer) {
+        //let location = sender.location(in: view)
+        let velocity = sender.velocity(in: view)
+        let translation = sender.translation(in: view)
+        
+        if sender.state == .began {
+            trayOriginalCenter = trayView.center
+            trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
+        } else if sender.state == .changed {
+            trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+        } else if sender.state == .ended {
+            trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
+            if velocity.y > 0 {
+                UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                               animations: { () -> Void in
+                                self.trayView.center = self.trayDown
+                }, completion: nil)
+            } else {
+                UIView.animate(withDuration:0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+                               animations: { () -> Void in
+                                self.trayView.center = self.trayUp
+                }, completion: nil)
+            }
+        }
     }
-    */
 
 }

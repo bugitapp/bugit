@@ -284,9 +284,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
-                                <rect key="frame" x="0.0" y="361" width="375" height="298"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
                                 <rect key="frame" x="121" y="84" width="133" height="30"/>
                                 <constraints>
@@ -309,24 +306,47 @@
                                     <action selector="onCreateIssueTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="Yo0-b7-PVQ"/>
                                 </connections>
                             </button>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEr-hG-WKx">
+                                <rect key="frame" x="0.0" y="160" width="375" height="507"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwQ-Eo-4cN">
+                                        <rect key="frame" x="2" y="0.0" width="373" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="down_arrow"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LiM-Pp-vOm">
+                                        <rect key="frame" x="8" y="23" width="359" height="476"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="43u-o2-oPF" appends="YES" id="fbc-7V-Vt4"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
                             <constraint firstItem="Gnr-RP-wGe" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="20" id="RZr-IH-Zll"/>
                             <constraint firstItem="vM8-0j-JP2" firstAttribute="top" secondItem="Gnr-RP-wGe" secondAttribute="bottom" constant="8" id="TQs-N5-x5M"/>
-                            <constraint firstItem="LiM-Pp-vOm" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" constant="297" id="Vzm-N3-Wdl"/>
-                            <constraint firstAttribute="trailing" secondItem="LiM-Pp-vOm" secondAttribute="trailing" id="WSr-ae-50L"/>
                             <constraint firstItem="Gnr-RP-wGe" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="diO-tb-Rv1"/>
-                            <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="LiM-Pp-vOm" secondAttribute="bottom" constant="8" symbolic="YES" id="jMQ-68-ohG"/>
                             <constraint firstItem="vM8-0j-JP2" firstAttribute="centerX" secondItem="KGa-3N-fQO" secondAttribute="centerX" id="opu-do-R1Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="flatCanvasImageView" destination="LiM-Pp-vOm" id="3VL-Zh-tAw"/>
+                        <outlet property="trayArrowImageView" destination="cwQ-Eo-4cN" id="KLX-eo-ba3"/>
+                        <outlet property="trayView" destination="WEr-hG-WKx" id="9Ee-aG-4Mx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="43u-o2-oPF">
+                    <connections>
+                        <action selector="onTrayPanGesture:" destination="RPb-ma-yGK" id="Yjt-zc-JMi"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="437.60000000000002" y="1327.2863568215894"/>
         </scene>
