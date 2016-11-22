@@ -33,6 +33,7 @@ class EditorViewController: UIViewController {
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
+    var shapeLayer = CAShapeLayer()
     
     var selectedTool = ToolsInTray(rawValue: 0) // Arrow tool by default
     
@@ -312,19 +313,12 @@ class EditorViewController: UIViewController {
                 
             } else if sender.state == .changed {
                 
-                //drawArrow(from: tapBegan, to: tapEnded)
-                
-                //sender.view!.center = CGPoint((sender.view?.center.x)! + translation.x, (sender.view?.center.y)! + translation.y)
-                
-                //CATransaction.begin()
-                //CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-                //lineLayer.path = pathFromBallToAnchor()
-                
-                //tapEnded = point as CGPoint
-                //drawArrow(from: tapBegan, to: tapEnded)
-                
-                //CATransaction.commit()
+                // draw the arrow as the gesture changes so user can see where they will be drawing the arrow
                 // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
+                CATransaction.begin()
+                CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+                drawArrow(from: tapBegan, to: point)
+                CATransaction.commit()
                 
             } else if sender.state == UIGestureRecognizerState.ended {
                 print("onPan.ended")
@@ -350,7 +344,6 @@ class EditorViewController: UIViewController {
         // CGPoint(x:10, y:10)
         // CGPoint(x:200, y:10)
         let arrow = UIBezierPath.arrow(from: from, to: to, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = arrow.cgPath
         //shapeLayer.fillColor = UIColor.red.cgColor
         shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
