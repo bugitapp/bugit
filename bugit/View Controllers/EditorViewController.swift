@@ -262,15 +262,15 @@ class EditorViewController: UIViewController {
                 textField.text = "Hello World!"
             }
             // Entry for text
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 print("Text field: \(textField?.text)")
                 
                 let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
                 
-                let newImage = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
-                self.view.layer.addSublayer(newImage)
+                let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
+                self.view.layer.addSublayer(newText)
             }))
             // Back out
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
