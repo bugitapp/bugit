@@ -33,7 +33,7 @@ class EditorViewController: UIViewController {
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
-    var shapeLayer = CAShapeLayer()
+    var dragArrowLayer = CAShapeLayer()
     
     var selectedTool = ToolsInTray(rawValue: 0) // Arrow tool by default
     
@@ -317,7 +317,7 @@ class EditorViewController: UIViewController {
                 // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
                 CATransaction.begin()
                 CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-                drawArrow(from: tapBegan, to: point)
+                drawArrow(from: tapBegan, to: point, layer: dragArrowLayer)
                 CATransaction.commit()
                 
             } else if sender.state == UIGestureRecognizerState.ended {
@@ -328,14 +328,14 @@ class EditorViewController: UIViewController {
                 print("tapBegan = \(tapBegan)")
                 
                 // Draw Arrow
-                drawArrow(from: tapBegan, to: tapEnded)
+                drawArrow(from: tapBegan, to: tapEnded, layer: nil)
                 
                 // TODO: How to move the arrow around once it's been drawn?
             }
         }
     }
     
-    func drawArrow(from: CGPoint, to: CGPoint) {
+    func drawArrow(from: CGPoint, to: CGPoint, layer: CAShapeLayer?) {
         // TODO: Should be set from Settings?
         let tailWidth = 10 as CGFloat
         let headWidth = 25 as CGFloat
@@ -344,6 +344,10 @@ class EditorViewController: UIViewController {
         // CGPoint(x:10, y:10)
         // CGPoint(x:200, y:10)
         let arrow = UIBezierPath.arrow(from: from, to: to, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
+        
+        var shapeLayer: CAShapeLayer
+        shapeLayer = layer == nil ? CAShapeLayer() : layer!
+        
         shapeLayer.path = arrow.cgPath
         //shapeLayer.fillColor = UIColor.red.cgColor
         shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
