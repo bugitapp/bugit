@@ -21,6 +21,7 @@ class JiraManager: AFHTTPSessionManager {
     init(baseURL url: URL?, username name: String!, password pwd: String!) {
         super.init(baseURL: url, sessionConfiguration: nil)
         addAuthHeader(withUsername: name, withPassword: pwd)
+        requestSerializer.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,6 +89,25 @@ class JiraManager: AFHTTPSessionManager {
             print("Object: \(error)")
         }
         issueTask.resume()
+    }
+    
+    func attach2(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+        
+        let imageData = UIImagePNGRepresentation(image)
+        _ = post("https://bugitapp.atlassian.net/rest/api/2/issue/TPO-2/attachments", parameters: nil,
+            constructingBodyWith: { (forData: AFMultipartFormData) in
+//                forData.appendPart(withFileData: imageData!, name: "screenshot", fileName: "screenshot.png", mimeType: "image/png")
+                forData.appendPart(withHeaders: ["X-Atlassian-Token" : "no-check", "Authorization" : "Basic anVua2JpcGluQHlhaG9vLmNvbTpidWdpdA=="], body: imageData!)
+            }, progress: { (progress: Progress) in
+                print(progress)
+            }, success: { (task: URLSessionDataTask, response: Any?) in
+                print(("Task: \(task)"))
+                print(("Response: \(response.debugDescription)"))
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                print(("Task: \(task)"))
+                print(("Error: \(error)"))
+                
+        })
     }
     
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {

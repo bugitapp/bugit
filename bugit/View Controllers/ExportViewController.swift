@@ -56,8 +56,18 @@ class ExportViewController: UIViewController {
         JiraManager.sharedInstance.createIssue(issue: issue,
                                                success: {
                                                 print("Got issue metadata")
-        }) { (error:NSError) in
-            print("Erorr getting metadata: \(error)")
+        }) { (error: NSError) in
+            print("Erorr creating issue: \(error)")
+        }
+    }
+    
+    @IBAction func onAttachImageTapped(_ sender: AnyObject) {
+        let issue = IssueModel()
+        
+        JiraManager.sharedInstance.attach2(image: UIImage(named: "sample"), issue: issue, success: {
+            print("Attached image")
+        }) { (error: NSError) in
+            print("Erorr attaching image: \(error)")
         }
     }
     
