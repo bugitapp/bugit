@@ -374,7 +374,7 @@ class EditorViewController: UIViewController {
         shapeLayer.strokeColor = trayView.backgroundColor?.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor // Note this has to be clear otherwise fill will form webs in between points
         shapeLayer.lineWidth = 4.0 //  TODO: Control the width of this line
-        self.view?.layer.addSublayer(shapeLayer)
+        canvasImageView.layer.addSublayer(shapeLayer)
     }
     
     func drawContinueAtPoint(point: CGPoint) {
