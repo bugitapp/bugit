@@ -21,6 +21,7 @@ class JiraManager: AFHTTPSessionManager {
     init(baseURL url: URL?, username name: String!, password pwd: String!) {
         super.init(baseURL: url, sessionConfiguration: nil)
         addAuthHeader(withUsername: name, withPassword: pwd)
+        requestSerializer.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,22 +89,62 @@ class JiraManager: AFHTTPSessionManager {
             print("Object: \(error)")
         }
         issueTask.resume()
+    }
+    
+    func attach2(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
         
-//        _ = post(JiraManager.issueCreatePath, parameters: nil,
-//            constructingBodyWith: { (formData: AFMultipartFormData) in
-//                if let issueData = issueData {
-//                    formData.appendPart(withHeaders: ["Accepts" : "application/json"], body: issueData)
-//                }
-//            },
-//            progress: nil,
-//            success: { (task: URLSessionDataTask, response: Any?) in
-//                print("Task: \(task) Projects: \(response)")
-//                success()
-//            },
-//            failure: { (task: URLSessionDataTask?, error: Error) in
-//                print("Error: \(error)")
-//                failure(error as NSError)
-//        })
+        let imageData = UIImagePNGRepresentation(image)
+        _ = post("https://bugitapp.atlassian.net/rest/api/2/issue/TPO-2/attachments", parameters: nil,
+            constructingBodyWith: { (formData: AFMultipartFormData) in
+//                formData.appendPart(withFileData: imageData!, name: "screenshot", fileName: "screenshot.png", mimeType: "image/png")
+//                formData.appendPart(withHeaders: nil, body: imageData!)
+                formData.appendPart(withForm: imageData!, name: "screenShot.png")
+            }, progress: { (progress: Progress) in
+                print(progress)
+            }, success: { (task: URLSessionDataTask, response: Any?) in
+                print(("Task: \(task)"))
+                print(("Response: \(response.debugDescription)"))
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                print(("Task: \(task)"))
+                print(("Error: \(error)"))
+                
+        })
+    }
+    
+    func createTempDirectory() -> String? {
+        let tempDirectoryTemplate = NSTemporaryDirectory() + "images"
+        
+        let fileManager = FileManager.default
+        
+        try! fileManager.createDirectory(atPath: tempDirectoryTemplate, withIntermediateDirectories: true, attributes: nil)
+        return tempDirectoryTemplate
+    }
+    
+    func uploadScreenshot(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+        let imageData = UIImageJPEGRepresentation(image, 1.0)!
+        let tmpFileName = "\(NSDate.timeIntervalSinceReferenceDate)"
+        let tmpFileURL = NSURL(fileURLWithPath:createTempDirectory()!).appendingPathComponent(tmpFileName)
+        try? imageData.write(to: tmpFileURL!)
+        let req = requestSerializer.multipartFormRequest(withMethod: "POST", urlString:"https://bugitapp.atlassian.net/rest/api/2/issue/TPO-2/attachments", parameters: nil, constructingBodyWith: { (formData) -> Void in
+            try! formData.appendPart(withFileURL: tmpFileURL!, name: "screen_shot", fileName: "screenshot.jpg", mimeType: "image/jpeg")
+        }, error: nil)
+        req.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
+        req.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
+
+        let uploadTask = self.uploadTask(with: req as URLRequest, fromFile: tmpFileURL!, progress: nil, completionHandler: { (response, object, error) -> Void in
+                
+                print(response)
+            
+                if error != nil {
+                    print(error)
+                } else {
+                    print(object)
+                }
+                try! FileManager.default.removeItem(at: tmpFileURL!)
+            })
+            
+        // Start the file upload.
+        uploadTask.resume()
     }
     
     func addAuthHeader(withUsername name: String!, withPassword password: String!) {

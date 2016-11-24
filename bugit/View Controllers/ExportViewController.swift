@@ -27,7 +27,7 @@ class ExportViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Need to do this otherwise it unwraps Nil on previous prepare for segue
-        flatCanvasImageView.image = flatCanvasImage
+//        flatCanvasImageView.image = flatCanvasImage
         
         let titleLabel = UILabel()
         let titleText = NSAttributedString(string: "Export", attributes: [
@@ -42,18 +42,18 @@ class ExportViewController: UIViewController {
     }
     
     func setupToolbox() {
-        trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
-        trayUp = trayView.center
-        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
-        
-        trayView.layer.borderWidth = 1
-        trayView.layer.borderColor = UIColor.black.cgColor
-        
-        // Put Tray into Down position
-        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
-                       animations: { () -> Void in
-                        self.trayView.center = self.trayDown
-        }, completion: nil)
+//        trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
+//        trayUp = trayView.center
+//        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
+//        
+//        trayView.layer.borderWidth = 1
+//        trayView.layer.borderColor = UIColor.black.cgColor
+//        
+//        // Put Tray into Down position
+//        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
+//                       animations: { () -> Void in
+//                        self.trayView.center = self.trayDown
+//        }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,8 +81,18 @@ class ExportViewController: UIViewController {
         JiraManager.sharedInstance.createIssue(issue: issue,
                                                success: {
                                                 print("Got issue metadata")
-        }) { (error:NSError) in
-            print("Erorr getting metadata: \(error)")
+        }) { (error: NSError) in
+            print("Erorr creating issue: \(error)")
+        }
+    }
+    
+    @IBAction func onAttachImageTapped(_ sender: AnyObject) {
+        let issue = IssueModel()
+        
+        JiraManager.sharedInstance.uploadScreenshot(image: UIImage(named: "sample"), issue: issue, success: {
+            print("Attached image")
+        }) { (error: NSError) in
+            print("Erorr attaching image: \(error)")
         }
     }
     
