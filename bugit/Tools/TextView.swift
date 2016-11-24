@@ -85,9 +85,8 @@ class TextView: UIView {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(origin: originClick!, size: CGSize(100, 100)) // image.bounds
         
+        textLayer.font = CTFontCreateWithName("OpenSans" as CFString?, 12, nil) // TODO: Allow user to change
         textLayer.string = text
-        
-        textLayer.font = CTFontCreateWithName("OpenSans" as CFString?, 12, nil)
         
         textLayer.foregroundColor = self.outlineColor.cgColor
         textLayer.isWrapped = true
@@ -99,39 +98,31 @@ class TextView: UIView {
     
     // MARK: Gestures
     
-    func didPan(panGR: UIPanGestureRecognizer) {
-        
+    func didPan(_ sender: UIPanGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        var translation = panGR.translation(in: self)
-        
+        var translation = sender.translation(in: self)
         translation = translation.applying(self.transform)
         
         self.center.x += translation.x
         self.center.y += translation.y
         
-        panGR.setTranslation(CGPoint.zero, in: self)
+        sender.setTranslation(CGPoint.zero, in: self)
     }
     
-    func didPinch(pinchGR: UIPinchGestureRecognizer) {
-        
+    func didPinch(_ sender: UIPinchGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        let scale = pinchGR.scale
-        
+        let scale = sender.scale
         self.transform = self.transform.scaledBy(x: scale, y: scale)
-        
-        pinchGR.scale = 1.0
+        sender.scale = 1.0
     }
     
-    func didRotate(rotationGR: UIRotationGestureRecognizer) {
-        
+    func didRotate(_ sender: UIRotationGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        let rotation = rotationGR.rotation
-        
+        let rotation = sender.rotation
         self.transform = self.transform.rotated(by: rotation)
-        
-        rotationGR.rotation = 0.0
+        sender.rotation = 0.0
     }
 }

@@ -20,22 +20,24 @@ class EditorViewController: UIViewController {
 
     @IBOutlet weak var canvasImageView: UIImageView!
     
-    var tapBegan = CGPoint(x:0, y:0)
-    var tapEnded = CGPoint(x:0, y:0)
+    var panBegan = CGPoint(x:0, y:0)
+    var panEnded = CGPoint(x:0, y:0)
     
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowImageView: UIButton!
     @IBOutlet weak var trayToolsView: UIView!
-
-    var elOriginalCenter: CGPoint!
     
     var trayOriginalCenter: CGPoint!
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     var dragArrowLayer = CAShapeLayer()
+    var dragDrawLayer = CAShapeLayer()
     
     var selectedTool = ToolsInTray(rawValue: 0) // Arrow tool by default
+    
+    var path: UIBezierPath = UIBezierPath()
+    var shapeLayer: CAShapeLayer!
     
     /*
     override func viewWillAppear(_ animated: Bool) {
@@ -242,7 +244,7 @@ class EditorViewController: UIViewController {
     
     func takeSnapshotOfView(view:UIView) -> UIImage? {
         UIGraphicsBeginImageContext(CGSize(width: view.frame.size.width, height: view.frame.size.height))
-        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height), afterScreenUpdates: true)
+        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height), afterScreenUpdates: true) // <-- TODO? required?
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -296,49 +298,52 @@ class EditorViewController: UIViewController {
         print("panned")
         print("onPan.sender.state = \(sender.state)")
         
-        let translation = sender.translation(in: view)
+        //let translation = sender.translation(in: view)
         let point = sender.location(in: canvasImageView) as CGPoint
         //print("point = \(point)")
         
-        if selectedTool == ToolsInTray.Arrow {
+        if sender.state == UIGestureRecognizerState.began {
+            print("onPan.began")
+            panBegan = point as CGPoint
+            print("panBegan = \(panBegan)")
             
-            if sender.state == UIGestureRecognizerState.began {
-                print("onPan.began")
-                
-                tapBegan = point as CGPoint
-                print("panBegan = \(tapBegan)")
-                
-                //elOriginalCenter = tapBegan
-                
-                //drawArrow(from: CGPoint(x: 120, y: 120), to: CGPoint(x: 20, y: 20))
-                
-            } else if sender.state == .changed {
-                
+            if selectedTool == ToolsInTray.Freehand {
+                drawStartAtPoint(point: point)
+            }
+            
+        } else if sender.state == .changed {
+            print("onPan.changed")
+            
+            if selectedTool == ToolsInTray.Arrow {
                 // draw the arrow as the gesture changes so user can see where they will be drawing the arrow
                 // http://stackoverflow.com/questions/27117060/how-to-transform-a-line-during-pan-gesture-event
                 CATransaction.begin()
                 CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-                drawArrow(from: tapBegan, to: point, layer: dragArrowLayer)
+                drawArrow(from: panBegan, to: point, layer: dragArrowLayer)
                 CATransaction.commit()
-                
-            } else if sender.state == UIGestureRecognizerState.ended {
-                print("onPan.ended")
-                
-                tapEnded = point as CGPoint
-                print("tapEnded = \(tapEnded)")
-                print("tapBegan = \(tapBegan)")
+            }
+            
+            if selectedTool == ToolsInTray.Freehand {
+                drawContinueAtPoint(point: point)
+            }
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            print("onPan.ended")
+            
+            if selectedTool == ToolsInTray.Arrow {
+                panEnded = point as CGPoint
+                print("tapEnded = \(panEnded)")
+                print("tapBegan = \(panBegan)")
                 
                 // Draw Arrow
-                drawArrow(from: tapBegan, to: tapEnded, layer: nil)
-                
-                // TODO: How to move the arrow around once it's been drawn?
+                drawArrow(from: panBegan, to: panEnded, layer: nil)
             }
-        } else if selectedTool == ToolsInTray.Freehand {
-            let drawView = DrawView(origin: point, paletteColor: trayView.backgroundColor!)
-            self.view.addSubview(drawView)
+            
         }
     }
-    
+
+    // MARK: Tracking an Arrow
+
     func drawArrow(from: CGPoint, to: CGPoint, layer: CAShapeLayer?) {
         // TODO: Should be set from Settings?
         let tailWidth = 10 as CGFloat
@@ -356,9 +361,45 @@ class EditorViewController: UIViewController {
         //shapeLayer.fillColor = UIColor.red.cgColor
         shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
         
-        shapeLayer.setValue(100, forKey: "tag")
-        
         canvasImageView.layer.addSublayer(shapeLayer)
     }
-
+    
+    // MARK: Tracing a Line
+    
+    func drawStartAtPoint(point: CGPoint) {
+        path = UIBezierPath()
+        path.move(to: point)
+        
+        shapeLayer = CAShapeLayer()
+        shapeLayer.strokeColor = trayView.backgroundColor?.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor // Note this has to be clear otherwise fill will form webs in between points
+        shapeLayer.lineWidth = 4.0 //  TODO: Control the width of this line
+        self.view?.layer.addSublayer(shapeLayer)
+    }
+    
+    func drawContinueAtPoint(point: CGPoint) {
+        path.addLine(to: point)
+        shapeLayer.path = path.cgPath
+    }
+   
+    // MARK: Drawing a path
+    
+    func drawPoint() {
+        self.trayView.backgroundColor?.setStroke()
+        self.path.lineWidth = 10.0 // TODO: Allow manipulation
+        self.path.lineCapStyle = .round // TODO: Allow change to different styles
+        self.path.stroke()
+    }
+    
+    func draw(_ rect: CGRect) {
+        let context = UIGraphicsGetCurrentContext()
+        self.trayView.backgroundColor?.setStroke()
+        self.path.lineWidth = 10.0 // TODO: Allow manipulation
+        self.path.lineCapStyle = .round // TODO: Allow change to different styles
+        self.path.stroke()
+        
+        context?.addPath(self.path as! CGPath)
+    }
+    
+    
 }

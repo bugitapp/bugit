@@ -36,6 +36,10 @@ class ShapeView: UIView {
         initGestureRecognizers()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func initGestureRecognizers() {
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         addGestureRecognizer(panGR)
@@ -74,58 +78,38 @@ class ShapeView: UIView {
         }
     }
     
-    func didPan(panGR: UIPanGestureRecognizer) {
-        
+    func didPan(_ sender: UIPanGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        var translation = panGR.translation(in: self)
-        
+        var translation = sender.translation(in: self)
         translation = translation.applying(self.transform)
         
         self.center.x += translation.x
         self.center.y += translation.y
         
-        panGR.setTranslation(CGPoint.zero, in: self)
+        sender.setTranslation(CGPoint.zero, in: self)
     }
     
-    func didPinch(pinchGR: UIPinchGestureRecognizer) {
-        
+    func didPinch(_ sender: UIPinchGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        let scale = pinchGR.scale
-        
+        let scale = sender.scale
         self.transform = self.transform.scaledBy(x: scale, y: scale)
         
-        pinchGR.scale = 1.0
+        sender .scale = 1.0
     }
     
-    func didRotate(rotationGR: UIRotationGestureRecognizer) {
-        
+    func didRotate(_ sender: UIRotationGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
-        let rotation = rotationGR.rotation
-        
+        let rotation = sender.rotation
         self.transform = self.transform.rotated(by: rotation)
-        
-        rotationGR.rotation = 0.0
-    }
-    
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        sender.rotation = 0.0
     }
     
     override func draw(_ rect: CGRect) {
-        
         self.fillColor.setFill()
         self.path.fill()
-        
-        //let color = UIColor.black // Get color from palette
-        //color.setFill()
-        
-        //if arc4random() % 2 == 0 {
-        //    path.fill()
-        //}
         
         outlineColor.setStroke()
         

@@ -31,8 +31,7 @@ class DrawView : UIView {
     // MARK: Drawing a path
     
     override func draw(_ rect: CGRect) {
-        // 4. Redraw whole rect, ignoring parameter. Please note we always invalidate whole view.
-        let context = UIGraphicsGetCurrentContext()
+        //let context = UIGraphicsGetCurrentContext()
         self.drawColor.setStroke()
         self.path.lineWidth = self.drawWidth
         self.path.lineCapStyle = .round
@@ -70,14 +69,15 @@ class DrawView : UIView {
     }
     
     private func continueAtPoint(point: CGPoint) {
-        // 2. Accumulate points as they are reported by the gesture recognizer, in a bezier path object
+        // Accumulate points as they are reported by the gesture recognizer, in a bezier path object
         self.path.addLine(to: point)
         
-        // 3. Trigger a redraw every time a point is added (finger moves)
+        // Trigger a redraw every time a point is added (finger moves)
         self.setNeedsDisplay()
     }
     
     private func endAtPoint(point: CGPoint) {
         // Nothing to do when ending/cancelling for now
     }
+    
 }
