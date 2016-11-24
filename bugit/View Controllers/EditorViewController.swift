@@ -273,7 +273,7 @@ class EditorViewController: UIViewController {
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
                 
                 let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
-                self.view.layer.addSublayer(newText)
+                self.canvasImageView.layer.addSublayer(newText)
             }))
             // Back out
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
