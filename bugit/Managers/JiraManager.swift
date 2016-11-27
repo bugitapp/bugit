@@ -177,14 +177,7 @@ class JiraManager: AFHTTPSessionManager {
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
         request.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
-        
-        let imageData = UIImageJPEGRepresentation(image, 1.0)!
-        let tmpFileName = "\(NSDate.timeIntervalSinceReferenceDate).jpg"
-        let tmpFilePath = createTempDirectory()! + "/\(tmpFileName)"
-        let tmpFileURL = NSURL(fileURLWithPath:createTempDirectory()!).appendingPathComponent(tmpFileName)
-        try? imageData.write(to: tmpFileURL!)
-
-        request.httpBody = try createBody(with: parameters, filePathKey: "file", paths: [tmpFilePath], boundary: boundary)
+        request.httpBody = try createBody(with: parameters, filePathKey: "file", image: image, boundary: boundary)
         
         return request
     }
@@ -198,7 +191,7 @@ class JiraManager: AFHTTPSessionManager {
     ///
     /// - returns:                The NSData of the body of the request
     
-    func createBody(with parameters: [String: String]?, filePathKey: String, paths: [String], boundary: String) throws -> Data {
+    func createBody(with parameters: [String: String]?, filePathKey: String, image: UIImage, boundary: String) throws -> Data {
         var body = Data()
         
         if parameters != nil {
@@ -209,18 +202,14 @@ class JiraManager: AFHTTPSessionManager {
             }
         }
         
-        for path in paths {
-            let url = URL(fileURLWithPath: path)
-            let filename = url.lastPathComponent
-            let data = try Data(contentsOf: url)
-            let mimetype = mimeType(for: path)
-            
-            body.append("--\(boundary)\r\n")
-            body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(filename)\"\r\n")
-            body.append("Content-Type: \(mimetype)\r\n\r\n")
-            body.append(data)
-            body.append("\r\n")
-        }
+        let data = UIImageJPEGRepresentation(image, 1.0)!
+        let mimetype = "image/jpg"
+        
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"screenshot.jpg\"\r\n")
+        body.append("Content-Type: \(mimetype)\r\n\r\n")
+        body.append(data)
+        body.append("\r\n")
         
         body.append("--\(boundary)--\r\n")
         return body
