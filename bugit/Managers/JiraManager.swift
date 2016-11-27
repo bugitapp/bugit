@@ -28,13 +28,17 @@ class JiraManager: AFHTTPSessionManager {
     static let projectsPath = "project"
     static let issueMetadataPath = "issue/createmeta"
     static let issueCreatePath = "issue"
-
     static let authHeader = "Authorization"
+    
+    var userName: String?
+    var password: String?
     
     static let sharedInstance = JiraManager(baseURL: URL(string: "https://bugitapp.atlassian.net/rest/api/2"), username: "junkbipin@yahoo.com", password: "bugit")
     
     init(baseURL url: URL?, username name: String!, password pwd: String!) {
         super.init(baseURL: url, sessionConfiguration: nil)
+        userName = name
+        password = pwd
         addAuthHeader(withUsername: name, withPassword: pwd)
         requestSerializer.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
     }
@@ -79,7 +83,7 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
     
-    func createIssue(issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+    func createIssue(issue: IssueModel, success: @escaping (IssueModel) -> (), failure: @escaping (Error) -> ()) {
         var issueData : Data?
         do {
             issueData = try JSONSerialization.data(withJSONObject: issue.toJSON(), options: [])
@@ -91,40 +95,32 @@ class JiraManager: AFHTTPSessionManager {
         }
         
         let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue")
-        var req = URLRequest(url: url!)
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.setValue("application/json", forHTTPHeaderField: "Accept")
-        req.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
-        req.httpMethod = "POST"
-        req.httpBody = issueData
+        var request = URLRequest(url: url!)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+        request.httpMethod = "POST"
+        request.httpBody = issueData
         
-        let issueTask = dataTask(with: req) { (response: URLResponse, obj: Any?, error: Error?) in
+        let issueTask = dataTask(with: request) { (response: URLResponse, obj: Any?, error: Error?) in
             print("Response: \(response)")
             print("Object: \(obj)")
             print("Object: \(error)")
+            guard error == nil else {
+                // handle error here
+                print(error!)
+                DispatchQueue.main.async {
+                    failure(error!)
+                }
+                return
+            }
+            // if response was JSON, then parse it            
+            let responseDictionary = obj as! NSDictionary
+            print("success == \(responseDictionary)")
+            issue.fromJSON(dict: responseDictionary as! Dictionary<String, Any>)
+            success(issue)
         }
         issueTask.resume()
-    }
-    
-    func createTempDirectory() -> String? {
-        let tempDirectoryTemplate = NSTemporaryDirectory() + "images"
-        
-        let fileManager = FileManager.default
-        
-        try! fileManager.createDirectory(atPath: tempDirectoryTemplate, withIntermediateDirectories: true, attributes: nil)
-        return tempDirectoryTemplate
-    }
-    
-    func addAuthHeader(withUsername name: String!, withPassword password: String!) {
-        requestSerializer.setValue(credentails(withUsername: name, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
-    }
-    
-    func credentails(withUsername name: String!, withPassword password: String!) -> String {
-        return "Basic " + base64Encode(value: name + ":" + password)
-    }
-    
-    func base64Encode(value: String!) -> String {
-        return Data(value.utf8).base64EncodedString()
     }
     
     func attach(image: UIImage!, issue: IssueModel!, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
@@ -142,6 +138,9 @@ class JiraManager: AFHTTPSessionManager {
             guard error == nil else {
                 // handle error here
                 print(error!)
+                DispatchQueue.main.async {
+                    failure(error!)
+                }
                 return
             }
             
@@ -175,7 +174,7 @@ class JiraManager: AFHTTPSessionManager {
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
-        request.setValue(credentails(withUsername: "junkbipin@yahoo.com", withPassword: "bugit"), forHTTPHeaderField: JiraManager.authHeader)
+        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
         request.httpBody = try createBody(with: parameters, filePathKey: "file", image: image, boundary: boundary)
         
         return request
@@ -241,4 +240,17 @@ class JiraManager: AFHTTPSessionManager {
         }
         return "application/octet-stream";
     }
+
+    func addAuthHeader(withUsername name: String!, withPassword password: String!) {
+        requestSerializer.setValue(credentails(withUsername: name, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+    }
+    
+    func credentails(withUsername name: String!, withPassword password: String!) -> String {
+        return "Basic " + base64Encode(value: name + ":" + password)
+    }
+    
+    func base64Encode(value: String!) -> String {
+        return Data(value.utf8).base64EncodedString()
+    }
+    
 }

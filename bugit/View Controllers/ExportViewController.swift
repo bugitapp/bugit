@@ -79,9 +79,9 @@ class ExportViewController: UIViewController {
         issue.issueDescription = "A quick brown fox jumped over the lazy dog."
         issue.labels = ["canines"]
         JiraManager.sharedInstance.createIssue(issue: issue,
-                                               success: {
-                                                print("Got issue metadata")
-        }) { (error: NSError) in
+                                               success: { (issue: IssueModel) in
+                                                print("Created Issue: \(issue)")
+        }) { (error: Error) in
             print("Erorr creating issue: \(error)")
         }
     }
