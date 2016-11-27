@@ -10,6 +10,7 @@ import UIKit
 
 class IssueModel: NSObject {
     var key: String?
+    var id: Int?
     var project: String?
     var issueTypeId: String?
     var summary: String?
@@ -20,6 +21,15 @@ class IssueModel: NSObject {
     var labels: [String]?
     var environment: String?
     var components: [String : String]?
+    
+    func fromJSON(dict: Dictionary<String, Any>) {
+        if let keyValue = dict["key"] as! String? {
+            key = keyValue
+        }
+        if let idValue = dict["id"] as! String? {
+            id = Int(idValue)
+        }
+    }
     
     func toJSON() -> Dictionary<String, Any> {
         var json = Dictionary<String, Any>()
@@ -50,5 +60,9 @@ class IssueModel: NSObject {
         var fields = Dictionary<String, Any>()
         fields["fields"] = json
         return fields
+    }
+    
+    override var description: String {
+        return "IssueModel:key: \(key) id: \(id) project: \(project) issueTypeId: \(issueTypeId) summary: \(summary) issueDescription: \(issueDescription) assignee: \(assignee) reporter: \(reporter) priority: \(priority) labels: \(labels) environment: \(environment) components: \(components)"
     }
 }
