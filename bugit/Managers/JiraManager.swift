@@ -127,7 +127,7 @@ class JiraManager: AFHTTPSessionManager {
         return Data(value.utf8).base64EncodedString()
     }
     
-    func attach(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (NSError) -> ()) {
+    func attach(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         let request: URLRequest
         
@@ -150,17 +150,16 @@ class JiraManager: AFHTTPSessionManager {
             do {
                 let responseDictionary = try JSONSerialization.jsonObject(with: data!)
                 print("success == \(responseDictionary)")
-                
-                // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
-                //
-                // DispatchQueue.main.async {
-                //     // update your UI and model objects here
-                // }
+                DispatchQueue.main.async {
+                    success()
+                }
             } catch {
                 print(error)
-                
                 let responseString = String(data: data!, encoding: .utf8)
                 print("responseString = \(responseString)")
+                DispatchQueue.main.async {
+                    failure(error)
+                }
             }
         }
         task.resume()

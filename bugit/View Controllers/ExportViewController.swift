@@ -90,7 +90,7 @@ class ExportViewController: UIViewController {
         let issue = IssueModel()
         JiraManager.sharedInstance.attach(image: UIImage(named: "sample"), issue: issue, success: {
             print("Attached image")
-        }) { (error: NSError) in
+        }) { (error: Error) in
             print("Erorr attaching image: \(error)")
         }
     }
