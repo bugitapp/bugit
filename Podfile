@@ -16,4 +16,6 @@ target 'bugit' do
     # https://github.com/intuit/LocationManager
     pod 'INTULocationManager'
 
+    # https://github.com/jdg/MBProgressHUD
+    pod 'MBProgressHUD'
 end

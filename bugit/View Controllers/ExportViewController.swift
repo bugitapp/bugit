@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ExportViewController: UIViewController {
     
@@ -82,13 +83,16 @@ class ExportViewController: UIViewController {
                                                success: { (issue: IssueModel) in
                                                 print("Created Issue: \(issue)")
                                                 JiraManager.sharedInstance.attach(image: UIImage(named: "sample") , issue: issue, success: {
+                                                    MBProgressHUD.hide(for: self.view, animated: true)
                                                     print("Attached image to \(issue)")
                                                 }) { (error: Error) in
+                                                    MBProgressHUD.hide(for: self.view, animated: true)
                                                     print("Erorr attaching image: \(error)")
                                                 }
         }) { (error: Error) in
             print("Erorr creating issue: \(error)")
         }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
     }
     
     @IBAction func onAttachImageTapped(_ sender: AnyObject) {
