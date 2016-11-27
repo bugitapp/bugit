@@ -88,6 +88,7 @@ class ExportViewController: UIViewController {
     
     @IBAction func onAttachImageTapped(_ sender: AnyObject) {
         let issue = IssueModel()
+        issue.key = "TPO-4"
         JiraManager.sharedInstance.attach(image: UIImage(named: "sample"), issue: issue, success: {
             print("Attached image")
         }) { (error: Error) in

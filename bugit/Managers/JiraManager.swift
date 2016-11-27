@@ -127,12 +127,12 @@ class JiraManager: AFHTTPSessionManager {
         return Data(value.utf8).base64EncodedString()
     }
     
-    func attach(image: UIImage!, issue: IssueModel, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func attach(image: UIImage!, issue: IssueModel!, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         let request: URLRequest
         
         do {
-            request = try createRequest(image: image)
+            request = try createRequest(image: image, issue: issue)
         } catch {
             print(error)
             return
@@ -165,12 +165,12 @@ class JiraManager: AFHTTPSessionManager {
         task.resume()
     }
     
-    func createRequest(image: UIImage!) throws -> URLRequest {
+    func createRequest(image: UIImage!, issue: IssueModel!) throws -> URLRequest {
         let parameters = [String : String]()  // build your dictionary however appropriate
         
         let boundary = generateBoundaryString()
         
-        let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue/TPO-2/attachments")!
+        let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue/\(issue.key!)/attachments")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")

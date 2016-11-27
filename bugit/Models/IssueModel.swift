@@ -9,6 +9,7 @@
 import UIKit
 
 class IssueModel: NSObject {
+    var key: String?
     var project: String?
     var issueTypeId: String?
     var summary: String?
