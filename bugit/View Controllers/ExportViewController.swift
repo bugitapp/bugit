@@ -88,18 +88,11 @@ class ExportViewController: UIViewController {
     
     @IBAction func onAttachImageTapped(_ sender: AnyObject) {
         let issue = IssueModel()
-        
-//        JiraManager.sharedInstance.uploadScreenshot(image: UIImage(named: "sample"), issue: issue, success: {
         JiraManager.sharedInstance.attach(image: UIImage(named: "sample"), issue: issue, success: {
             print("Attached image")
         }) { (error: NSError) in
             print("Erorr attaching image: \(error)")
         }
-//        JiraManager.sharedInstance.attach(image: UIImage(named: "sample"), issue: issue, success: {
-//            print("Attached image")
-//        }) { (error: NSError) in
-//            print("Erorr attaching image: \(error)")
-//        }
     }
     
     // MARK: - Preview Tray
