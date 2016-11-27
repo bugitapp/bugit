@@ -81,6 +81,11 @@ class ExportViewController: UIViewController {
         JiraManager.sharedInstance.createIssue(issue: issue,
                                                success: { (issue: IssueModel) in
                                                 print("Created Issue: \(issue)")
+                                                JiraManager.sharedInstance.attach(image: UIImage(named: "sample") , issue: issue, success: {
+                                                    print("Attached image to \(issue)")
+                                                }) { (error: Error) in
+                                                    print("Erorr attaching image: \(error)")
+                                                }
         }) { (error: Error) in
             print("Erorr creating issue: \(error)")
         }
@@ -89,11 +94,6 @@ class ExportViewController: UIViewController {
     @IBAction func onAttachImageTapped(_ sender: AnyObject) {
         let issue = IssueModel()
         issue.key = "TPO-4"
-        JiraManager.sharedInstance.attach(image: UIImage(named: "sample"), issue: issue, success: {
-            print("Attached image")
-        }) { (error: Error) in
-            print("Erorr attaching image: \(error)")
-        }
     }
     
     // MARK: - Preview Tray
