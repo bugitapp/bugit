@@ -59,9 +59,11 @@ class EditorViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // TODO: Add image from Gallery
-        canvasImageView.image = UIImage.init(named: "sample")
+        //canvasImageView.image = UIImage.init(named: "sample")
         
         dlog("screenshot: \(screenshotAssetModel)")
+        
+        canvasImageView.image = screenshotAssetModel?.screenshotImage
         
         // Gesture overload if we use swipes
         //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Collage"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))
