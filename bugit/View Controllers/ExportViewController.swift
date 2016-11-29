@@ -13,7 +13,8 @@ class ExportViewController: UIViewController {
     
     @IBOutlet weak var flatCanvasImageView: UIImageView!
     var flatCanvasImage: UIImage? = nil
-    
+    var screenshotAssetModel: ScreenshotAssetModel?
+
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowImageView: UIButton!
     
@@ -38,6 +39,8 @@ class ExportViewController: UIViewController {
         titleLabel.attributedText = titleText
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        dlog("screenshot: \(screenshotAssetModel)")
         
         setupToolbox()
     }

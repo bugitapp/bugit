@@ -50,6 +50,11 @@
 		84A488F51DE120CA00736938 /* xCG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F21DE120CA00736938 /* xCG.swift */; };
 		84A488F61DE120CA00736938 /* xDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F31DE120CA00736938 /* xDate.swift */; };
 		84A488F71DE120CA00736938 /* xUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A488F41DE120CA00736938 /* xUIColor.swift */; };
+		D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F391DED380800D58A0C /* ScreenshotAssetModel.swift */; };
+		D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F3A1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift */; };
+		D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F3D1DED396400D58A0C /* Constants.swift */; };
+		D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */; };
+		D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +105,11 @@
 		84A488F21DE120CA00736938 /* xCG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xCG.swift; sourceTree = "<group>"; };
 		84A488F31DE120CA00736938 /* xDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xDate.swift; sourceTree = "<group>"; };
 		84A488F41DE120CA00736938 /* xUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIColor.swift; sourceTree = "<group>"; };
+		D2D37F391DED380800D58A0C /* ScreenshotAssetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotAssetModel.swift; path = Models/ScreenshotAssetModel.swift; sourceTree = "<group>"; };
+		D2D37F3A1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotAssetSearchResultsModel.swift; path = Models/ScreenshotAssetSearchResultsModel.swift; sourceTree = "<group>"; };
+		D2D37F3D1DED396400D58A0C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotCollectionViewCell.swift; path = Views/ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
+		D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotSectionHeaderView.swift; path = Views/ScreenshotSectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +127,7 @@
 		17CD94271DDACCC2001928B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D2D37F3D1DED396400D58A0C /* Constants.swift */,
 				17CD94281DDACCC2001928B5 /* SF-UI-Display */,
 				17CD94321DDACCC2001928B5 /* SF-UI-Text */,
 			);
@@ -199,6 +210,8 @@
 		1BCAE9A31DDEC96100518D78 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2D37F391DED380800D58A0C /* ScreenshotAssetModel.swift */,
+				D2D37F3A1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift */,
 				1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */,
 			);
 			name = Models;
@@ -225,6 +238,7 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				D2D37F3F1DED397300D58A0C /* Views */,
 				844EFD8A1DE370C200A3A236 /* Tools */,
 				1BCAE9A31DDEC96100518D78 /* Models */,
 				1B98F94B1DDC39540003BB12 /* Managers */,
@@ -269,6 +283,15 @@
 				440017F1FF4CC4700478B187 /* Pods-bugit.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D2D37F3F1DED397300D58A0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */,
+				D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +442,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				844EFD8D1DE370C200A3A236 /* ShapeView.swift in Sources */,
+				D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */,
+				D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */,
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				84090FD11DE3FCDE009664EE /* DrawView.swift in Sources */,
 				17CD945C1DDACCC2001928B5 /* EditorViewController.swift in Sources */,
@@ -430,7 +455,10 @@
 				844EFD8E1DE370C200A3A236 /* TextView.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,
 				844EFD901DE3754400A3A236 /* xUIBezierPath.swift in Sources */,
+				D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */,
+				D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
+				D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */,
 				1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */,
 				17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,

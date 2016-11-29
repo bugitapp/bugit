@@ -20,6 +20,8 @@ class EditorViewController: UIViewController {
 
     @IBOutlet weak var canvasImageView: UIImageView!
     
+    var screenshotAssetModel: ScreenshotAssetModel?
+    
     var panBegan = CGPoint(x:0, y:0)
     var panEnded = CGPoint(x:0, y:0)
     
@@ -59,8 +61,10 @@ class EditorViewController: UIViewController {
         // TODO: Add image from Gallery
         canvasImageView.image = UIImage.init(named: "sample")
         
+        dlog("screenshot: \(screenshotAssetModel)")
+        
         // Gesture overload if we use swipes
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Collage"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Collage"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Export"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToExport))
         
         /*
@@ -147,7 +151,11 @@ class EditorViewController: UIViewController {
             let destinationViewController = segue.destination as! ExportViewController
             
             // Pass the flat canvas to export
-            destinationViewController.flatCanvasImage = takeSnapshotOfView(view: canvasImageView)
+            
+            screenshotAssetModel?.editedImage = takeSnapshotOfView(view: canvasImageView)
+
+            destinationViewController.screenshotAssetModel = screenshotAssetModel
+
         }
     }
     
