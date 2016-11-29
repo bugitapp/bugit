@@ -140,7 +140,8 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func goToGallery() {
-        self.performSegue(withIdentifier: "GallerySegue", sender: self)
+        //self.performSegue(withIdentifier: "GallerySegue", sender: self)
+        dlog("diabled")
     }
     
     @IBAction func goToExport() {
