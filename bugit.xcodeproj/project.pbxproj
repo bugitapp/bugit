@@ -36,6 +36,7 @@
 		17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */; };
 		17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */; };
 		1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B3E22051DEEA96900E9CB9B /* jiralogo.png */; };
+		1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */; };
 		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
@@ -90,6 +91,7 @@
 		17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorNavigationController.swift; sourceTree = "<group>"; };
 		17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		1B3E22051DEEA96900E9CB9B /* jiralogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiralogo.png; path = Jira/jiralogo.png; sourceTree = "<group>"; };
+		1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueModel.swift; path = Models/IssueModel.swift; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +182,7 @@
 				17CD94421DDACCC2001928B5 /* EditorViewController.swift */,
 				17CD94431DDACCC2001928B5 /* ExportViewController.swift */,
 				17CD94441DDACCC2001928B5 /* GalleryViewController.swift */,
+				1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				84A488F51DE120CA00736938 /* xCG.swift in Sources */,
 				84A488F61DE120CA00736938 /* xDate.swift in Sources */,
 				84A488F71DE120CA00736938 /* xUIColor.swift in Sources */,
+				1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */,
 				1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */,
 				844EFD8E1DE370C200A3A236 /* TextView.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,

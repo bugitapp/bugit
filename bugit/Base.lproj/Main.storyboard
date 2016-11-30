@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -45,7 +45,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GZU-qZ-sty">
-                                    <rect key="frame" x="0.0" y="-64" width="1000" height="1000"/>
+                                    <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -53,7 +53,7 @@
                                 </label>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotCollectionViewCell" id="B2Y-rT-1Em" customClass="ScreenshotCollectionViewCell" customModule="bugit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="200" height="200"/>
+                                        <rect key="frame" x="88" y="50" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -75,7 +75,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotSectionHeaderView" id="0RI-Kt-1qs" customClass="ScreenshotSectionHeaderView" customModule="bugit" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/22/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-35-eQt">
@@ -345,10 +345,10 @@
             </objects>
             <point key="canvasLocation" x="463" y="1928"/>
         </scene>
-        <!--View Controller-->
+        <!--Login-->
         <scene sceneID="vrH-vl-nKw">
             <objects>
-                <viewController id="Har-Gg-rfZ" sceneMemberID="viewController">
+                <viewController id="Har-Gg-rfZ" customClass="LoginViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZbG-GG-Jyk"/>
                         <viewControllerLayoutGuide type="bottom" id="wh5-5X-5bS"/>
@@ -363,7 +363,7 @@
                                     <constraint firstAttribute="height" constant="75" id="qFK-fc-fog"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDF-Py-6d6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yourdomain.atlassian.net" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDF-Py-6d6">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Bh5-aE-2NF"/>
                                 </constraints>
@@ -371,7 +371,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-bX-kPD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-bX-kPD">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jJ6-Bp-Gb3"/>
                                 </constraints>
@@ -379,7 +379,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-Ye-wOm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-Ye-wOm">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hlg-nf-NUD"/>
                                 </constraints>
@@ -392,6 +392,9 @@
                                     <constraint firstAttribute="height" constant="30" id="Wew-GX-ivC"/>
                                 </constraints>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="onLoginButtonTapped:" destination="Har-Gg-rfZ" eventType="touchUpInside" id="Auh-I8-sT8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -412,11 +415,16 @@
                             <constraint firstItem="xid-f7-jR0" firstAttribute="leading" secondItem="hz1-sm-0gG" secondAttribute="leadingMargin" constant="50" id="vQO-fk-w21"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="L5C-1T-DKy"/>
+                    <navigationItem key="navigationItem" title="Login" id="L5C-1T-DKy"/>
+                    <connections>
+                        <outlet property="domianTextField" destination="JDF-Py-6d6" id="9eZ-my-P2s"/>
+                        <outlet property="emailTextField" destination="7Fg-bX-kPD" id="NjD-Tm-hhc"/>
+                        <outlet property="passwordTextField" destination="Sis-Ye-wOm" id="4ms-lt-RNI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMT-Mu-4v7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="396" y="1123"/>
+            <point key="canvasLocation" x="513" y="1075"/>
         </scene>
     </scenes>
     <resources>
