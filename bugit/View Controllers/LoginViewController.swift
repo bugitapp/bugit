@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var jiraMgr: JiraManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +29,14 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func onLoginButtonTapped(_ sender: UIButton) {
+        jiraMgr =  JiraManager(domainName: domianTextField.text, username: emailTextField.text, password: passwordTextField.text)
+        jiraMgr?.projects(
+            success: { (projects: [String]) in
+                print("Projects: \(projects)")
+            },
+            failure: { (error: NSError) in
+                print("Error : \(error)")
+        })
     }
     
     /*
