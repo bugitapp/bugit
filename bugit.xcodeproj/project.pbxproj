@@ -37,6 +37,7 @@
 		17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */; };
 		1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B3E22051DEEA96900E9CB9B /* jiralogo.png */; };
 		1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */; };
+		1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */; };
 		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 		17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		1B3E22051DEEA96900E9CB9B /* jiralogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiralogo.png; path = Jira/jiralogo.png; sourceTree = "<group>"; };
 		1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsModel.swift; path = Models/ProjectsModel.swift; sourceTree = "<group>"; };
 		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueModel.swift; path = Models/IssueModel.swift; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 				D2D37F391DED380800D58A0C /* ScreenshotAssetModel.swift */,
 				D2D37F3A1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift */,
 				1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */,
+				1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */,
 				844EFD8D1DE370C200A3A236 /* ShapeView.swift in Sources */,
 				D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */,
 				D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */,
