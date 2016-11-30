@@ -35,6 +35,7 @@
 		17CD945E1DDACCC2001928B5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94441DDACCC2001928B5 /* GalleryViewController.swift */; };
 		17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */; };
 		17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */; };
+		1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B3E22051DEEA96900E9CB9B /* jiralogo.png */; };
 		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
@@ -88,6 +89,7 @@
 		17CD94441DDACCC2001928B5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorNavigationController.swift; sourceTree = "<group>"; };
 		17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		1B3E22051DEEA96900E9CB9B /* jiralogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiralogo.png; path = Jira/jiralogo.png; sourceTree = "<group>"; };
 		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueModel.swift; path = Models/IssueModel.swift; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 		17CD94271DDACCC2001928B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B3E22041DEEA93200E9CB9B /* Jira */,
 				D2D37F3D1DED396400D58A0C /* Constants.swift */,
 				17CD94281DDACCC2001928B5 /* SF-UI-Display */,
 				17CD94321DDACCC2001928B5 /* SF-UI-Text */,
@@ -197,6 +200,14 @@
 				17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1B3E22041DEEA93200E9CB9B /* Jira */ = {
+			isa = PBXGroup;
+			children = (
+				1B3E22051DEEA96900E9CB9B /* jiralogo.png */,
+			);
+			name = Jira;
 			sourceTree = "<group>";
 		};
 		1B98F94B1DDC39540003BB12 /* Managers */ = {
@@ -363,6 +374,7 @@
 				17CD94501DDACCC2001928B5 /* SF-UI-Text-Heavy.otf in Resources */,
 				17CD944A1DDACCC2001928B5 /* SF-UI-Display-Regular.otf in Resources */,
 				17CD94561DDACCC2001928B5 /* SF-UI-Text-Regular.otf in Resources */,
+				1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */,
 				17CD944E1DDACCC2001928B5 /* SF-UI-Text-Bold.otf in Resources */,
 				17CD94481DDACCC2001928B5 /* SF-UI-Display-Light.otf in Resources */,
 				17CD94511DDACCC2001928B5 /* SF-UI-Text-HeavyItalic.otf in Resources */,

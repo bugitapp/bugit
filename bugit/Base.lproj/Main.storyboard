@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SCW-OT-Ow7">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SCW-OT-Ow7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -45,7 +45,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GZU-qZ-sty">
-                                    <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
+                                    <rect key="frame" x="0.0" y="-64" width="1000" height="1000"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -53,7 +53,7 @@
                                 </label>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotCollectionViewCell" id="B2Y-rT-1Em" customClass="ScreenshotCollectionViewCell" customModule="bugit" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="50" width="200" height="200"/>
+                                        <rect key="frame" x="0.0" y="50" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -75,7 +75,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotSectionHeaderView" id="0RI-Kt-1qs" customClass="ScreenshotSectionHeaderView" customModule="bugit" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/22/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-35-eQt">
@@ -270,6 +270,7 @@
                         <outlet property="trayToolsView" destination="atj-Xf-o3E" id="0MC-7M-n7x"/>
                         <outlet property="trayView" destination="BJ5-pC-Mlr" id="cAZ-o2-cSn"/>
                         <segue destination="RPb-ma-yGK" kind="show" identifier="ExportSegue" id="dPL-Rf-hhQ"/>
+                        <segue destination="Har-Gg-rfZ" kind="show" identifier="LoginSegue" id="ohn-cd-CeM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZE-I6-jO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,7 +343,80 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="439" y="1342"/>
+            <point key="canvasLocation" x="463" y="1928"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vrH-vl-nKw">
+            <objects>
+                <viewController id="Har-Gg-rfZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZbG-GG-Jyk"/>
+                        <viewControllerLayoutGuide type="bottom" id="wh5-5X-5bS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hz1-sm-0gG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiralogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RDc-1t-8Ad">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="320-pt-mVe"/>
+                                    <constraint firstAttribute="height" constant="75" id="qFK-fc-fog"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDF-Py-6d6">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Bh5-aE-2NF"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-bX-kPD">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jJ6-Bp-Gb3"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-Ye-wOm">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hlg-nf-NUD"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xid-f7-jR0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Wew-GX-ivC"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JDF-Py-6d6" firstAttribute="leading" secondItem="hz1-sm-0gG" secondAttribute="leadingMargin" constant="50" id="4jl-K2-8Su"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xid-f7-jR0" secondAttribute="trailing" constant="50" id="5PL-ch-yTq"/>
+                            <constraint firstItem="JDF-Py-6d6" firstAttribute="top" secondItem="RDc-1t-8Ad" secondAttribute="bottom" constant="18" id="AWD-ns-Tl1"/>
+                            <constraint firstItem="RDc-1t-8Ad" firstAttribute="centerX" secondItem="hz1-sm-0gG" secondAttribute="centerX" id="CqU-Lw-yLx"/>
+                            <constraint firstItem="Sis-Ye-wOm" firstAttribute="leading" secondItem="hz1-sm-0gG" secondAttribute="leadingMargin" constant="50" id="F6S-X8-2cf"/>
+                            <constraint firstItem="7Fg-bX-kPD" firstAttribute="leading" secondItem="hz1-sm-0gG" secondAttribute="leadingMargin" constant="50" id="NAe-Oy-Jg3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JDF-Py-6d6" secondAttribute="trailing" constant="50" id="Qaj-vt-iSY"/>
+                            <constraint firstItem="7Fg-bX-kPD" firstAttribute="top" secondItem="JDF-Py-6d6" secondAttribute="bottom" constant="8" id="ROk-y4-Wst"/>
+                            <constraint firstItem="RDc-1t-8Ad" firstAttribute="top" secondItem="ZbG-GG-Jyk" secondAttribute="bottom" constant="23" id="UBp-Z5-SIv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sis-Ye-wOm" secondAttribute="trailing" constant="50" id="bZc-bA-lX4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Fg-bX-kPD" secondAttribute="trailing" constant="50" id="hJ8-mf-0am"/>
+                            <constraint firstItem="xid-f7-jR0" firstAttribute="top" secondItem="Sis-Ye-wOm" secondAttribute="bottom" constant="24" id="ogG-oc-PsU"/>
+                            <constraint firstItem="Sis-Ye-wOm" firstAttribute="top" secondItem="7Fg-bX-kPD" secondAttribute="bottom" constant="8" id="rPL-OR-WRy"/>
+                            <constraint firstItem="xid-f7-jR0" firstAttribute="leading" secondItem="hz1-sm-0gG" secondAttribute="leadingMargin" constant="50" id="vQO-fk-w21"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="L5C-1T-DKy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMT-Mu-4v7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="396" y="1123"/>
         </scene>
     </scenes>
     <resources>
@@ -354,5 +428,6 @@
         <image name="Pen-Red" width="53" height="332"/>
         <image name="Pen-Yellow" width="53" height="332"/>
         <image name="down_arrow" width="20" height="14"/>
+        <image name="jiralogo.png" width="846" height="821"/>
     </resources>
 </document>
