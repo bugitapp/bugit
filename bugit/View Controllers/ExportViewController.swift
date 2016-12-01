@@ -68,11 +68,11 @@ class ExportViewController: UIViewController {
     /// MARK: - Outlets
     
     @IBAction func onGetIssueMetadataTapped(_ sender: AnyObject) {
-        JiraManager.sharedInstance.projects(success: { (projects: [String]) in
-            
-        }) { (error: Error) in
-            
-        }
+//        JiraManager.sharedInstance.projects(success: { (projects: [String]) in
+//            
+//        }) { (error: Error) in
+//            
+//        }
     }
 
     @IBAction func onCreateIssueTapped(_ sender: AnyObject) {
@@ -82,19 +82,19 @@ class ExportViewController: UIViewController {
         issue.summary = "Fox jumps over dog"
         issue.issueDescription = "A quick brown fox jumped over the lazy dog."
         issue.labels = ["canines"]
-        JiraManager.sharedInstance.createIssue(issue: issue,
-                                               success: { (issue: IssueModel) in
-                                                print("Created Issue: \(issue)")
-                                                JiraManager.sharedInstance.attach(image: UIImage(named: "sample") , issue: issue, success: {
-                                                    MBProgressHUD.hide(for: self.view, animated: true)
-                                                    print("Attached image to \(issue)")
-                                                }) { (error: Error) in
-                                                    MBProgressHUD.hide(for: self.view, animated: true)
-                                                    print("Erorr attaching image: \(error)")
-                                                }
-        }) { (error: Error) in
-            print("Erorr creating issue: \(error)")
-        }
+//        JiraManager.sharedInstance.createIssue(issue: issue,
+//                                               success: { (issue: IssueModel) in
+//                                                print("Created Issue: \(issue)")
+//                                                JiraManager.sharedInstance.attach(image: UIImage(named: "sample") , issue: issue, success: {
+//                                                    MBProgressHUD.hide(for: self.view, animated: true)
+//                                                    print("Attached image to \(issue)")
+//                                                }) { (error: Error) in
+//                                                    MBProgressHUD.hide(for: self.view, animated: true)
+//                                                    print("Erorr attaching image: \(error)")
+//                                                }
+//        }) { (error: Error) in
+//            print("Erorr creating issue: \(error)")
+//        }
         MBProgressHUD.showAdded(to: self.view, animated: true)
     }
     

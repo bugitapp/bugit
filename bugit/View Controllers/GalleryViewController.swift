@@ -41,11 +41,8 @@ class GalleryViewController: UIViewController {
         }
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         dlog("in")
         let titleLabel = UILabel()
@@ -56,8 +53,16 @@ class GalleryViewController: UIViewController {
         titleLabel.attributedText = titleText
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        // TODO: Run this only once (when app 1st time launched)
+        launchIntroGuide()
     }
-
+    
+    func launchIntroGuide() {
+        let storyboard = UIStoryboard(name: "IntroGuide", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"step1ViewController") 
+        self.present(viewController, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         

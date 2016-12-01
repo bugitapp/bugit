@@ -25,20 +25,21 @@ extension Data {
 }
 
 class JiraManager: AFHTTPSessionManager {
+    // TODO: use plist to save constant info like url paths
     static let projectsPath = "project"
     static let issueMetadataPath = "issue/createmeta"
     static let issueCreatePath = "issue"
     static let authHeader = "Authorization"
     
-    var userName: String?
-    var password: String?
+    static var jiraUrl: URL?
+    static var userName: String?
+    static var password: String?
     
-    static let sharedInstance = JiraManager(baseURL: URL(string: "https://bugitapp.atlassian.net/rest/api/2"), username: "junkbipin@yahoo.com", password: "bugit")
-    
-    init(baseURL url: URL?, username name: String!, password pwd: String!) {
-        super.init(baseURL: url, sessionConfiguration: nil)
-        userName = name
-        password = pwd
+    init(domainName domain: String!, username name: String!, password pwd: String!) {
+        JiraManager.jiraUrl = URL(string: "https://\(domain!)/rest/api/2")
+        super.init(baseURL: JiraManager.jiraUrl, sessionConfiguration: nil)
+        JiraManager.userName = name
+        JiraManager.password = pwd
         addAuthHeader(withUsername: name, withPassword: pwd)
         requestSerializer.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
     }
@@ -47,11 +48,18 @@ class JiraManager: AFHTTPSessionManager {
         super.init(coder: aDecoder)
     }
     
-    func projects(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
+    func projects(success: @escaping ([ProjectsModel]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.projectsPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Projects: \(response)")
-                    success([])
+                    var projects = [ProjectsModel]()
+                    let projectsResponse = response as! Array<Dictionary<String, Any>>
+                    for dict: Dictionary<String, Any> in projectsResponse {
+                        print(dict)
+                        let project = ProjectsModel(dict: dict)
+                        projects.append(project)
+                    }
+                    success(projects)
             },
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")
@@ -94,11 +102,11 @@ class JiraManager: AFHTTPSessionManager {
             print(error.localizedDescription)
         }
         
-        let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue")
+        let url = URL(string: "\(JiraManager.jiraUrl)/issue")
         var request = URLRequest(url: url!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+        request.setValue(credentails(withUsername: JiraManager.userName, withPassword: JiraManager.password), forHTTPHeaderField: JiraManager.authHeader)
         request.httpMethod = "POST"
         request.httpBody = issueData
         
@@ -174,7 +182,7 @@ class JiraManager: AFHTTPSessionManager {
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
-        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+        request.setValue(credentails(withUsername: JiraManager.userName, withPassword: JiraManager.password), forHTTPHeaderField: JiraManager.authHeader)
         request.httpBody = try createBody(with: parameters, filePathKey: "file", image: image, boundary: boundary)
         
         return request

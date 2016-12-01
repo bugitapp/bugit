@@ -145,7 +145,7 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func goToExport() {
-        self.performSegue(withIdentifier: "ExportSegue", sender: self)
+        self.performSegue(withIdentifier: "LoginSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
