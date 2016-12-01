@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170E50911DEFE55000E0C830 /* IntroGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170E508F1DEFE55000E0C830 /* IntroGuide.storyboard */; };
+		170E509C1DEFE81800E0C830 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E50991DEFE81800E0C830 /* Step1ViewController.swift */; };
+		170E509D1DEFE81800E0C830 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509A1DEFE81800E0C830 /* Step2ViewController.swift */; };
+		170E509E1DEFE81800E0C830 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509B1DEFE81800E0C830 /* Step3ViewController.swift */; };
 		17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */; };
 		17CD94461DDACCC2001928B5 /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */; };
 		17CD94471DDACCC2001928B5 /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD942B1DDACCC2001928B5 /* SF-UI-Display-Heavy.otf */; };
@@ -63,6 +67,10 @@
 /* Begin PBXFileReference section */
 		01676247167C41103457507D /* Pods_bugit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bugit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B932B8CC16F4F595E0DF3DE /* Pods-bugit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bugit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bugit/Pods-bugit.debug.xcconfig"; sourceTree = "<group>"; };
+		170E50901DEFE55000E0C830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IntroGuide.storyboard; sourceTree = "<group>"; };
+		170E50991DEFE81800E0C830 /* Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step1ViewController.swift; path = IntroGuide/Step1ViewController.swift; sourceTree = "<group>"; };
+		170E509A1DEFE81800E0C830 /* Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step2ViewController.swift; path = IntroGuide/Step2ViewController.swift; sourceTree = "<group>"; };
+		170E509B1DEFE81800E0C830 /* Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step3ViewController.swift; path = IntroGuide/Step3ViewController.swift; sourceTree = "<group>"; };
 		17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		17CD942B1DDACCC2001928B5 /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -130,6 +138,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		170E50921DEFE7AA00E0C830 /* IntroGuide */ = {
+			isa = PBXGroup;
+			children = (
+				170E50991DEFE81800E0C830 /* Step1ViewController.swift */,
+				170E509A1DEFE81800E0C830 /* Step2ViewController.swift */,
+				170E509B1DEFE81800E0C830 /* Step3ViewController.swift */,
+			);
+			name = IntroGuide;
+			sourceTree = "<group>";
+		};
 		17CD94271DDACCC2001928B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +273,7 @@
 		1BFFD0BC1DD1661900858992 /* bugit */ = {
 			isa = PBXGroup;
 			children = (
+				170E50921DEFE7AA00E0C830 /* IntroGuide */,
 				D2D37F3F1DED397300D58A0C /* Views */,
 				844EFD8A1DE370C200A3A236 /* Tools */,
 				1BCAE9A31DDEC96100518D78 /* Models */,
@@ -270,6 +289,7 @@
 				1BFFD0C41DD1661900858992 /* Assets.xcassets */,
 				1BFFD0C61DD1661900858992 /* LaunchScreen.storyboard */,
 				1BFFD0C91DD1661900858992 /* Info.plist */,
+				170E508F1DEFE55000E0C830 /* IntroGuide.storyboard */,
 			);
 			path = bugit;
 			sourceTree = "<group>";
@@ -388,6 +408,7 @@
 				17CD94461DDACCC2001928B5 /* SF-UI-Display-Bold.otf in Resources */,
 				17CD94491DDACCC2001928B5 /* SF-UI-Display-Medium.otf in Resources */,
 				17CD94591DDACCC2001928B5 /* SF-UI-Text-SemiboldItalic.otf in Resources */,
+				170E50911DEFE55000E0C830 /* IntroGuide.storyboard in Resources */,
 				17CD945A1DDACCC2001928B5 /* SF-UI-Text-Ultrathin.otf in Resources */,
 				17CD944F1DDACCC2001928B5 /* SF-UI-Text-BoldItalic.otf in Resources */,
 				17CD944D1DDACCC2001928B5 /* SF-UI-Display-Ultralight.otf in Resources */,
@@ -465,9 +486,11 @@
 				D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */,
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				84090FD11DE3FCDE009664EE /* DrawView.swift in Sources */,
+				170E509D1DEFE81800E0C830 /* Step2ViewController.swift in Sources */,
 				17CD945C1DDACCC2001928B5 /* EditorViewController.swift in Sources */,
 				17CD945E1DDACCC2001928B5 /* GalleryViewController.swift in Sources */,
 				84A488F51DE120CA00736938 /* xCG.swift in Sources */,
+				170E509E1DEFE81800E0C830 /* Step3ViewController.swift in Sources */,
 				84A488F61DE120CA00736938 /* xDate.swift in Sources */,
 				84A488F71DE120CA00736938 /* xUIColor.swift in Sources */,
 				1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */,
@@ -475,6 +498,7 @@
 				844EFD8E1DE370C200A3A236 /* TextView.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,
 				844EFD901DE3754400A3A236 /* xUIBezierPath.swift in Sources */,
+				170E509C1DEFE81800E0C830 /* Step1ViewController.swift in Sources */,
 				D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */,
 				D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
@@ -488,6 +512,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		170E508F1DEFE55000E0C830 /* IntroGuide.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				170E50901DEFE55000E0C830 /* Base */,
+			);
+			name = IntroGuide.storyboard;
+			sourceTree = "<group>";
+		};
 		1BFFD0C11DD1661900858992 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
