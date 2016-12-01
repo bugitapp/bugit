@@ -79,7 +79,6 @@ class GalleryViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: userDidDenyGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
             dlog("denied photos")
-            //self.showBasicAlert(title: "Problem", message: "Bugit cannot function without access to Photos. Pleae go to the Settings app and allow Bugit access to Photos.")
             self.showOpenSettingsPanel()
         }
 
@@ -144,7 +143,7 @@ class GalleryViewController: UIViewController {
     }
     
     func hideOpenSettingsPanel() {
-        permissionView.isHidden = false
+        permissionView.isHidden = true
         permissionViewBottomConstraint.constant = -permissionView.bounds.height
 
     }
@@ -321,12 +320,25 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: screenshotReuseIdentifier, for: indexPath) as! ScreenshotCollectionViewCell
         
-        //cell.backgroundColor = UIColor.white
         cell.photoImageView.image = nil
         let phasset = asset(for: indexPath)
         let image = synchronousImage(for: phasset, at: indexPath)
         cell.photoImageView.image = image
+        cell.photoImageView.contentMode = .scaleAspectFill
         cell.photoImageView.backgroundColor = lightLightGrayThemeColor
+       /*
+        if let imageOrientation = image?.imageOrientation {
+            switch imageOrientation {
+            case .down, .up, .upMirrored, .downMirrored:
+                dlog("indexPath: \(indexPath) image is Vertical: \(imageOrientation.rawValue)")
+            
+            case .left, .right, .leftMirrored, .rightMirrored:
+                dlog("indexPath: \(indexPath) image is Horizontal: \(imageOrientation.rawValue)")
+
+            }
+        }
+        */
+        
         return cell
     }
     
@@ -384,11 +396,11 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
         
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = photosCollectionView.bounds.width - paddingSpace
-        let widthPerItem = (availableWidth / itemsPerRow) - 2.0
+        let widthPerItem = (availableWidth / itemsPerRow)
         //dlog("indexPath: \(indexPath), totalPad: \(paddingSpace), availableWdith: \(availableWidth)")
         //dlog("indexPath: \(indexPath), width: \(widthPerItem)")
-        
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        let heightPerItem = (9.0 * widthPerItem) / 6.0
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     
