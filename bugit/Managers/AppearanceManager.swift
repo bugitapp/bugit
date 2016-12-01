@@ -20,23 +20,14 @@ class AppearanceManager
         //UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
         //UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
         
-        /*
- 
-         here tintColor changes the background color of the navigation bar
-         barTintColor changes the color of the: back indicator image, button titles, button images
-
-         
-        */
-        
         UINavigationBar.appearance().barTintColor = brightBlueThemeColor
         UINavigationBar.appearance().tintColor = lightBlueThemeColor
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 21)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName: UIFont(name: "SFUIText-Light", size: 21)!]
         
         
         UIButton.appearance().backgroundColor = brightBlueThemeColor
         UIButton.appearance().tintColor = lightBlueThemeColor
-        
-        //UIButton.appearance().titleAttributes = [NSForegroundColorAttributeName: lightBlueThemeColor, NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 17)!]
+        UILabel.appearance().font = UIFont(name: "SFUIText-Light", size: 17)!
         
         window?.tintColor = brightBlueThemeColor
         
