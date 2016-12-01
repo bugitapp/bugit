@@ -61,7 +61,7 @@ class EditorViewController: UIViewController {
         // TODO: Add image from Gallery
         //canvasImageView.image = UIImage.init(named: "sample")
         
-        navigationItem.title = "Annotate"
+        navigationItem.title = "Annotate Screenshot"
 
         
         dlog("screenshot: \(screenshotAssetModel)")

@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -135,7 +135,9 @@
                             <constraint firstItem="1hL-jB-xdb" firstAttribute="leading" secondItem="Wej-Z1-wHV" secondAttribute="leading" id="x5E-4O-fRy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="B01-tf-eJb"/>
+                    <navigationItem key="navigationItem" id="B01-tf-eJb">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HEB-nN-Rib"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="permissionView" destination="Khl-Wb-LUE" id="nX1-T6-DDC"/>
                         <outlet property="permissionViewBottomConstraint" destination="h2f-25-JMu" id="49Y-6p-QuN"/>
@@ -293,7 +295,9 @@
                             <constraint firstItem="YLE-E1-jJE" firstAttribute="top" secondItem="BJ5-pC-Mlr" secondAttribute="bottom" id="XSK-zG-RQa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="12b-7O-xkD"/>
+                    <navigationItem key="navigationItem" id="12b-7O-xkD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Vgt-35-2Xw"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
                         <outlet property="trayArrowImageView" destination="ajd-xi-pb8" id="pvT-Qe-p0w"/>

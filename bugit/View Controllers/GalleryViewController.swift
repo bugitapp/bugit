@@ -55,7 +55,7 @@ class GalleryViewController: UIViewController {
         //titleLabel.sizeToFit()
         //navigationItem.titleView = titleLabel
         
-        navigationItem.title = "Gallery"
+        navigationItem.title = "Screenshot Gallery"
         
         // TODO: Run this only once (when app 1st time launched)
         //launchIntroGuide()
@@ -321,12 +321,12 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: screenshotReuseIdentifier, for: indexPath) as! ScreenshotCollectionViewCell
         
-        cell.backgroundColor = UIColor.white
+        //cell.backgroundColor = UIColor.white
         cell.photoImageView.image = nil
         let phasset = asset(for: indexPath)
         let image = synchronousImage(for: phasset, at: indexPath)
         cell.photoImageView.image = image
-        
+        cell.photoImageView.backgroundColor = lightLightGrayThemeColor
         return cell
     }
     
