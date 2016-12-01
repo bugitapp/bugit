@@ -48,6 +48,13 @@ struct Platform {
 
 public let themeColor = UIColor(red: 0.01, green: 0.41, blue: 0.22, alpha: 1.0)
 
+public let brightBlueThemeColor = UIColor(netHex: 0x0A6EFF)
+public let lightLightLightGrayThemeColor = UIColor(netHex: 0xFAF9FE)
+public let lightLightGrayThemeColor = UIColor(netHex: 0xEEE9ED)
+public let lightGrayThemeColor = UIColor(netHex: 0xF2E5D5)
+public let lightBlueThemeColor = UIColor(netHex: 0xC2E5F2)
+
+
 let userDidAllowGalleryLoadNotification = Notification.Name(rawValue: "userDidAllowGalleryLoadNotification")
 let userDidDenyGalleryLoadNotification = Notification.Name(rawValue: "userDidDenyGalleryLoadNotification")
 

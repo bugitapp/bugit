@@ -55,6 +55,7 @@
 		D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F3D1DED396400D58A0C /* Constants.swift */; };
 		D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */; };
 		D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */; };
+		D2D37F661DEFE0BB00D58A0C /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F651DEFE0BB00D58A0C /* AppearanceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		D2D37F3D1DED396400D58A0C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotCollectionViewCell.swift; path = Views/ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
 		D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotSectionHeaderView.swift; path = Views/ScreenshotSectionHeaderView.swift; sourceTree = "<group>"; };
+		D2D37F651DEFE0BB00D58A0C /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 		1B98F94B1DDC39540003BB12 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D2D37F651DEFE0BB00D58A0C /* AppearanceManager.swift */,
 				1B98F94C1DDC39540003BB12 /* JiraManager.swift */,
 			);
 			path = Managers;
@@ -460,6 +463,7 @@
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
 				D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */,
 				1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */,
+				D2D37F661DEFE0BB00D58A0C /* AppearanceManager.swift in Sources */,
 				17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
 			);
