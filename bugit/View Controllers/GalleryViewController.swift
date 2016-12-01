@@ -25,6 +25,8 @@ class GalleryViewController: UIViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    @IBOutlet weak var permissionView: UIView!
+    @IBOutlet weak var permissionViewBottomConstraint: NSLayoutConstraint!
     
     let screenshotReuseIdentifier = String(describing: ScreenshotCollectionViewCell.self)
     let headerReuseIdentifier = String(describing: ScreenshotSectionHeaderView.self)
@@ -71,12 +73,14 @@ class GalleryViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: userDidAllowGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
             dlog("authorized for photos")
+            self.hideOpenSettingsPanel()
             self.fetchScreenshotAssets()
         }
         
         NotificationCenter.default.addObserver(forName: userDidDenyGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
             dlog("denied photos")
-            self.showBasicAlert(title: "Problem", message: "Bugit cannot function without access to Photos. Pleae go to the Settings app and allow Bugit access to Photos.")
+            //self.showBasicAlert(title: "Problem", message: "Bugit cannot function without access to Photos. Pleae go to the Settings app and allow Bugit access to Photos.")
+            self.showOpenSettingsPanel()
         }
 
     }
@@ -133,6 +137,26 @@ class GalleryViewController: UIViewController {
         }
     }
     
+    func showOpenSettingsPanel() {
+        permissionView.isHidden = false
+        permissionViewBottomConstraint.constant = 0.0
+        
+    }
+    
+    func hideOpenSettingsPanel() {
+        permissionView.isHidden = false
+        permissionViewBottomConstraint.constant = -permissionView.bounds.height
+
+    }
+    
+    @IBAction func onOpenSettingsPressed(_ sender: AnyObject) {
+        
+        if let appSettingsUrl = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(appSettingsUrl)
+        }
+
+        
+    }
     
     func showBasicAlert(title: String, message: String) {
         
