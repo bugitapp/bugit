@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginButtonTapped(_ sender: UIButton) {
         jiraMgr =  JiraManager(domainName: domianTextField.text, username: emailTextField.text, password: passwordTextField.text)
         jiraMgr?.projects(
-            success: { (projects: [String]) in
+            success: { (projects: [ProjectsModel]) in
                 print("Projects: \(projects)")
             },
             failure: { (error: NSError) in
