@@ -45,17 +45,18 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         
         dlog("in")
-        let titleLabel = UILabel()
-        let titleText = NSAttributedString(string: "Gallery", attributes: [
-            NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 21)!,
-            NSForegroundColorAttributeName : UIColor.darkText
-            ])
-        titleLabel.attributedText = titleText
-        titleLabel.sizeToFit()
-        navigationItem.titleView = titleLabel
+        //set in the appearance manager now
+        //let titleLabel = UILabel()
+        //let titleText = NSAttributedString(string: "Gallery", attributes: [
+        //NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 21)!])
+        //titleLabel.attributedText = titleText
+        //titleLabel.sizeToFit()
+        //navigationItem.titleView = titleLabel
+        
+        navigationItem.title = "Gallery"
         
         // TODO: Run this only once (when app 1st time launched)
-        launchIntroGuide()
+        //launchIntroGuide()
     }
     
     func launchIntroGuide() {
