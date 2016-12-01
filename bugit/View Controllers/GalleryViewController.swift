@@ -324,10 +324,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let phasset = asset(for: indexPath)
         let image = synchronousImage(for: phasset, at: indexPath)
         cell.photoImageView.image = image
-        cell.photoImageView.contentMode = .scaleAspectFill
+        cell.photoImageView.contentMode = .scaleAspectFit
         cell.photoImageView.backgroundColor = lightLightGrayThemeColor
-       /*
-        if let imageOrientation = image?.imageOrientation {
+       
+        /*
+        if let img = image {
+            let aspect = img.size.height / img.size.width
+            dlog("indexPath: \(indexPath) image h/w aspect: \(aspect)")
+            let imageOrientation = img.imageOrientation
             switch imageOrientation {
             case .down, .up, .upMirrored, .downMirrored:
                 dlog("indexPath: \(indexPath) image is Vertical: \(imageOrientation.rawValue)")
@@ -399,7 +403,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
         let widthPerItem = (availableWidth / itemsPerRow)
         //dlog("indexPath: \(indexPath), totalPad: \(paddingSpace), availableWdith: \(availableWidth)")
         //dlog("indexPath: \(indexPath), width: \(widthPerItem)")
-        let heightPerItem = (9.0 * widthPerItem) / 6.0
+        let heightPerItem = ((16.0 * widthPerItem) / 9.0)
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
