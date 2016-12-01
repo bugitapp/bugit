@@ -13,6 +13,23 @@ import UIKit
 class AppearanceManager
 {
     
+    static func applyBlueTranslucentTheme(window: UIWindow?) {
+        
+        UINavigationBar.appearance().barStyle = .default
+        UINavigationBar.appearance().isTranslucent = true
+        //UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
+        //UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
+        
+        UINavigationBar.appearance().barTintColor = brightBlueThemeColor
+        UINavigationBar.appearance().tintColor = UIColor.white // for titles, buttons, etc.
+
+        
+        window?.tintColor = brightBlueThemeColor
+        
+     
+    }
+
+    
     static func applyBlackTranslucentTheme(window: UIWindow?) {
         
         UINavigationBar.appearance().barStyle = .black

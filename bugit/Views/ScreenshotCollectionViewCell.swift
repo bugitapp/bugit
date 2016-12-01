@@ -23,7 +23,7 @@ class ScreenshotCollectionViewCell: UICollectionViewCell {
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        photoImageView.layer.borderColor = themeColor.cgColor
+        photoImageView.layer.borderColor = brightBlueThemeColor.cgColor
         isSelected = false
     }
 }

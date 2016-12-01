@@ -46,7 +46,7 @@ struct Platform {
  */
 
 
-public let themeColor = UIColor(red: 0.01, green: 0.41, blue: 0.22, alpha: 1.0)
+//public let themeColor = UIColor(red: 0.01, green: 0.41, blue: 0.22, alpha: 1.0)
 
 public let brightBlueThemeColor = UIColor(netHex: 0x0A6EFF)
 public let lightLightLightGrayThemeColor = UIColor(netHex: 0xFAF9FE)
