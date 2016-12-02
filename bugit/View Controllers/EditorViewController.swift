@@ -45,6 +45,8 @@ class EditorViewController: UIViewController {
     var shapeLayer: CAShapeLayer!
     
     var isTrayOpen: Bool = true
+    var bottomConstraintStartY: CGFloat = 0.0
+    var trayTravelDiff: CGFloat = 0.0
     
     /*
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +116,15 @@ class EditorViewController: UIViewController {
         
         setupToolbox()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
+        dlog("trayTravelDiff: \(trayTravelDiff)")
+        
+    }
+
     
     func setupToolbox() {
         trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
@@ -193,9 +204,21 @@ class EditorViewController: UIViewController {
         
         if sender.state == .began {
             trayOriginalCenter = trayView.center
+            bottomConstraintStartY = self.trayViewBottomConstraint.constant
             //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
         } else if sender.state == .changed {
-            trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            //trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            
+            let newBottomConstraintY = bottomConstraintStartY - translation.y
+            if newBottomConstraintY <= 0 && newBottomConstraintY >= -self.trayTravelDiff  {
+                self.trayViewBottomConstraint.constant = newBottomConstraintY
+                
+                //let rotation = arrowRotationForTrayPan(translation: translation, velocity: velocity)
+                //self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: rotation)
+                dlog("Gesture change at: \(translation), newConstraintY: \(newBottomConstraintY)")
+            }
+
+            
         } else if sender.state == .ended {
             //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
             if velocity.y > 0 {
