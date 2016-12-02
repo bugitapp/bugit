@@ -25,6 +25,8 @@ class GalleryViewController: UIViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    @IBOutlet weak var permissionView: UIView!
+    @IBOutlet weak var permissionViewBottomConstraint: NSLayoutConstraint!
     
     let screenshotReuseIdentifier = String(describing: ScreenshotCollectionViewCell.self)
     let headerReuseIdentifier = String(describing: ScreenshotSectionHeaderView.self)
@@ -41,23 +43,35 @@ class GalleryViewController: UIViewController {
         }
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         dlog("in")
-        let titleLabel = UILabel()
-        let titleText = NSAttributedString(string: "Gallery", attributes: [
-            NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 21)!,
-            NSForegroundColorAttributeName : UIColor.darkText
-            ])
-        titleLabel.attributedText = titleText
-        titleLabel.sizeToFit()
-        navigationItem.titleView = titleLabel
+        //set in the appearance manager now
+        //let titleLabel = UILabel()
+        //let titleText = NSAttributedString(string: "Gallery", attributes: [
+        //NSFontAttributeName : UIFont(name: "SFUIText-Light", size: 21)!])
+        //titleLabel.attributedText = titleText
+        //titleLabel.sizeToFit()
+        //navigationItem.titleView = titleLabel
+        
+        navigationItem.title = "Screenshot Gallery"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(launchIntroGuide))
+        
+        if let willLaunchIntroGuide = UserDefaults.standard.value(forKey: "ud1_launch_intro_guide") as! Bool! {
+            if willLaunchIntroGuide {
+                UserDefaults.standard.set(false, forKey: "ud1_launch_intro_guide")
+                launchIntroGuide()
+            }
+        }
     }
-
+    
+    func launchIntroGuide() {
+        let storyboard = UIStoryboard(name: "IntroGuide", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"step1ViewController") 
+        self.present(viewController, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -65,12 +79,13 @@ class GalleryViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: userDidAllowGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
             dlog("authorized for photos")
+            self.hideOpenSettingsPanel()
             self.fetchScreenshotAssets()
         }
         
         NotificationCenter.default.addObserver(forName: userDidDenyGalleryLoadNotification, object: nil, queue: OperationQueue.main) { (notif: Notification) in
             dlog("denied photos")
-            self.showBasicAlert(title: "Problem", message: "Bugit cannot function without access to Photos. Pleae go to the Settings app and allow Bugit access to Photos.")
+            self.showOpenSettingsPanel()
         }
 
     }
@@ -127,6 +142,26 @@ class GalleryViewController: UIViewController {
         }
     }
     
+    func showOpenSettingsPanel() {
+        permissionView.isHidden = false
+        permissionViewBottomConstraint.constant = 0.0
+        
+    }
+    
+    func hideOpenSettingsPanel() {
+        permissionView.isHidden = true
+        permissionViewBottomConstraint.constant = -permissionView.bounds.height
+
+    }
+    
+    @IBAction func onOpenSettingsPressed(_ sender: AnyObject) {
+        
+        if let appSettingsUrl = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(appSettingsUrl)
+        }
+
+        
+    }
     
     func showBasicAlert(title: String, message: String) {
         
@@ -291,11 +326,28 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: screenshotReuseIdentifier, for: indexPath) as! ScreenshotCollectionViewCell
         
-        cell.backgroundColor = UIColor.white
         cell.photoImageView.image = nil
         let phasset = asset(for: indexPath)
         let image = synchronousImage(for: phasset, at: indexPath)
         cell.photoImageView.image = image
+        cell.photoImageView.contentMode = .scaleAspectFit
+        cell.photoImageView.backgroundColor = lightLightGrayThemeColor
+       
+        /*
+        if let img = image {
+            let aspect = img.size.height / img.size.width
+            dlog("indexPath: \(indexPath) image h/w aspect: \(aspect)")
+            let imageOrientation = img.imageOrientation
+            switch imageOrientation {
+            case .down, .up, .upMirrored, .downMirrored:
+                dlog("indexPath: \(indexPath) image is Vertical: \(imageOrientation.rawValue)")
+            
+            case .left, .right, .leftMirrored, .rightMirrored:
+                dlog("indexPath: \(indexPath) image is Horizontal: \(imageOrientation.rawValue)")
+
+            }
+        }
+        */
         
         return cell
     }
@@ -354,11 +406,11 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
         
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = photosCollectionView.bounds.width - paddingSpace
-        let widthPerItem = (availableWidth / itemsPerRow) - 2.0
+        let widthPerItem = (availableWidth / itemsPerRow)
         //dlog("indexPath: \(indexPath), totalPad: \(paddingSpace), availableWdith: \(availableWidth)")
         //dlog("indexPath: \(indexPath), width: \(widthPerItem)")
-        
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        let heightPerItem = ((16.0 * widthPerItem) / 9.0)
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     

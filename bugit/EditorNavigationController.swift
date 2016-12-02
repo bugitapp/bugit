@@ -25,7 +25,7 @@ class EditorNavigationController: UINavigationController {
         defaults.synchronize()
         
         // Do any additional setup after loading the view.
-        getCurrentLocation()
+        // getCurrentLocation() //we should do this on demand, or not at all
     }
     
     override func didReceiveMemoryWarning() {

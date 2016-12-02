@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        AppearanceManager.applyBlueTranslucentTheme(window: window)
+        
+        if let launchIntroGuide = UserDefaults.standard.value(forKey: "ud1_launch_intro_guide") as! Bool! {
+            print("launchIntroGuide = " + (launchIntroGuide ? "true" : "false"))
+        } else {
+            UserDefaults.standard.set(true, forKey: "ud1_launch_intro_guide")
+        }
+        
         return true
     }
 
