@@ -21,6 +21,9 @@ class Step1ViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func moveToStep2(_ sender: Any) {
+        self.performSegue(withIdentifier: "Step2Segue", sender: self)
+    }
 
     /*
     // MARK: - Navigation
