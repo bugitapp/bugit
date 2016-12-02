@@ -148,7 +148,13 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func goToExport() {
-        self.performSegue(withIdentifier: "LoginSegue", sender: self)
+        let jiraMgr = JiraManager(domainName: nil, username: nil, password: nil)
+        if !jiraMgr.userLoggedIn() {
+            self.performSegue(withIdentifier: "LoginSegue", sender: self)
+        }
+        else {
+            self.performSegue(withIdentifier: "ExportSegue", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
