@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -164,11 +164,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn"/>
                             <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ5-pC-Mlr">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-xi-pb8">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-xi-pb8" userLabel="Tray Arrow Image Button">
                                         <frame key="frameInset" width="356" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="down_arrow"/>
+                                        <connections>
+                                            <action selector="onTrayArrowButtonTappedWithSender:" destination="qHP-hN-bFx" eventType="touchUpInside" id="oea-a8-V9l"/>
+                                        </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="TT0-UF-5bf" userLabel="Tray Arrow Image View">
+                                        <frame key="frameInset" minX="167" minY="4" width="20" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atj-Xf-o3E">
                                         <frame key="frameInset" width="72" height="211"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,9 +306,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
-                        <outlet property="trayArrowImageView" destination="ajd-xi-pb8" id="pvT-Qe-p0w"/>
+                        <outlet property="trayArrowButton" destination="ajd-xi-pb8" id="dvb-rS-Gnd"/>
+                        <outlet property="trayArrowImageView" destination="TT0-UF-5bf" id="yS5-Wy-td2"/>
                         <outlet property="trayToolsView" destination="atj-Xf-o3E" id="0MC-7M-n7x"/>
                         <outlet property="trayView" destination="BJ5-pC-Mlr" id="cAZ-o2-cSn"/>
+                        <outlet property="trayViewBottomConstraint" destination="XSK-zG-RQa" id="Ngi-WC-XoD"/>
                         <segue destination="RPb-ma-yGK" kind="show" identifier="ExportSegue" id="dPL-Rf-hhQ"/>
                         <segue destination="Har-Gg-rfZ" kind="show" identifier="LoginSegue" id="ohn-cd-CeM"/>
                     </connections>
