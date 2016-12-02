@@ -16,6 +16,29 @@ class Step3ViewController: ViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Remove navigation back button title
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+        // Make UINavigationBar transparent
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        // Swipe gestures
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipePrevious))
+        swipeLeft.direction = .right
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(closeIntro))
+        swipeRight.direction = .left
+        self.view.addGestureRecognizer(swipeRight)
+        
+        // Custom UI
+        //self.closeIntroButton.layer.cornerRadius = 6
+        self.closeIntroButton.tintColor = UIColor.blue
+        self.closeIntroButton.backgroundColor = UIColor.white
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,14 +53,10 @@ class Step3ViewController: ViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func handleSwipePrevious(sender: UITapGestureRecognizer? = nil) {
+        self.performSegue(withIdentifier: "Step2Segue", sender: self)
     }
-    */
 
 }

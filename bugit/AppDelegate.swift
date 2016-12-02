@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppearanceManager.applyBlueTranslucentTheme(window: window)
         
+        if let launchIntroGuide = UserDefaults.standard.value(forKey: "ud1_launch_intro_guide") as! Bool! {
+            print("launchIntroGuide = " + (launchIntroGuide ? "true" : "false"))
+        } else {
+            UserDefaults.standard.set(true, forKey: "ud1_launch_intro_guide")
+        }
+        
         return true
     }
 

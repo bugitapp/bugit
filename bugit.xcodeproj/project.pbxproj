@@ -11,6 +11,7 @@
 		170E509C1DEFE81800E0C830 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E50991DEFE81800E0C830 /* Step1ViewController.swift */; };
 		170E509D1DEFE81800E0C830 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509A1DEFE81800E0C830 /* Step2ViewController.swift */; };
 		170E509E1DEFE81800E0C830 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509B1DEFE81800E0C830 /* Step3ViewController.swift */; };
+		17AD5F811DF130C60086978D /* xUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AD5F801DF130C60086978D /* xUIImageView.swift */; };
 		17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */; };
 		17CD94461DDACCC2001928B5 /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */; };
 		17CD94471DDACCC2001928B5 /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD942B1DDACCC2001928B5 /* SF-UI-Display-Heavy.otf */; };
@@ -38,7 +39,7 @@
 		17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94431DDACCC2001928B5 /* ExportViewController.swift */; };
 		17CD945E1DDACCC2001928B5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94441DDACCC2001928B5 /* GalleryViewController.swift */; };
 		17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */; };
-		17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */; };
+		17CD94661DDACCD3001928B5 /* SegueFromLeftRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeftRight.swift */; };
 		1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B3E22051DEEA96900E9CB9B /* jiralogo.png */; };
 		1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */; };
 		1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */; };
@@ -72,6 +73,7 @@
 		170E50991DEFE81800E0C830 /* Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step1ViewController.swift; path = IntroGuide/Step1ViewController.swift; sourceTree = "<group>"; };
 		170E509A1DEFE81800E0C830 /* Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step2ViewController.swift; path = IntroGuide/Step2ViewController.swift; sourceTree = "<group>"; };
 		170E509B1DEFE81800E0C830 /* Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step3ViewController.swift; path = IntroGuide/Step3ViewController.swift; sourceTree = "<group>"; };
+		17AD5F801DF130C60086978D /* xUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIImageView.swift; sourceTree = "<group>"; };
 		17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		17CD942B1DDACCC2001928B5 /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		17CD94431DDACCC2001928B5 /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		17CD94441DDACCC2001928B5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		17CD945F1DDACCD3001928B5 /* EditorNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorNavigationController.swift; sourceTree = "<group>"; };
-		17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		17CD94631DDACCD3001928B5 /* SegueFromLeftRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeftRight.swift; sourceTree = "<group>"; };
 		1B3E22051DEEA96900E9CB9B /* jiralogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiralogo.png; path = Jira/jiralogo.png; sourceTree = "<group>"; };
 		1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsModel.swift; path = Models/ProjectsModel.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				84A488F21DE120CA00736938 /* xCG.swift */,
 				84A488F31DE120CA00736938 /* xDate.swift */,
 				84A488F41DE120CA00736938 /* xUIColor.swift */,
+				17AD5F801DF130C60086978D /* xUIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,7 +225,7 @@
 		17CD94621DDACCD3001928B5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				17CD94631DDACCD3001928B5 /* SegueFromLeft.swift */,
+				17CD94631DDACCD3001928B5 /* SegueFromLeftRight.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */,
+				17AD5F811DF130C60086978D /* xUIImageView.swift in Sources */,
 				844EFD8D1DE370C200A3A236 /* ShapeView.swift in Sources */,
 				D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */,
 				D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */,
@@ -508,7 +512,7 @@
 				D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */,
 				1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */,
 				D2D37F661DEFE0BB00D58A0C /* AppearanceManager.swift in Sources */,
-				17CD94661DDACCD3001928B5 /* SegueFromLeft.swift in Sources */,
+				17CD94661DDACCD3001928B5 /* SegueFromLeftRight.swift in Sources */,
 				1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
