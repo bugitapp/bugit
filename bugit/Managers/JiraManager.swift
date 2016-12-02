@@ -31,16 +31,42 @@ class JiraManager: AFHTTPSessionManager {
     static let issueCreatePath = "issue"
     static let authHeader = "Authorization"
     
-    static var jiraUrl: URL?
-    static var userName: String?
-    static var password: String?
+    static let jiraDomainKey = "jiraDomainKey"
+    static let jiraUsernameKey = "jiraUsernameKey"
+    static let jiraPasswordKey = "jiraPasswordKey"
     
-    init(domainName domain: String!, username name: String!, password pwd: String!) {
-        JiraManager.jiraUrl = URL(string: "https://\(domain!)/rest/api/2")
-        super.init(baseURL: JiraManager.jiraUrl, sessionConfiguration: nil)
-        JiraManager.userName = name
-        JiraManager.password = pwd
-        addAuthHeader(withUsername: name, withPassword: pwd)
+    var jiraDomain: String?
+    var jiraUrl: URL?
+    var userName: String?
+    var password: String?
+    
+    var projects: [ProjectsModel]?
+    
+
+    init(domainName domain: String?, username name: String?, password pwd: String?) {
+        if (domain == nil && name == nil && pwd == nil) {
+            let defaults = UserDefaults.standard
+            if let domain = defaults.object(forKey: JiraManager.jiraDomainKey) as? String {
+                jiraDomain = domain
+                jiraUrl = URL(string: "https://\(domain)/rest/api/2")
+            }
+            if let user = defaults.object(forKey: JiraManager.jiraUsernameKey) as? String {
+                userName = user
+            }
+            if let pwd = defaults.object(forKey: JiraManager.jiraPasswordKey) as? String {
+                password = pwd
+            }
+        }
+        else {
+            jiraDomain = domain
+            jiraUrl = URL(string: "https://\(domain!)/rest/api/2")
+            userName = name
+            password = pwd
+        }
+        super.init(baseURL: jiraUrl, sessionConfiguration: nil)
+        if userName != nil && password != nil {
+            addAuthHeader(withUsername: userName, withPassword: password)
+        }
         requestSerializer.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
     }
     
@@ -48,18 +74,60 @@ class JiraManager: AFHTTPSessionManager {
         super.init(coder: aDecoder)
     }
     
+    func userLoggedIn() -> Bool {
+        return jiraDomain != nil && userName != nil && password != nil
+    }
+    
+    func loadCredentials() {
+        let defaults = UserDefaults.standard
+        if let domain = defaults.object(forKey: JiraManager.jiraDomainKey) as? String {
+            jiraDomain = domain
+            jiraUrl = URL(string: "https://\(domain)/rest/api/2")
+        }
+        if let user = defaults.object(forKey: JiraManager.jiraUsernameKey) as? String {
+            userName = user
+        }
+        if let pwd = defaults.object(forKey: JiraManager.jiraPasswordKey) as? String {
+            password = pwd
+        }
+    }
+    
+    func saveCredentials() {
+        let defaults = UserDefaults.standard
+        if let domain = jiraDomain {
+            defaults.set(domain, forKey: JiraManager.jiraDomainKey)
+        }
+        else {
+            defaults.set(nil, forKey: JiraManager.jiraDomainKey)
+        }
+        if let user = userName {
+            defaults.set(user, forKey: JiraManager.jiraUsernameKey)
+        }
+        else {
+            defaults.set(nil, forKey: JiraManager.jiraUsernameKey)
+        }
+        if let pwd = password {
+            defaults.set(pwd, forKey: JiraManager.jiraPasswordKey)
+        }
+        else {
+            defaults.set(nil, forKey: JiraManager.jiraPasswordKey)
+        }
+    }
+    
     func projects(success: @escaping ([ProjectsModel]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.projectsPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Projects: \(response)")
-                    var projects = [ProjectsModel]()
+                    var projs = [ProjectsModel]()
                     let projectsResponse = response as! Array<Dictionary<String, Any>>
                     for dict: Dictionary<String, Any> in projectsResponse {
                         print(dict)
                         let project = ProjectsModel(dict: dict)
-                        projects.append(project)
+                        projs.append(project)
                     }
-                    success(projects)
+                    self.projects = projs
+                    self.saveCredentials()
+                    success(projs)
             },
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")
@@ -102,11 +170,11 @@ class JiraManager: AFHTTPSessionManager {
             print(error.localizedDescription)
         }
         
-        let url = URL(string: "\(JiraManager.jiraUrl)/issue")
+        let url = URL(string: "\(jiraUrl)/issue")
         var request = URLRequest(url: url!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(credentails(withUsername: JiraManager.userName, withPassword: JiraManager.password), forHTTPHeaderField: JiraManager.authHeader)
+        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
         request.httpMethod = "POST"
         request.httpBody = issueData
         
@@ -182,7 +250,7 @@ class JiraManager: AFHTTPSessionManager {
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
-        request.setValue(credentails(withUsername: JiraManager.userName, withPassword: JiraManager.password), forHTTPHeaderField: JiraManager.authHeader)
+        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
         request.httpBody = try createBody(with: parameters, filePathKey: "file", image: image, boundary: boundary)
         
         return request
