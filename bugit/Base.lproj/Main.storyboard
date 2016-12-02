@@ -93,24 +93,61 @@
                                     <outlet property="delegate" destination="LgF-gA-lRg" id="Jg8-V7-onQ"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khl-Wb-LUE" userLabel="PermissionView">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please press Open Settings below and let BugIt access your Photos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWc-9a-kWm">
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.095507812499999997" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIx-YW-vaa">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="uWt-MU-gLX"/>
+                                            <constraint firstAttribute="width" constant="180" id="yMs-VU-M3K"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                                        <state key="normal" title="Open Settings"/>
+                                        <connections>
+                                            <action selector="onOpenSettingsPressed:" destination="LgF-gA-lRg" eventType="touchUpInside" id="uEz-OC-foz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="tWc-9a-kWm" firstAttribute="leading" secondItem="Khl-Wb-LUE" secondAttribute="leading" constant="24" id="6MP-Eh-x2W"/>
+                                    <constraint firstAttribute="trailing" secondItem="tWc-9a-kWm" secondAttribute="trailing" constant="24" id="CXL-dm-BR3"/>
+                                    <constraint firstItem="tWc-9a-kWm" firstAttribute="top" secondItem="Khl-Wb-LUE" secondAttribute="top" constant="8" id="FZK-TP-XiB"/>
+                                    <constraint firstItem="aIx-YW-vaa" firstAttribute="centerX" secondItem="Khl-Wb-LUE" secondAttribute="centerX" id="JXZ-lv-f8y"/>
+                                    <constraint firstItem="aIx-YW-vaa" firstAttribute="centerY" secondItem="Khl-Wb-LUE" secondAttribute="centerY" id="MBy-4W-kj4"/>
+                                    <constraint firstAttribute="height" constant="200" id="RdQ-fR-RbA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1hL-jB-xdb" secondAttribute="trailing" id="RUl-pB-B3E"/>
                             <constraint firstItem="Tse-Wu-Y0m" firstAttribute="top" secondItem="1hL-jB-xdb" secondAttribute="bottom" id="Yor-jw-7Aq"/>
+                            <constraint firstAttribute="trailing" secondItem="Khl-Wb-LUE" secondAttribute="trailing" id="bud-Eo-gcq"/>
+                            <constraint firstItem="Tse-Wu-Y0m" firstAttribute="top" secondItem="Khl-Wb-LUE" secondAttribute="bottom" constant="-200" id="h2f-25-JMu"/>
                             <constraint firstItem="1hL-jB-xdb" firstAttribute="top" secondItem="Wej-Z1-wHV" secondAttribute="top" id="hcX-5G-1xB"/>
+                            <constraint firstItem="Khl-Wb-LUE" firstAttribute="leading" secondItem="Wej-Z1-wHV" secondAttribute="leading" id="ihe-a0-HTB"/>
                             <constraint firstItem="1hL-jB-xdb" firstAttribute="leading" secondItem="Wej-Z1-wHV" secondAttribute="leading" id="x5E-4O-fRy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="B01-tf-eJb"/>
+                    <navigationItem key="navigationItem" id="B01-tf-eJb">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HEB-nN-Rib"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="permissionView" destination="Khl-Wb-LUE" id="nX1-T6-DDC"/>
+                        <outlet property="permissionViewBottomConstraint" destination="h2f-25-JMu" id="49Y-6p-QuN"/>
                         <outlet property="photosCollectionView" destination="1hL-jB-xdb" id="Cay-IQ-O4z"/>
                         <segue destination="qHP-hN-bFx" kind="show" identifier="EditorSegue" id="iiC-Df-jqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bid-Fl-9Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1556" y="1342"/>
+            <point key="canvasLocation" x="-1556" y="1341.6791604197902"/>
         </scene>
         <!--Editor View Controller-->
         <scene sceneID="ulv-jy-nR8">
@@ -258,7 +295,9 @@
                             <constraint firstItem="YLE-E1-jJE" firstAttribute="top" secondItem="BJ5-pC-Mlr" secondAttribute="bottom" id="XSK-zG-RQa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="12b-7O-xkD"/>
+                    <navigationItem key="navigationItem" id="12b-7O-xkD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Vgt-35-2Xw"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
                         <outlet property="trayArrowImageView" destination="ajd-xi-pb8" id="pvT-Qe-p0w"/>

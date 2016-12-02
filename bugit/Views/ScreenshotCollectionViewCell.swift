@@ -14,16 +14,18 @@ class ScreenshotCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var largeLoadingSpinner: UIActivityIndicatorView!
     
     
-    override var isSelected: Bool {
-        didSet {
-            photoImageView.layer.borderWidth = isSelected ? 10 : 0
-        }
-    }
+    //override var isSelected: Bool {
+    //    didSet {
+    //        photoImageView.layer.borderWidth = isSelected ? 10 : 0
+    //    }
+    //}
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        photoImageView.layer.borderColor = themeColor.cgColor
+        photoImageView.layer.borderColor = lightBlueThemeColor.cgColor
+        photoImageView.layer.borderWidth = 2
+        photoImageView.layer.cornerRadius = 4
         isSelected = false
     }
 }
