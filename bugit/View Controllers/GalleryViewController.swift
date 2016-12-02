@@ -57,8 +57,14 @@ class GalleryViewController: UIViewController {
         
         navigationItem.title = "Screenshot Gallery"
         
-        // TODO: Run this only once (when app 1st time launched)
-        //launchIntroGuide()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(launchIntroGuide))
+        
+        if let willLaunchIntroGuide = UserDefaults.standard.value(forKey: "ud1_launch_intro_guide") as! Bool! {
+            if willLaunchIntroGuide {
+                UserDefaults.standard.set(false, forKey: "ud1_launch_intro_guide")
+                launchIntroGuide()
+            }
+        }
     }
     
     func launchIntroGuide() {

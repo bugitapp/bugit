@@ -7,11 +7,9 @@
 //  Based on https://www.raywenderlich.com/108766/uiappearance-tutorial
 
 import UIKit
+import QuartzCore
 
-
-
-class AppearanceManager
-{
+class AppearanceManager {
     
     static func applyBlueTranslucentTheme(window: UIWindow?) {
         
@@ -24,9 +22,9 @@ class AppearanceManager
         UINavigationBar.appearance().tintColor = lightBlueThemeColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName: UIFont(name: "SFUIText-Light", size: 21)!]
         
-        
         UIButton.appearance().backgroundColor = brightBlueThemeColor
         UIButton.appearance().tintColor = lightBlueThemeColor
+        
         UILabel.appearance().font = UIFont(name: "SFUIText-Light", size: 17)!
         
         UICollectionView.appearance().backgroundColor = lightLightLightGrayThemeColor
@@ -34,9 +32,6 @@ class AppearanceManager
         ScreenshotSectionHeaderView.appearance().backgroundColor = lightBlueThemeColor
         
         window?.tintColor = brightBlueThemeColor
-        
-     
     }
-
     
 }

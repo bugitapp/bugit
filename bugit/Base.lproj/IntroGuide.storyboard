@@ -17,7 +17,7 @@
         <!--Step1 View Controller-->
         <scene sceneID="KJm-LE-Bed">
             <objects>
-                <viewController storyboardIdentifier="step1ViewController" id="4xU-55-OnP" customClass="Step1ViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4xU-55-OnP" customClass="Step1ViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XiY-4I-ud2"/>
                         <viewControllerLayoutGuide type="bottom" id="NWv-bE-a4b"/>
@@ -56,29 +56,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="DaA-fl-oDs" appends="YES" id="aTm-Z4-PWX"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="phz-el-JL9"/>
                     <connections>
-                        <segue destination="WzZ-iE-Kci" kind="show" identifier="Step2Segue" id="xd1-3b-XzA"/>
+                        <segue destination="WzZ-iE-Kci" kind="custom" identifier="Step2Segue" customClass="SegueFromRight" customModule="bugit" customModuleProvider="target" id="xd1-3b-XzA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsm-a0-3Bq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="DaA-fl-oDs">
-                    <rectEdge key="edges" right="YES"/>
-                    <connections>
-                        <action selector="moveToStep2:" destination="4xU-55-OnP" id="uGg-Nm-CMh"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="13.6" y="167.76611694152925"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="glo-jk-HlJ">
             <objects>
-                <navigationController id="3GZ-XV-Nkk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="step1ViewController" id="3GZ-XV-Nkk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7gS-Fj-yW5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -120,7 +111,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="KlR-ML-9zf" kind="show" id="jKP-ql-odN"/>
+                        <segue destination="KlR-ML-9zf" kind="custom" identifier="Step3Segue" customClass="SegueFromRight" customModule="bugit" customModuleProvider="target" id="jKP-ql-odN"/>
+                        <segue destination="4xU-55-OnP" kind="custom" identifier="Step1Segue" customClass="SegueFromLeft" id="Sa4-c5-FJ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reg-62-5DS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -172,6 +164,7 @@
                     </view>
                     <connections>
                         <outlet property="closeIntroButton" destination="fG4-1h-ai3" id="HAF-Iq-YhR"/>
+                        <segue destination="WzZ-iE-Kci" kind="custom" identifier="Step2Segue" customClass="SegueFromLeft" customModule="bugit" customModuleProvider="target" id="Cuz-Pv-Sfg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMo-0P-1wm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,4 +172,8 @@
             <point key="canvasLocation" x="1924" y="168"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cuz-Pv-Sfg"/>
+        <segue reference="Sa4-c5-FJ8"/>
+    </inferredMetricsTieBreakers>
 </document>
