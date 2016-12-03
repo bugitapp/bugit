@@ -17,8 +17,9 @@ enum ToolsInTray: Int {
     case Blur
 }
 
-class EditorViewController: UIViewController {
+class EditorViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
@@ -70,9 +71,13 @@ class EditorViewController: UIViewController {
         //canvasImageView.image = UIImage.init(named: "sample")
         
         navigationItem.title = "Annotate Screenshot"
-
         
         dlog("screenshot: \(screenshotAssetModel)")
+        
+        self.scrollView.minimumZoomScale = 0.5;
+        self.scrollView.maximumZoomScale = 6.0;
+        self.scrollView.contentSize = canvasImageView.frame.size;
+        self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
         
@@ -508,5 +513,14 @@ class EditorViewController: UIViewController {
         context?.addPath(self.path as! CGPath)
     }
     
+    // MARK: Allows pinching of photo to resize it
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.canvasImageView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        // empty
+    }
     
 }
