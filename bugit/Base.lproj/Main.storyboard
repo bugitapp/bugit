@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SCW-OT-Ow7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SCW-OT-Ow7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +15,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -37,6 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1hL-jB-xdb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jmB-5Z-aPL">
                                     <size key="itemSize" width="50" height="50"/>
@@ -46,13 +50,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotCollectionViewCell" id="B2Y-rT-1Em" customClass="ScreenshotCollectionViewCell" customModule="bugit" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="50" width="200" height="200"/>
+                                        <rect key="frame" x="87.5" y="50" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nII-ee-piN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                             </subviews>
@@ -74,6 +79,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/22/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-35-eQt">
+                                            <rect key="frame" x="145" y="15" width="85.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -94,13 +100,16 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khl-Wb-LUE" userLabel="PermissionView">
+                                <rect key="frame" x="0.0" y="667" width="375" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please press Open Settings below and let BugIt access your Photos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWc-9a-kWm">
+                                        <rect key="frame" x="24" y="8" width="327" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.095507812499999997" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIx-YW-vaa">
+                                        <rect key="frame" x="97.5" y="70" width="180" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="uWt-MU-gLX"/>
                                             <constraint firstAttribute="width" constant="180" id="yMs-VU-M3K"/>
@@ -161,26 +170,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-qT-dIn">
+                                <rect key="frame" x="0.0" y="72" width="375" height="587"/>
+                            </imageView>
                             <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ5-pC-Mlr">
+                                <rect key="frame" x="10" y="456" width="355" height="211"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-xi-pb8" userLabel="Tray Arrow Image Button">
-                                        <frame key="frameInset" width="356" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="356" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="onTrayArrowButtonTappedWithSender:" destination="qHP-hN-bFx" eventType="touchUpInside" id="oea-a8-V9l"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="TT0-UF-5bf" userLabel="Tray Arrow Image View">
-                                        <frame key="frameInset" minX="167" minY="4" width="20" height="14"/>
+                                        <rect key="frame" x="167" y="4" width="20" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atj-Xf-o3E">
-                                        <frame key="frameInset" width="72" height="211"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="211"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" tag="701" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-34-XpZ">
-                                                <frame key="frameInset" minY="40" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="27" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Arrow"/>
                                                 <connections>
@@ -188,7 +200,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="702" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-Hl-AXK">
-                                                <frame key="frameInset" minY="74" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="57" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Text"/>
                                                 <connections>
@@ -196,7 +208,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="703" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-LV-hR9">
-                                                <frame key="frameInset" minY="109" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="87" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Circle"/>
                                                 <connections>
@@ -204,7 +216,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="704" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8J-nk-nt9">
-                                                <frame key="frameInset" minY="142" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="117" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Square"/>
                                                 <connections>
@@ -212,18 +224,26 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="705" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-v0-bXH">
-                                                <frame key="frameInset" minY="175" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="147" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Freehand"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="uiZ-Q3-HTt"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" tag="706" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMb-2B-p3P">
+                                                <rect key="frame" x="0.0" y="177" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Blur"/>
+                                                <connections>
+                                                    <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="s5y-9m-Xid"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </view>
                                     <button opaque="NO" tag="801" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDJ-nt-iJU" userLabel="Button - Grey">
-                                        <frame key="frameInset" minX="86" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="86" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" identifier="gray"/>
                                         <state key="normal" image="Pen-Grey"/>
@@ -232,7 +252,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="802" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-fj-CaQ" userLabel="Button - LightBlue">
-                                        <frame key="frameInset" minX="123" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="123" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-LightBlue"/>
                                         <connections>
@@ -240,7 +260,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="803" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-N1-NV0" userLabel="Button - LightGreen">
-                                        <frame key="frameInset" minX="160" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="160" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-LightGreen"/>
                                         <connections>
@@ -248,7 +268,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="804" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cof-Mr-DTB" userLabel="Button - Red">
-                                        <frame key="frameInset" minX="197" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="197" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Red"/>
                                         <connections>
@@ -256,7 +276,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="805" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07x-r0-sJH" userLabel="Button - Yellow">
-                                        <frame key="frameInset" minX="234" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="234" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Yellow"/>
                                         <connections>
@@ -264,7 +284,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="806" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRb-0w-dr2" userLabel="Button - Black">
-                                        <frame key="frameInset" minX="271" minY="28" width="29" height="183"/>
+                                        <rect key="frame" x="271" y="28" width="29" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Pen-Black"/>
                                         <connections>
@@ -272,7 +292,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="800" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Wi-vzL" userLabel="Button - Eraser">
-                                        <frame key="frameInset" minX="314" minY="64" width="29" height="147"/>
+                                        <rect key="frame" x="314" y="64" width="29" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Eraser"/>
                                         <connections>
@@ -337,6 +357,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
+                                <rect key="frame" x="130" y="97" width="133" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="133" id="fiG-Rf-DMZ"/>
                                 </constraints>
@@ -346,6 +367,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM8-0j-JP2">
+                                <rect key="frame" x="153.5" y="64" width="86" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="86" id="fmq-XE-hEF"/>
                                     <constraint firstAttribute="height" constant="30" id="xW7-TJ-r73"/>
@@ -356,6 +378,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-Te-S5S">
+                                <rect key="frame" x="151" y="135" width="91" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="H4s-jG-6BS"/>
                                     <constraint firstAttribute="width" constant="91" id="tuK-Et-TbQ"/>
@@ -400,12 +423,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiralogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RDc-1t-8Ad">
+                                <rect key="frame" x="150" y="87" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="320-pt-mVe"/>
                                     <constraint firstAttribute="height" constant="75" id="qFK-fc-fog"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bugitapp.atlassian.net" borderStyle="roundedRect" placeholder="yourdomain.atlassian.net" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDF-Py-6d6">
+                                <rect key="frame" x="66" y="180" width="243" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Bh5-aE-2NF"/>
                                 </constraints>
@@ -414,6 +439,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="junkbipin@yahoo.com" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-bX-kPD">
+                                <rect key="frame" x="66" y="218" width="243" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jJ6-Bp-Gb3"/>
                                 </constraints>
@@ -422,6 +448,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bugit" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-Ye-wOm">
+                                <rect key="frame" x="66" y="256" width="243" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hlg-nf-NUD"/>
                                 </constraints>
@@ -430,6 +457,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xid-f7-jR0">
+                                <rect key="frame" x="66" y="310" width="243" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wew-GX-ivC"/>
                                 </constraints>

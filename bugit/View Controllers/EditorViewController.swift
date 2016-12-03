@@ -14,6 +14,7 @@ enum ToolsInTray: Int {
     case Circle
     case Square
     case Freehand
+    case Blur
 }
 
 class EditorViewController: UIViewController {
@@ -122,9 +123,7 @@ class EditorViewController: UIViewController {
         
         trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
-        
     }
-
     
     func setupToolbox() {
         trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
@@ -186,7 +185,6 @@ class EditorViewController: UIViewController {
             screenshotAssetModel?.editedImage = takeSnapshotOfView(view: canvasImageView)
 
             destinationViewController.screenshotAssetModel = screenshotAssetModel
-
         }
     }
     
@@ -217,8 +215,6 @@ class EditorViewController: UIViewController {
                 //self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: rotation)
                 dlog("Gesture change at: \(translation), newConstraintY: \(newBottomConstraintY)")
             }
-
-            
         } else if sender.state == .ended {
             //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
             if velocity.y > 0 {
@@ -287,9 +283,6 @@ class EditorViewController: UIViewController {
                         
         })
     }
-
-    
-    
     
     // MARK: - Toolbox
     
@@ -343,6 +336,9 @@ class EditorViewController: UIViewController {
         } else if sender.tag == 705 {
             // Freehand
             selectedTool = ToolsInTray(rawValue: 4)
+        } else if sender.tag == 706 {
+            // Blur
+            selectedTool = ToolsInTray(rawValue: 5)
         }
         print("changeTool.selectedTool = \(selectedTool)")
     }
@@ -398,7 +394,12 @@ class EditorViewController: UIViewController {
         if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
             self.view.addSubview(shapeView)
-        }   
+        }
+        
+        // Blur
+        if selectedTool == ToolsInTray.Blur {
+            // Blur section
+        }
     }
     
     @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
@@ -445,7 +446,6 @@ class EditorViewController: UIViewController {
                 // Draw Arrow
                 drawArrow(from: panBegan, to: panEnded, layer: nil)
             }
-            
         }
     }
 
