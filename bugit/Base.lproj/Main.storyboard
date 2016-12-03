@@ -399,46 +399,9 @@
                     <view key="view" contentMode="scaleToFill" id="KGa-3N-fQO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-RP-wGe">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="fiG-Rf-DMZ"/>
-                                </constraints>
-                                <state key="normal" title="Get Projects"/>
-                                <connections>
-                                    <action selector="onGetIssueMetadataTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="zUc-Z2-psa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM8-0j-JP2">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="fmq-XE-hEF"/>
-                                    <constraint firstAttribute="height" constant="30" id="xW7-TJ-r73"/>
-                                </constraints>
-                                <state key="normal" title="Create Issue"/>
-                                <connections>
-                                    <action selector="onCreateIssueTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="Yo0-b7-PVQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-Te-S5S">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="H4s-jG-6BS"/>
-                                    <constraint firstAttribute="width" constant="91" id="tuK-Et-TbQ"/>
-                                </constraints>
-                                <state key="normal" title="Attach Image"/>
-                                <connections>
-                                    <action selector="onAttachImageTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="uUv-OI-7fg"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="top" secondItem="vM8-0j-JP2" secondAttribute="bottom" constant="3" id="4LK-Ep-HZd"/>
                             <constraint firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
-                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="centerX" secondItem="HGf-Te-S5S" secondAttribute="centerX" id="JHu-T4-dSM"/>
-                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="top" secondItem="KGa-3N-fQO" secondAttribute="top" constant="97" id="LWA-WA-JnK"/>
-                            <constraint firstItem="Gnr-RP-wGe" firstAttribute="centerX" secondItem="vM8-0j-JP2" secondAttribute="centerX" id="UmF-MZ-zql"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Gnr-RP-wGe" secondAttribute="trailing" constant="96" id="ZRF-p7-Rjl"/>
-                            <constraint firstItem="HGf-Te-S5S" firstAttribute="top" secondItem="Gnr-RP-wGe" secondAttribute="bottom" constant="8" symbolic="YES" id="mGM-AW-Fwi"/>
                         </constraints>
                     </view>
                 </viewController>
