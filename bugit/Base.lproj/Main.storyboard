@@ -46,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotCollectionViewCell" id="B2Y-rT-1Em" customClass="ScreenshotCollectionViewCell" customModule="bugit" customModuleProvider="target">
-                                        <rect key="frame" x="87.5" y="50" width="200" height="200"/>
+                                        <rect key="frame" x="88" y="50" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -399,9 +399,32 @@
                     <view key="view" contentMode="scaleToFill" id="KGa-3N-fQO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dvY-g2-9rS">
+                                <frame key="frameInset" minY="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-eu-n2X">
+                                        <rect key="frame" x="8" y="-47" width="64" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLn-Mw-zMh">
+                                        <rect key="frame" x="80" y="-52" width="93" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="5tr-ZG-Kno"/>
+                            <constraint firstAttribute="trailing" secondItem="dvY-g2-9rS" secondAttribute="trailing" id="8Nz-1Y-ll9"/>
+                            <constraint firstItem="dvY-g2-9rS" firstAttribute="top" secondItem="3PH-8t-mmI" secondAttribute="bottom" id="Ltr-RE-hwA"/>
+                            <constraint firstItem="YH9-Qp-PQ6" firstAttribute="top" secondItem="dvY-g2-9rS" secondAttribute="bottom" id="OW1-en-mmd"/>
+                            <constraint firstItem="dvY-g2-9rS" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="Xef-T5-KQL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -412,7 +435,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="463" y="1928"/>
+            <point key="canvasLocation" x="461.60000000000002" y="1927.2863568215894"/>
         </scene>
         <!--Login-->
         <scene sceneID="vrH-vl-nKw">
@@ -498,7 +521,7 @@
     </scenes>
     <resources>
         <image name="Eraser" width="55" height="167"/>
-        <image name="Pen-Black" width="53" height="332"/>
+        <image name="Pen-Black" width="53" height="333"/>
         <image name="Pen-Grey" width="53" height="332"/>
         <image name="Pen-LightBlue" width="53" height="332"/>
         <image name="Pen-LightGreen" width="53" height="332"/>
