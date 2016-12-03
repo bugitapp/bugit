@@ -14,11 +14,15 @@ enum ToolsInTray: Int {
     case Circle
     case Square
     case Freehand
+    case Blur
 }
 
-class EditorViewController: UIViewController {
+class EditorViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
+    
+    @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
     
     var screenshotAssetModel: ScreenshotAssetModel?
     
@@ -26,9 +30,10 @@ class EditorViewController: UIViewController {
     var panEnded = CGPoint(x:0, y:0)
     
     @IBOutlet weak var trayView: UIView!
-    @IBOutlet weak var trayArrowImageView: UIButton!
+    @IBOutlet weak var trayArrowButton: UIButton!
     @IBOutlet weak var trayToolsView: UIView!
-    
+    @IBOutlet weak var trayArrowImageView: UIImageView!
+    let travViewClosedPeekOutDistance: CGFloat = 30
     var trayOriginalCenter: CGPoint!
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
@@ -40,6 +45,10 @@ class EditorViewController: UIViewController {
     
     var path: UIBezierPath = UIBezierPath()
     var shapeLayer: CAShapeLayer!
+    
+    var isTrayOpen: Bool = true
+    var bottomConstraintStartY: CGFloat = 0.0
+    var trayTravelDiff: CGFloat = 0.0
     
     /*
     override func viewWillAppear(_ animated: Bool) {
@@ -62,9 +71,13 @@ class EditorViewController: UIViewController {
         //canvasImageView.image = UIImage.init(named: "sample")
         
         navigationItem.title = "Annotate Screenshot"
-
         
         dlog("screenshot: \(screenshotAssetModel)")
+        
+        self.scrollView.minimumZoomScale = 0.5;
+        self.scrollView.maximumZoomScale = 6.0;
+        self.scrollView.contentSize = canvasImageView.frame.size;
+        self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
         
@@ -110,6 +123,13 @@ class EditorViewController: UIViewController {
         setupToolbox()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
+        dlog("trayTravelDiff: \(trayTravelDiff)")
+    }
+    
     func setupToolbox() {
         trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
         trayUp = trayView.center
@@ -123,10 +143,13 @@ class EditorViewController: UIViewController {
         trayView.layer.borderColor = UIColor.black.cgColor
         
         // Put Tray into Down position
+        /*
         UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                        animations: { () -> Void in
                         self.trayView.center = self.trayDown
-        }, completion: nil)
+            }, completion: { (finished) -> Void in
+                dlog("down")
+            })*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,7 +190,6 @@ class EditorViewController: UIViewController {
             screenshotAssetModel?.editedImage = takeSnapshotOfView(view: canvasImageView)
 
             destinationViewController.screenshotAssetModel = screenshotAssetModel
-
         }
     }
     
@@ -185,23 +207,86 @@ class EditorViewController: UIViewController {
         
         if sender.state == .began {
             trayOriginalCenter = trayView.center
-            trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
+            bottomConstraintStartY = self.trayViewBottomConstraint.constant
+            //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
         } else if sender.state == .changed {
-            trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            //trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            
+            let newBottomConstraintY = bottomConstraintStartY - translation.y
+            if newBottomConstraintY <= 0 && newBottomConstraintY >= -self.trayTravelDiff  {
+                self.trayViewBottomConstraint.constant = newBottomConstraintY
+                
+                //let rotation = arrowRotationForTrayPan(translation: translation, velocity: velocity)
+                //self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: rotation)
+                dlog("Gesture change at: \(translation), newConstraintY: \(newBottomConstraintY)")
+            }
         } else if sender.state == .ended {
-            trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
+            //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0 * M_PI / 180))
             if velocity.y > 0 {
+                self.closeMenu()
+                /*
                 UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayDown
                 }, completion: nil)
+                 */
             } else {
+                /*
                 UIView.animate(withDuration:0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayUp
                 }, completion: nil)
+                */
+                self.openMenu()
             }
         }
+    }
+    
+    @IBAction func onTrayArrowButtonTapped(sender: AnyObject) {
+        dlog("")
+        if isTrayOpen {
+            closeMenu()
+        }
+        else {
+            openMenu()
+        }
+    }
+    
+    func closeMenu() {
+        if !isTrayOpen {
+            return
+        }
+        let options: UIViewAnimationOptions = .curveEaseOut
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping:0.2, initialSpringVelocity:0.0, options: options,
+                       animations: { () -> Void in
+                        self.trayViewBottomConstraint.constant = (-self.trayView.frame.height + self.travViewClosedPeekOutDistance)
+                        self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
+                        self.view.layoutIfNeeded()
+            },
+                       completion: { (done: Bool) -> Void in
+                        self.isTrayOpen = false
+                        dlog("trayView.center: \(self.trayView.center)")
+        })
+    }
+    
+    func openMenu() {
+        if isTrayOpen {
+            return
+        }
+        let options: UIViewAnimationOptions = .curveEaseInOut
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: options,
+                       animations: { () -> Void in
+                        self.trayViewBottomConstraint.constant = 0
+                        self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: 0.0)
+                        self.view.layoutIfNeeded()
+            },
+                       completion: { (done: Bool) -> Void in
+                        self.isTrayOpen = true
+                        dlog("trayView.center: \(self.trayView.center), topFrame: \(self.trayView.frame.origin.y)")
+                        
+        })
     }
     
     // MARK: - Toolbox
@@ -256,6 +341,9 @@ class EditorViewController: UIViewController {
         } else if sender.tag == 705 {
             // Freehand
             selectedTool = ToolsInTray(rawValue: 4)
+        } else if sender.tag == 706 {
+            // Blur
+            selectedTool = ToolsInTray(rawValue: 5)
         }
         print("changeTool.selectedTool = \(selectedTool)")
     }
@@ -311,7 +399,12 @@ class EditorViewController: UIViewController {
         if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
             self.view.addSubview(shapeView)
-        }   
+        }
+        
+        // Blur
+        if selectedTool == ToolsInTray.Blur {
+            // Blur section
+        }
     }
     
     @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
@@ -358,7 +451,6 @@ class EditorViewController: UIViewController {
                 // Draw Arrow
                 drawArrow(from: panBegan, to: panEnded, layer: nil)
             }
-            
         }
     }
 
@@ -421,5 +513,14 @@ class EditorViewController: UIViewController {
         context?.addPath(self.path as! CGPath)
     }
     
+    // MARK: Allows pinching of photo to resize it
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.canvasImageView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        // empty
+    }
     
 }
