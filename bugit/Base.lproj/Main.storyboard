@@ -514,6 +514,9 @@
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-9h-LF9">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="142" id="5HN-E6-7r5"/>
+                                            </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -524,6 +527,27 @@
                                         <constraint firstAttribute="bottom" secondItem="YZ1-9h-LF9" secondAttribute="bottom" id="pyo-JN-voa"/>
                                         <constraint firstItem="YZ1-9h-LF9" firstAttribute="leading" secondItem="cEt-fW-e9T" secondAttribute="leading" id="sZv-b6-8I2"/>
                                         <constraint firstAttribute="trailing" secondItem="YZ1-9h-LF9" secondAttribute="trailing" constant="8" id="ujY-gP-h4t"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="319" id="Bn4-Rl-6sy" customClass="ImageViewCell" customModule="bugit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="351" width="375" height="319"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bn4-Rl-6sy" id="My2-Mf-rpP">
+                                    <frame key="frameInset" width="375" height="318"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" translatesAutoresizingMaskIntoConstraints="NO" id="7bP-UZ-WQh">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="302.5" id="sUe-an-gdo"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7bP-UZ-WQh" firstAttribute="trailing" secondItem="My2-Mf-rpP" secondAttribute="trailingMargin" id="CJg-Iv-lsf"/>
+                                        <constraint firstItem="7bP-UZ-WQh" firstAttribute="leading" secondItem="My2-Mf-rpP" secondAttribute="leadingMargin" id="Vtx-bZ-MVI"/>
+                                        <constraint firstItem="7bP-UZ-WQh" firstAttribute="top" secondItem="My2-Mf-rpP" secondAttribute="topMargin" id="hI3-Yx-VB7"/>
+                                        <constraint firstItem="7bP-UZ-WQh" firstAttribute="bottom" secondItem="My2-Mf-rpP" secondAttribute="bottomMargin" id="tWg-mk-4DU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -625,5 +649,6 @@
         <image name="colorbar" width="350" height="25"/>
         <image name="down_arrow" width="20" height="14"/>
         <image name="jiralogo.png" width="846" height="821"/>
+        <image name="sample" width="750" height="1334"/>
     </resources>
 </document>

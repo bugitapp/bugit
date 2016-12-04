@@ -38,17 +38,15 @@ class CreateIssueViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 3
-        } else if section == 1 || section == 2 || section == 3  {
+        } else {
             return 1
         }
-        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,6 +69,9 @@ class CreateIssueViewController: UITableViewController {
             }
         } else if indexPath.section == 1 || indexPath.section == 2 || indexPath.section == 3  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
+            return cell
+        } else if indexPath.section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageViewCell
             return cell
         }
         return UITableViewCell()
