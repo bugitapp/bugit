@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func onLoginButtonTapped(_ sender: UIButton) {
         jiraMgr =  JiraManager(domainName: domianTextField.text, username: emailTextField.text, password: passwordTextField.text)
-        jiraMgr?.projects(
+        jiraMgr?.loadProjects(
             success: { (projects: [ProjectsModel]) in
                 print("Projects: \(projects)")
                 MBProgressHUD.hide(for: self.view, animated: true)

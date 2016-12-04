@@ -54,7 +54,13 @@ class ExportViewController: UIViewController {
     }
     
     func startNetworkActivity() {
-//        jiraMgr.projects()
+        jiraMgr.loadProjects(success: { (projects: [ProjectsModel]) in
+                if projects.count != 0 {
+                    self.projectButton.titleLabel?.text = projects[0].key
+                }
+            }, failure: { (error: NSError) in
+                
+        })
     }
 
     override func didReceiveMemoryWarning() {

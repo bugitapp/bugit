@@ -114,7 +114,7 @@ class JiraManager: AFHTTPSessionManager {
         }
     }
     
-    func projects(success: @escaping ([ProjectsModel]) -> (), failure: @escaping (NSError) -> ()) {
+    func loadProjects(success: @escaping ([ProjectsModel]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.projectsPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) Projects: \(response)")
