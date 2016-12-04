@@ -18,7 +18,13 @@ extension UIImage {
         filter.setValue(ciImage, forKey: "inputImage")
         filter.setValue(scale, forKey: "inputScale")
         guard let output = filter.outputImage else { return nil }
+        
         return UIImage(ciImage: output)
     }
     
+    // Usage: x.crop(bounds: CGRect(x, y, w, h))
+    func crop(bounds: CGRect) -> UIImage? {
+        return UIImage(cgImage: (self.cgImage?.cropping(to: bounds)!)!,
+                       scale: 0.0, orientation: self.imageOrientation)
+    }
 }

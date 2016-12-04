@@ -419,6 +419,20 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         if selectedTool == ToolsInTray.Square {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             self.canvasImageView.addSubview(shapeView)
+            
+            
+            let imageToPixelate = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
+                                                                                  point.y-(shapeView.size/2),
+                                                                                  shapeView.size,
+                                                                                  shapeView.size))
+            let pixelatedImageView = UIImageView(image: imageToPixelate)
+            pixelatedImageView.contentMode = .scaleAspectFit
+            //pixelatedImageView.center = point
+            
+            //let picture = UIImageView(frame: CGRect(self.canvasImageView.bounds.size.x-(shapeView.size/2), point.y-(shapeView.size/2), shapeView.size, shapeView.size))
+            //picture.image = picture.image?.pixellated()
+            //picture.addBlurEffect()
+            self.canvasImageView.addSubview(pixelatedImageView)
         }
         
         // Circle
