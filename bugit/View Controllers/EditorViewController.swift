@@ -81,6 +81,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         //canvasImageView.image = UIImage.init(named: "sample")
         
         navigationItem.title = "Annotate Screenshot"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         dlog("screenshot: \(screenshotAssetModel)")
         
@@ -419,20 +420,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         if selectedTool == ToolsInTray.Square {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             self.canvasImageView.addSubview(shapeView)
-            
-            
-            let imageToPixelate = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
-                                                                                  point.y-(shapeView.size/2),
-                                                                                  shapeView.size,
-                                                                                  shapeView.size))
-            let pixelatedImageView = UIImageView(image: imageToPixelate)
-            pixelatedImageView.contentMode = .scaleAspectFit
-            //pixelatedImageView.center = point
-            
-            //let picture = UIImageView(frame: CGRect(self.canvasImageView.bounds.size.x-(shapeView.size/2), point.y-(shapeView.size/2), shapeView.size, shapeView.size))
-            //picture.image = picture.image?.pixellated()
-            //picture.addBlurEffect()
-            self.canvasImageView.addSubview(pixelatedImageView)
         }
         
         // Circle
@@ -443,7 +430,21 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Blur
         if selectedTool == ToolsInTray.Blur {
-            // Blur section
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
+            //self.canvasImageView.addSubview(shapeView)
+            
+            var pixelateImage = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
+                                                                                point.y-(shapeView.size/2),
+                                                                                shapeView.size,
+                                                                                shapeView.size))
+            //pixelateImage = pixelateImage?.pixellated()
+            
+            let pixelatedImageView = UIImageView(image: pixelateImage)
+            //pixelatedImageView.contentMode = .scaleAspectFit
+            pixelatedImageView.center = point
+            //pixelatedImageView.addBlurEffect()
+            
+            self.canvasImageView.addSubview(pixelatedImageView)
         }
     }
     
