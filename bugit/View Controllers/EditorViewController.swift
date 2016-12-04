@@ -30,14 +30,14 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var selectedColorView: UIView!
     @IBOutlet weak var colorSlider: UISlider!
     @IBOutlet weak var colorbarImageView: UIImageView!
-
     
     var screenshotAssetModel: ScreenshotAssetModel?
     
     var panBegan = CGPoint(x:0, y:0)
     var panEnded = CGPoint(x:0, y:0)
     
-    var selectedColor: UIColor = UIColor.black
+    var selectedColor: UIColor = UIColor.red
+    var selectedButtonState: Int = 0
     
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowButton: UIButton!
@@ -133,6 +133,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         toolButtonView.tag = 2
         toolButtonView.buttonDelegate = self
+        toolButtonView.selectedColor = UIColor.red
 
         print("selectedTool = \(selectedTool)")
         
@@ -147,6 +148,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setupToolbox() {
+        colorSlider.thumbTintColor = selectedColor
+        
         trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
         trayUp = trayView.center
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
@@ -433,7 +436,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             //self.canvasImageView.addSubview(shapeView)
             
-            var pixelateImage = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
+            let pixelateImage = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
                                                                                 point.y-(shapeView.size/2),
                                                                                 shapeView.size,
                                                                                 shapeView.size))
@@ -570,6 +573,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         selectedColorView.backgroundColor = selectedColor
         colorSlider.thumbTintColor = selectedColor
         self.selectedColor = selectedColor
+        
+        toolButtonView.selectedColor = selectedColor
+        toolButtonView.refreshButtonColors(selectedButtonState: selectedButtonState)
     }
 
 }
@@ -580,6 +586,7 @@ extension EditorViewController: HorizontalButtonViewDelegate {
         dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
         
         selectedTool = ToolsInTray(rawValue: button.tag)
+        selectedButtonState = button.tag
     }
 }
 
