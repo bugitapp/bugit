@@ -91,7 +91,7 @@ class ExportViewController: UIViewController {
         issue.issueTypeId = issueTypeButton.currentTitle
         issue.summary = summaryTextView.text
         issue.issueDescription = descriptionTextView.text
-//        issue.environment = environmentTextView.text
+        issue.environment = environmentTextView.text
         
         jiraMgr.createIssue(issue: issue,
                             success: { (issue: IssueModel) in
