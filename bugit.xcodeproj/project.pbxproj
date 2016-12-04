@@ -75,6 +75,10 @@
 		D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */; };
 		D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */; };
 		D2D37F661DEFE0BB00D58A0C /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D37F651DEFE0BB00D58A0C /* AppearanceManager.swift */; };
+		D2E8F22D1DF3E42A00383D4D /* HorizontalButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8F2291DF3E42A00383D4D /* HorizontalButtonView.swift */; };
+		D2E8F22E1DF3E42A00383D4D /* HorizontalButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E8F22A1DF3E42A00383D4D /* HorizontalButtonView.xib */; };
+		D2E8F22F1DF3E42A00383D4D /* VerticalButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8F22B1DF3E42A00383D4D /* VerticalButtonView.swift */; };
+		D2E8F2301DF3E42A00383D4D /* VerticalButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E8F22C1DF3E42A00383D4D /* VerticalButtonView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +154,10 @@
 		D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotCollectionViewCell.swift; path = Views/ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
 		D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotSectionHeaderView.swift; path = Views/ScreenshotSectionHeaderView.swift; sourceTree = "<group>"; };
 		D2D37F651DEFE0BB00D58A0C /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
+		D2E8F2291DF3E42A00383D4D /* HorizontalButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalButtonView.swift; path = Views/HorizontalButtonView.swift; sourceTree = "<group>"; };
+		D2E8F22A1DF3E42A00383D4D /* HorizontalButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HorizontalButtonView.xib; path = Views/HorizontalButtonView.xib; sourceTree = "<group>"; };
+		D2E8F22B1DF3E42A00383D4D /* VerticalButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalButtonView.swift; path = Views/VerticalButtonView.swift; sourceTree = "<group>"; };
+		D2E8F22C1DF3E42A00383D4D /* VerticalButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VerticalButtonView.xib; path = Views/VerticalButtonView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +388,10 @@
 		D2D37F3F1DED397300D58A0C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2E8F2291DF3E42A00383D4D /* HorizontalButtonView.swift */,
+				D2E8F22A1DF3E42A00383D4D /* HorizontalButtonView.xib */,
+				D2E8F22B1DF3E42A00383D4D /* VerticalButtonView.swift */,
+				D2E8F22C1DF3E42A00383D4D /* VerticalButtonView.xib */,
 				D2D37F401DED398E00D58A0C /* ScreenshotCollectionViewCell.swift */,
 				D2D37F411DED398E00D58A0C /* ScreenshotSectionHeaderView.swift */,
 			);
@@ -473,6 +485,7 @@
 				17CD94581DDACCC2001928B5 /* SF-UI-Text-Semibold.otf in Resources */,
 				17CD94541DDACCC2001928B5 /* SF-UI-Text-Medium.otf in Resources */,
 				1BFFD0C51DD1661900858992 /* Assets.xcassets in Resources */,
+				D2E8F2301DF3E42A00383D4D /* VerticalButtonView.xib in Resources */,
 				17CD945B1DDACCC2001928B5 /* SF-UI-Text-UltrathinItalic.otf in Resources */,
 				17CD94571DDACCC2001928B5 /* SF-UI-Text-RegularItalic.otf in Resources */,
 				17CD94521DDACCC2001928B5 /* SF-UI-Text-Light.otf in Resources */,
@@ -481,6 +494,7 @@
 				17CD944C1DDACCC2001928B5 /* SF-UI-Display-Thin.otf in Resources */,
 				1BEC3A3D1DF3987D0056702B /* text.png in Resources */,
 				1BEC3A3A1DF3987D0056702B /* circle.png in Resources */,
+				D2E8F22E1DF3E42A00383D4D /* HorizontalButtonView.xib in Resources */,
 				17CD94531DDACCC2001928B5 /* SF-UI-Text-LightItalic.otf in Resources */,
 				17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */,
 			);
@@ -547,6 +561,7 @@
 				17AD5F811DF130C60086978D /* xUIImageView.swift in Sources */,
 				844EFD8D1DE370C200A3A236 /* ShapeView.swift in Sources */,
 				D2D37F3E1DED396400D58A0C /* Constants.swift in Sources */,
+				D2E8F22F1DF3E42A00383D4D /* VerticalButtonView.swift in Sources */,
 				D2D37F3B1DED380800D58A0C /* ScreenshotAssetModel.swift in Sources */,
 				1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */,
 				84090FD11DE3FCDE009664EE /* DrawView.swift in Sources */,
@@ -566,6 +581,7 @@
 				170E509C1DEFE81800E0C830 /* Step1ViewController.swift in Sources */,
 				1BD882911DF3EC6900E38F91 /* CreateIssueViewController.swift in Sources */,
 				1BEC3A431DF3C6AC0056702B /* PriorityTypeModel.swift in Sources */,
+				D2E8F22D1DF3E42A00383D4D /* HorizontalButtonView.swift in Sources */,
 				D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */,
 				D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
