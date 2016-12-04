@@ -433,7 +433,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Blur
         if selectedTool == ToolsInTray.Blur {
-            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
             shapeView.applyPixelation(canvas: self.canvasImageView)
             self.canvasImageView.addSubview(shapeView)
         }

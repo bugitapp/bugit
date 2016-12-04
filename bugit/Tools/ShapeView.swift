@@ -23,20 +23,19 @@ class ShapeView: UIView {
     var outlineColor: UIColor!
     var path: UIBezierPath!
     
+    var selectedShape: ShapeType!
     var canvasImageView: UIImageView!
     
     init(origin: CGPoint, paletteColor: UIColor, shapeType: ShapeType) {
         super.init(frame: CGRect(0.0, 0.0, size, size))
         
-        self.outlineColor = paletteColor
+        self.outlineColor = (shapeType == ShapeType.Blur) ? UIColor.clear : paletteColor
         self.fillColor = UIColor.clear
         
-        //self.fillColor = UIColor.red // UIColor.clear
-        //self.alpha = 0.5
-        
         self.path = selectShape(shapeType: shapeType)
-        
         self.center = origin
+        
+        selectedShape = shapeType
         
         self.backgroundColor = UIColor.clear
         
@@ -46,7 +45,7 @@ class ShapeView: UIView {
     func applyPixelation(canvas: UIImageView) {
         self.canvasImageView = canvas
         
-        let sectionImage = self.canvasImageView.image?.crop(bounds: CGRect(self.center.x-(self.size/2), self.center.y-((self.size/2)-3), self.size, self.size))
+        let sectionImage = self.canvasImageView.image?.crop(bounds: CGRect(self.center.x-(self.size/2), self.center.y-(self.size/2), self.size, self.size))
         
         let pixelatedImageView = UIImageView(image: sectionImage?.pixellated())
         //pixelatedImageView.center = point
@@ -86,7 +85,8 @@ class ShapeView: UIView {
     }
     
     func selectShape(shapeType: ShapeType) -> UIBezierPath {
-        let insetRect = self.bounds.insetBy(dx: lineWidth,dy: lineWidth)
+        let insetRect = self.bounds.insetBy(dx: (shapeType == ShapeType.Blur) ? 0 : lineWidth,
+                                            dy: (shapeType == ShapeType.Blur) ? 0 : lineWidth)
         
         if shapeType == ShapeType.Square {
             return UIBezierPath(roundedRect: insetRect, cornerRadius: 10.0)
@@ -143,7 +143,7 @@ class ShapeView: UIView {
         
         outlineColor.setStroke()
         
-        path.lineWidth = self.lineWidth
+        path.lineWidth = (selectedShape == ShapeType.Blur) ? 0 : self.lineWidth
         
         path.stroke()
     }
