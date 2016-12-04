@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -186,29 +186,36 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNy-Ch-1jD" userLabel="ColorSliderView">
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iF5-CP-1w0">
-                                                <frame key="frameInset" minX="15" minY="40" width="345" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF5-CP-1w0">
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorbar" translatesAutoresizingMaskIntoConstraints="NO" id="MZK-Cl-gVd" userLabel="BarImageView"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="eEa-cn-cnA">
+                                                        <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <action selector="sliderChangedWithSender:" destination="qHP-hN-bFx" eventType="valueChanged" id="LsX-4Y-sC1"/>
+                                                        </connections>
+                                                    </slider>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="MZK-Cl-gVd" secondAttribute="trailing" constant="15" id="6bm-wQ-6Qf"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="top" secondItem="iF5-CP-1w0" secondAttribute="top" constant="10" id="6g8-js-cLq"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MZK-Cl-gVd" secondAttribute="bottom" constant="10" id="9Qc-0J-Lip"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="iF5-CP-1w0" secondAttribute="leading" constant="15" id="Dvx-Qg-1fA"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="top" secondItem="eEa-cn-cnA" secondAttribute="top" id="Er6-jX-VNc"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="eEa-cn-cnA" secondAttribute="leading" id="NTY-pb-IJr"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="trailing" secondItem="eEa-cn-cnA" secondAttribute="trailing" id="ucp-2a-okp"/>
+                                                    <constraint firstItem="MZK-Cl-gVd" firstAttribute="bottom" secondItem="eEa-cn-cnA" secondAttribute="bottom" id="vsW-p0-LG8"/>
+                                                </constraints>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorbar" translatesAutoresizingMaskIntoConstraints="NO" id="MZK-Cl-gVd" userLabel="BarImageView"/>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="eEa-cn-cnA">
-                                                <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="sliderChangedWithSender:" destination="qHP-hN-bFx" eventType="valueChanged" id="LsX-4Y-sC1"/>
-                                                </connections>
-                                            </slider>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="top" secondItem="eEa-cn-cnA" secondAttribute="top" id="3x1-p8-BdQ"/>
-                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="bottom" secondItem="eEa-cn-cnA" secondAttribute="bottom" id="5PU-81-nkP"/>
-                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="trailing" secondItem="eEa-cn-cnA" secondAttribute="trailing" id="8Pb-fm-TPY"/>
-                                            <constraint firstAttribute="bottom" secondItem="MZK-Cl-gVd" secondAttribute="bottom" constant="30" id="Bxx-5w-IGl"/>
-                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="BNy-Ch-1jD" secondAttribute="leading" constant="30" id="IRE-cm-Wtv"/>
-                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="eEa-cn-cnA" secondAttribute="leading" id="Mb0-F0-jn8"/>
-                                            <constraint firstAttribute="trailing" secondItem="MZK-Cl-gVd" secondAttribute="trailing" constant="30" id="oJV-DL-eJX"/>
+                                            <constraint firstItem="iF5-CP-1w0" firstAttribute="top" secondItem="BNy-Ch-1jD" secondAttribute="top" constant="30" id="JDD-3e-A31"/>
+                                            <constraint firstItem="iF5-CP-1w0" firstAttribute="leading" secondItem="BNy-Ch-1jD" secondAttribute="leading" constant="15" id="eG9-gk-aAk"/>
+                                            <constraint firstAttribute="trailing" secondItem="iF5-CP-1w0" secondAttribute="trailing" constant="15" id="mST-fR-pwO"/>
+                                            <constraint firstAttribute="bottom" secondItem="iF5-CP-1w0" secondAttribute="bottom" constant="30" id="wux-jO-SBy"/>
                                         </constraints>
                                     </view>
                                 </subviews>

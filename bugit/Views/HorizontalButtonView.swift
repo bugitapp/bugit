@@ -53,6 +53,7 @@ class HorizontalButtonView: UIView {
                 buttonArray.append(b)
                 buttonState.append(0)
 
+                /*
                 if i == 0 {
                     buttonColorMap[i] = [UIColor.gray, UIColor.black]
                 }
@@ -68,6 +69,7 @@ class HorizontalButtonView: UIView {
                 else if i == 4 {
                     buttonColorMap[i] = [UIColor.lightGray, UIColor.white]
                 }
+                */
                 dlog("added button i: \(i)")
             }
         }
@@ -77,18 +79,43 @@ class HorizontalButtonView: UIView {
         super.layoutSubviews()
         
         for (i, b) in buttonArray.enumerated() {
-            if let colors = buttonColorMap[i] {
-                if i == 0 {
-                    b.backgroundColor = colors[1]
-                    buttonState.append(1)
-                }
-                else {
-                    
-                    b.backgroundColor = colors[0]
-                    buttonState.append(0)
-                }
+            b.backgroundColor = UIColor.clear
+            
+            if i == 0 {
+                buttonState.append(1)
+                let img = UIImage(named: "ic_panorama_fish_eye_48pt")
+                b.setImage(img, for: .normal)
             }
+            else if i == 1 {
+                let img = UIImage(named: "ic_crop_din_white_48pt")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
+            else if i == 2 {
+                let img = UIImage(named: "ic_blur_on_white_48pt")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
+            else if i == 3 {
+                let img = UIImage(named: "ic_blur_on_white_48pt")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
+            else if i == 4 {
+                let img = UIImage(named: "ic_blur_on_white_48pt")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
+            else if i == 5 {
+                let img = UIImage(named: "ic_blur_on_white_48pt")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
+
+            
         }
+        
+        
     }
     
     @IBAction func onButtonPressed(_ sender: UIButton) {

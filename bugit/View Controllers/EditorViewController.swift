@@ -133,7 +133,7 @@ class EditorViewController: UIViewController {
         trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
         
-        
+        trayArrowButton.backgroundColor = lightBlueThemeColor
         
     }
 
