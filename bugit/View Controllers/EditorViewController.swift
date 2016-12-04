@@ -394,13 +394,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         // Square
         if selectedTool == ToolsInTray.Square {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Square)
-            self.view.addSubview(shapeView)
+            self.canvasImageView.addSubview(shapeView)
         }
         
         // Circle
         if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
-            self.view.addSubview(shapeView)
+            self.canvasImageView.addSubview(shapeView)
         }
         
         // Blur
