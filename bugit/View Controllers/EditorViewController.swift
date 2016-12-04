@@ -434,20 +434,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         // Blur
         if selectedTool == ToolsInTray.Blur {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
-            //self.canvasImageView.addSubview(shapeView)
-            
-            let pixelateImage = self.canvasImageView.image?.crop(bounds: CGRect(point.x-(shapeView.size/2),
-                                                                                point.y-(shapeView.size/2),
-                                                                                shapeView.size,
-                                                                                shapeView.size))
-            //pixelateImage = pixelateImage?.pixellated()
-            
-            let pixelatedImageView = UIImageView(image: pixelateImage)
-            //pixelatedImageView.contentMode = .scaleAspectFit
-            pixelatedImageView.center = point
-            //pixelatedImageView.addBlurEffect()
-            
-            self.canvasImageView.addSubview(pixelatedImageView)
+            shapeView.applyPixelation(canvas: self.canvasImageView)
+            self.canvasImageView.addSubview(shapeView)
         }
     }
     

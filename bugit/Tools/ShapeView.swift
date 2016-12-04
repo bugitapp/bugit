@@ -12,6 +12,7 @@ enum ShapeType: Int {
     case Square
     case Circle
     case Triangle
+    case Blur
 }
 
 class ShapeView: UIView {
@@ -22,11 +23,17 @@ class ShapeView: UIView {
     var outlineColor: UIColor!
     var path: UIBezierPath!
     
+    var canvasImageView: UIImageView!
+    
     init(origin: CGPoint, paletteColor: UIColor, shapeType: ShapeType) {
         super.init(frame: CGRect(0.0, 0.0, size, size))
         
         self.outlineColor = paletteColor
         self.fillColor = UIColor.clear
+        
+        //self.fillColor = UIColor.red // UIColor.clear
+        //self.alpha = 0.5
+        
         self.path = selectShape(shapeType: shapeType)
         
         self.center = origin
@@ -34,6 +41,18 @@ class ShapeView: UIView {
         self.backgroundColor = UIColor.clear
         
         initGestureRecognizers()
+    }
+    
+    func applyPixelation(canvas: UIImageView) {
+        self.canvasImageView = canvas
+        
+        let sectionImage = self.canvasImageView.image?.crop(bounds: CGRect(self.center.x-(self.size/2), self.center.y-((self.size/2)-3), self.size, self.size))
+        
+        let pixelatedImageView = UIImageView(image: sectionImage?.pixellated())
+        //pixelatedImageView.center = point
+        //pixelatedImageView.addBlurEffect()
+        
+        self.addSubview(pixelatedImageView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,8 +92,12 @@ class ShapeView: UIView {
             return UIBezierPath(roundedRect: insetRect, cornerRadius: 10.0)
         } else if shapeType == ShapeType.Circle {
             return UIBezierPath(ovalIn: insetRect)
-        } else { // Triangle
+        } else if shapeType == ShapeType.Triangle {
             return trianglePathInRect(rect: insetRect)
+        } else if shapeType == ShapeType.Blur {
+            return UIBezierPath(roundedRect: insetRect, cornerRadius: 0)
+        } else {
+            return UIBezierPath(roundedRect: insetRect, cornerRadius: 0)
         }
     }
     
@@ -88,6 +111,11 @@ class ShapeView: UIView {
         self.center.y += translation.y
         
         sender.setTranslation(CGPoint.zero, in: self)
+        
+        dlog("ShapeView.didPan")
+        if ((canvasImageView) != nil) {
+            self.applyPixelation(canvas: self.canvasImageView)
+        }
     }
     
     func didPinch(_ sender: UIPinchGestureRecognizer) {
@@ -108,6 +136,8 @@ class ShapeView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
+        dlog("ShapeView.draw")
+        
         self.fillColor.setFill()
         self.path.fill()
         

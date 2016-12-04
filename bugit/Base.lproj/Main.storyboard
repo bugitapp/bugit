@@ -170,7 +170,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sj2-2C-TJv">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sj2-2C-TJv">
                                 <rect key="frame" x="0.0" y="64" width="375" height="573"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -268,7 +268,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DFS-yr-toi" firstAttribute="leading" secondItem="o5V-au-SRr" secondAttribute="leading" id="0zc-Ae-6j2"/>
                             <constraint firstAttribute="trailing" secondItem="DFS-yr-toi" secondAttribute="trailing" id="1FQ-eK-afz"/>
