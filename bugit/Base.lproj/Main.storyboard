@@ -168,12 +168,12 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="centerX" secondItem="g1S-vf-Flu" secondAttribute="centerX" id="0he-ri-DT7"/>
-                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="top" secondItem="g1S-vf-Flu" secondAttribute="topMargin" id="0jc-Vr-ofD"/>
-                                    <constraint firstAttribute="trailing" secondItem="4lV-qT-dIn" secondAttribute="trailing" id="2dw-CM-QlQ"/>
-                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="leading" secondItem="g1S-vf-Flu" secondAttribute="leading" id="994-mE-ntK"/>
-                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="centerY" secondItem="g1S-vf-Flu" secondAttribute="centerY" id="hB2-bx-py8"/>
-                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="bottom" secondItem="g1S-vf-Flu" secondAttribute="bottomMargin" id="uJe-XO-r79"/>
+                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="top" secondItem="g1S-vf-Flu" secondAttribute="topMargin" id="0mQ-8M-Dl9"/>
+                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="centerY" secondItem="g1S-vf-Flu" secondAttribute="centerY" id="Bir-pO-Jow"/>
+                                    <constraint firstAttribute="trailing" secondItem="4lV-qT-dIn" secondAttribute="trailing" id="FLg-tx-Dsz"/>
+                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="centerX" secondItem="g1S-vf-Flu" secondAttribute="centerX" id="Hmk-bo-Pcz"/>
+                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="leading" secondItem="g1S-vf-Flu" secondAttribute="leading" id="Zt0-bE-c3l"/>
+                                    <constraint firstItem="4lV-qT-dIn" firstAttribute="bottom" secondItem="g1S-vf-Flu" secondAttribute="bottomMargin" id="mYX-3K-ROs"/>
                                 </constraints>
                             </scrollView>
                             <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ5-pC-Mlr">
@@ -191,37 +191,62 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atj-Xf-o3E">
                                         <subviews>
-                                            <button opaque="NO" tag="701" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-34-XpZ">
-                                                <state key="normal" title="Arrow"/>
+                                            <button opaque="NO" tag="701" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-34-XpZ" userLabel="Arrow">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="wxT-FY-yrm"/>
+                                                    <constraint firstAttribute="height" constant="30" id="zE4-U4-0Ee"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="arrow.png"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="QmR-MB-aQW"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="702" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-Hl-AXK">
-                                                <state key="normal" title="Text"/>
+                                            <button opaque="NO" tag="702" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-Hl-AXK" userLabel="TextTool">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="Y4s-G1-JKH"/>
+                                                    <constraint firstAttribute="height" constant="30" id="oWg-tL-Qcb"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="text.png"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="whB-N0-ROa"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="703" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-LV-hR9">
-                                                <state key="normal" title="Circle"/>
+                                            <button opaque="NO" tag="703" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-LV-hR9" userLabel="CircleTool">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="XqU-uY-uZO"/>
+                                                    <constraint firstAttribute="width" constant="30" id="e8G-gi-lyO"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="circle.png"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="sEv-Gy-zbC"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="704" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8J-nk-nt9">
-                                                <state key="normal" title="Square"/>
+                                            <button opaque="NO" tag="704" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8J-nk-nt9" userLabel="SquareTool">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="5cT-bz-hDP"/>
+                                                    <constraint firstAttribute="height" constant="30" id="LTA-5K-5xc"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="square.png"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="m13-6y-CP9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="705" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-v0-bXH">
-                                                <state key="normal" title="Freehand"/>
+                                            <button opaque="NO" tag="705" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-v0-bXH" userLabel="FreeHandTool">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="0L1-TB-CDj"/>
+                                                    <constraint firstAttribute="height" constant="30" id="1m6-DV-YQv"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="CM8-Jw-wJQ"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="freehand.png"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="uiZ-Q3-HTt"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="706" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMb-2B-p3P">
+                                            <button opaque="NO" tag="706" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMb-2B-p3P" userLabel="BlurTool">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="kNJ-T0-UC9"/>
+                                                    <constraint firstAttribute="height" constant="30" id="wnl-yI-FPU"/>
+                                                </constraints>
                                                 <state key="normal" title="Blur"/>
                                                 <connections>
                                                     <action selector="changeTool:" destination="qHP-hN-bFx" eventType="touchUpInside" id="s5y-9m-Xid"/>
@@ -230,24 +255,18 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="GFp-LV-hR9" firstAttribute="top" secondItem="4XI-Hl-AXK" secondAttribute="bottom" id="1RG-5p-gUi"/>
-                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="leading" secondItem="4XI-Hl-AXK" secondAttribute="leading" id="Ar6-64-7kd"/>
-                                            <constraint firstItem="Dyb-v0-bXH" firstAttribute="trailing" secondItem="iMb-2B-p3P" secondAttribute="trailing" id="B3f-zh-4tr"/>
-                                            <constraint firstItem="Dyb-v0-bXH" firstAttribute="leading" secondItem="iMb-2B-p3P" secondAttribute="leading" id="Ez5-pP-iZV"/>
-                                            <constraint firstItem="GFp-LV-hR9" firstAttribute="trailing" secondItem="w8J-nk-nt9" secondAttribute="trailing" id="Fwe-Va-Jj5"/>
-                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="trailing" secondItem="4XI-Hl-AXK" secondAttribute="trailing" id="HWD-eu-b9j"/>
-                                            <constraint firstItem="Dyb-v0-bXH" firstAttribute="top" secondItem="w8J-nk-nt9" secondAttribute="bottom" id="OCz-YR-4Wj"/>
-                                            <constraint firstItem="w8J-nk-nt9" firstAttribute="top" secondItem="GFp-LV-hR9" secondAttribute="bottom" id="SdG-60-lLH"/>
-                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="leading" secondItem="atj-Xf-o3E" secondAttribute="leading" id="aXU-3x-aTO"/>
-                                            <constraint firstItem="4XI-Hl-AXK" firstAttribute="trailing" secondItem="GFp-LV-hR9" secondAttribute="trailing" id="anK-5F-aEl"/>
-                                            <constraint firstItem="4XI-Hl-AXK" firstAttribute="leading" secondItem="GFp-LV-hR9" secondAttribute="leading" id="dW1-kr-Nru"/>
-                                            <constraint firstItem="w8J-nk-nt9" firstAttribute="leading" secondItem="Dyb-v0-bXH" secondAttribute="leading" id="hHK-FD-lly"/>
-                                            <constraint firstItem="GFp-LV-hR9" firstAttribute="leading" secondItem="w8J-nk-nt9" secondAttribute="leading" id="ksK-jg-QBZ"/>
-                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="top" secondItem="atj-Xf-o3E" secondAttribute="top" constant="27" id="pMB-OG-JSx"/>
-                                            <constraint firstAttribute="trailing" secondItem="Baw-34-XpZ" secondAttribute="trailing" id="r1r-Wf-oNE"/>
-                                            <constraint firstItem="iMb-2B-p3P" firstAttribute="top" secondItem="Dyb-v0-bXH" secondAttribute="bottom" id="r8N-9g-ncr"/>
-                                            <constraint firstItem="w8J-nk-nt9" firstAttribute="trailing" secondItem="Dyb-v0-bXH" secondAttribute="trailing" id="tvM-Jk-v6d"/>
-                                            <constraint firstItem="4XI-Hl-AXK" firstAttribute="top" secondItem="Baw-34-XpZ" secondAttribute="bottom" id="uAo-ce-81n"/>
+                                            <constraint firstItem="4XI-Hl-AXK" firstAttribute="top" secondItem="Baw-34-XpZ" secondAttribute="bottom" constant="4" id="1BU-gl-HAB"/>
+                                            <constraint firstItem="w8J-nk-nt9" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="3UO-O2-mjT"/>
+                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="6G7-Ja-Zp4"/>
+                                            <constraint firstItem="Baw-34-XpZ" firstAttribute="top" secondItem="atj-Xf-o3E" secondAttribute="top" constant="8" id="6Tz-1Z-dpB"/>
+                                            <constraint firstItem="Dyb-v0-bXH" firstAttribute="top" secondItem="w8J-nk-nt9" secondAttribute="bottom" constant="4" id="9Qh-ne-Fjr"/>
+                                            <constraint firstItem="GFp-LV-hR9" firstAttribute="top" secondItem="4XI-Hl-AXK" secondAttribute="bottom" constant="4" id="AUp-79-1bF"/>
+                                            <constraint firstItem="Dyb-v0-bXH" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="Lwh-Fu-Rhw"/>
+                                            <constraint firstItem="iMb-2B-p3P" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="Qh0-jE-s4Y"/>
+                                            <constraint firstItem="GFp-LV-hR9" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="Sti-NQ-S1b"/>
+                                            <constraint firstItem="iMb-2B-p3P" firstAttribute="top" secondItem="Dyb-v0-bXH" secondAttribute="bottom" constant="4" id="eg9-0Z-8YZ"/>
+                                            <constraint firstItem="4XI-Hl-AXK" firstAttribute="centerX" secondItem="atj-Xf-o3E" secondAttribute="centerX" id="hUi-0v-hle"/>
+                                            <constraint firstItem="w8J-nk-nt9" firstAttribute="top" secondItem="GFp-LV-hR9" secondAttribute="bottom" constant="4" id="x8C-DB-7o8"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="801" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDJ-nt-iJU" userLabel="Button - Grey">
@@ -627,7 +646,12 @@
         <image name="Pen-LightGreen" width="53" height="332"/>
         <image name="Pen-Red" width="53" height="332"/>
         <image name="Pen-Yellow" width="53" height="332"/>
+        <image name="arrow.png" width="146" height="146"/>
+        <image name="circle.png" width="145" height="146"/>
         <image name="down_arrow" width="20" height="14"/>
+        <image name="freehand.png" width="145" height="146"/>
         <image name="jiralogo.png" width="846" height="821"/>
+        <image name="square.png" width="145" height="146"/>
+        <image name="text.png" width="145" height="146"/>
     </resources>
 </document>
