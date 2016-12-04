@@ -61,6 +61,13 @@ class ExportViewController: UIViewController {
             }, failure: { (error: NSError) in
                 
         })
+        jiraMgr.loadIssueTypes(success: { (issueTypes: [String]) in
+            if issueTypes.count != 0 {
+                self.issueTypeButton.titleLabel?.text = issueTypes[0]
+            }
+            }, failure: { (error: NSError) in
+                
+        })
     }
 
     override func didReceiveMemoryWarning() {

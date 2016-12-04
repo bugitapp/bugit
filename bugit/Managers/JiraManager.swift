@@ -27,6 +27,7 @@ extension Data {
 class JiraManager: AFHTTPSessionManager {
     // TODO: use plist to save constant info like url paths
     static let projectsPath = "project"
+    static let issueTypesPath = "issuetype"
     static let issueMetadataPath = "issue/createmeta"
     static let issueCreatePath = "issue"
     static let authHeader = "Authorization"
@@ -135,6 +136,18 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
 
+    func loadIssueTypes(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
+        _ = get(JiraManager.issueTypesPath, parameters: nil, progress: nil,
+                success: { (task: URLSessionDataTask, response: Any?) in
+                    print("Task: \(task) IssueTypes: \(response)")
+                    success([])
+            },
+                failure: { (task:URLSessionDataTask?, error: Error) in
+                    print("Error: \(error)")
+                    failure(error as NSError)
+        })
+    }
+    
     func projectDetails(withProjectKey projectKey: String!, success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.projectsPath + "/\(projectKey!)", parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
