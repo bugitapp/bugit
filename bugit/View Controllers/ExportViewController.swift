@@ -11,6 +11,13 @@ import MBProgressHUD
 
 class ExportViewController: UIViewController {
     
+    @IBOutlet weak var projectButton: UIButton!
+    @IBOutlet weak var issueTypeButton: UIButton!
+    @IBOutlet weak var priority: UIButton!
+    @IBOutlet weak var labelsTextField: UITextField!
+    @IBOutlet weak var environmentTextView: UITextView!
+    @IBOutlet weak var summaryTextView: UITextView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var flatCanvasImageView: UIImageView!
     var flatCanvasImage: UIImage? = nil
     var screenshotAssetModel: ScreenshotAssetModel?

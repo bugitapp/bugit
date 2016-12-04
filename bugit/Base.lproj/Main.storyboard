@@ -446,6 +446,9 @@
                                         <rect key="frame" x="8" y="422" width="359" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Create Issue"/>
+                                        <connections>
+                                            <action selector="onCreateIssueTapped:" destination="RPb-ma-yGK" eventType="touchUpInside" id="B1t-pI-1cY"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgG-Yc-BBB">
                                         <rect key="frame" x="8" y="284" width="93" height="21"/>
@@ -515,6 +518,15 @@
                             <constraint firstItem="dvY-g2-9rS" firstAttribute="leading" secondItem="KGa-3N-fQO" secondAttribute="leading" id="Xef-T5-KQL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="82s-QH-0GC" id="1dO-9B-lHi"/>
+                        <outlet property="environmentTextView" destination="wEE-cl-OeX" id="nWC-yE-Af2"/>
+                        <outlet property="issueTypeButton" destination="k7g-yb-LRj" id="OcQ-hX-XyJ"/>
+                        <outlet property="labelsTextField" destination="LxR-Qm-5qP" id="F13-v8-Rm3"/>
+                        <outlet property="priority" destination="sZf-dw-d5C" id="1bP-kg-t17"/>
+                        <outlet property="projectButton" destination="GLn-Mw-zMh" id="AVi-EO-IrC"/>
+                        <outlet property="summaryTextView" destination="DQo-uG-F1k" id="rAJ-nk-aqd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2x-Hs-eEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="43u-o2-oPF">
