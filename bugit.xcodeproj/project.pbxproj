@@ -42,6 +42,7 @@
 		17CD94661DDACCD3001928B5 /* SegueFromLeftRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD94631DDACCD3001928B5 /* SegueFromLeftRight.swift */; };
 		17DF276D1DF3D3F20008DDA9 /* xUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF276C1DF3D3F20008DDA9 /* xUIImage.swift */; };
 		17DF276F1DF3D5B30008DDA9 /* xUIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF276E1DF3D5B30008DDA9 /* xUIBezierPath.swift */; };
+		17E6C2561DF3DF35004D7AD0 /* xUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6C2551DF3DF35004D7AD0 /* xUIView.swift */; };
 		1B3E22061DEEA96900E9CB9B /* jiralogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B3E22051DEEA96900E9CB9B /* jiralogo.png */; };
 		1B3E22081DEEAF8600E9CB9B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */; };
 		1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */; };
@@ -113,6 +114,7 @@
 		17CD94631DDACCD3001928B5 /* SegueFromLeftRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeftRight.swift; sourceTree = "<group>"; };
 		17DF276C1DF3D3F20008DDA9 /* xUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIImage.swift; sourceTree = "<group>"; };
 		17DF276E1DF3D5B30008DDA9 /* xUIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIBezierPath.swift; sourceTree = "<group>"; };
+		17E6C2551DF3DF35004D7AD0 /* xUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIView.swift; sourceTree = "<group>"; };
 		1B3E22051DEEA96900E9CB9B /* jiralogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiralogo.png; path = Jira/jiralogo.png; sourceTree = "<group>"; };
 		1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsModel.swift; path = Models/ProjectsModel.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				84A488F41DE120CA00736938 /* xUIColor.swift */,
 				17DF276C1DF3D3F20008DDA9 /* xUIImage.swift */,
 				17AD5F801DF130C60086978D /* xUIImageView.swift */,
+				17E6C2551DF3DF35004D7AD0 /* xUIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				1BEC3A431DF3C6AC0056702B /* PriorityTypeModel.swift in Sources */,
 				D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */,
 				D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */,
+				17E6C2561DF3DF35004D7AD0 /* xUIView.swift in Sources */,
 				17CD94641DDACCD3001928B5 /* EditorNavigationController.swift in Sources */,
 				D2D37F431DED398E00D58A0C /* ScreenshotSectionHeaderView.swift in Sources */,
 				1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */,
