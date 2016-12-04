@@ -186,12 +186,28 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNy-Ch-1jD" userLabel="ColorSliderView">
                                         <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iF5-CP-1w0">
+                                                <frame key="frameInset" minX="15" minY="40" width="345" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorbar" translatesAutoresizingMaskIntoConstraints="NO" id="MZK-Cl-gVd" userLabel="BarImageView"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="eEa-cn-cnA">
+                                                <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="sliderChangedWithSender:" destination="qHP-hN-bFx" eventType="valueChanged" id="LsX-4Y-sC1"/>
+                                                </connections>
+                                            </slider>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="top" secondItem="eEa-cn-cnA" secondAttribute="top" id="3x1-p8-BdQ"/>
+                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="bottom" secondItem="eEa-cn-cnA" secondAttribute="bottom" id="5PU-81-nkP"/>
+                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="trailing" secondItem="eEa-cn-cnA" secondAttribute="trailing" id="8Pb-fm-TPY"/>
                                             <constraint firstAttribute="bottom" secondItem="MZK-Cl-gVd" secondAttribute="bottom" constant="30" id="Bxx-5w-IGl"/>
                                             <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="BNy-Ch-1jD" secondAttribute="leading" constant="30" id="IRE-cm-Wtv"/>
+                                            <constraint firstItem="MZK-Cl-gVd" firstAttribute="leading" secondItem="eEa-cn-cnA" secondAttribute="leading" id="Mb0-F0-jn8"/>
                                             <constraint firstAttribute="trailing" secondItem="MZK-Cl-gVd" secondAttribute="trailing" constant="30" id="oJV-DL-eJX"/>
                                         </constraints>
                                     </view>
@@ -236,7 +252,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="canvasImageView" destination="4lV-qT-dIn" id="LSR-CS-3gn"/>
+                        <outlet property="colorSlider" destination="eEa-cn-cnA" id="nm9-nX-wBg"/>
                         <outlet property="colorbarImageView" destination="MZK-Cl-gVd" id="Dph-hl-RAd"/>
+                        <outlet property="selectedColorView" destination="BNy-Ch-1jD" id="4dW-IC-8wy"/>
                         <outlet property="toolButtonView" destination="Qr5-Tk-u0o" id="hgU-Kw-r1P"/>
                         <outlet property="trayArrowButton" destination="ajd-xi-pb8" id="dvb-rS-Gnd"/>
                         <outlet property="trayArrowImageView" destination="TT0-UF-5bf" id="yS5-Wy-td2"/>

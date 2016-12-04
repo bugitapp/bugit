@@ -522,7 +522,9 @@ class EditorViewController: UIViewController {
     
     @IBAction func sliderChanged(sender: AnyObject) {
         let colorValue = colorArray[Int(colorSlider.value)]
-        selectedColorView.backgroundColor = UIColor(netHex: colorValue)
+        let selectedColor = UIColor(netHex: colorValue)
+        selectedColorView.backgroundColor = selectedColor
+        colorSlider.thumbTintColor = selectedColor
     }
     
 }
