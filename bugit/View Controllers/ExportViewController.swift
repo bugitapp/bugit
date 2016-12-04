@@ -91,12 +91,12 @@ class ExportViewController: UIViewController {
         issue.issueTypeId = issueTypeButton.currentTitle
         issue.summary = summaryTextView.text
         issue.issueDescription = descriptionTextView.text
-//        issue.environment = environmentTextView.text
+        issue.environment = environmentTextView.text
         
         jiraMgr.createIssue(issue: issue,
                             success: { (issue: IssueModel) in
                             print("Created Issue: \(issue)")
-                            self.jiraMgr.attach(image: UIImage(named: "sample") , issue: issue, success: {
+                            self.jiraMgr.attach(image: self.screenshotAssetModel?.editedImage , issue: issue, success: {
                                 MBProgressHUD.hide(for: self.view, animated: true)
                                 print("Attached image to \(issue)")
                             }) { (error: Error) in

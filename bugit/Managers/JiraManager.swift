@@ -263,6 +263,8 @@ class JiraManager: AFHTTPSessionManager {
             // if response was JSON, then parse it
             
             do {
+                let responseString = String(data: data!, encoding: .utf8)
+                print("Attach Image Response = \(responseString)")
                 let responseDictionary = try JSONSerialization.jsonObject(with: data!)
                 print("success == \(responseDictionary)")
                 DispatchQueue.main.async {
@@ -285,7 +287,7 @@ class JiraManager: AFHTTPSessionManager {
         
         let boundary = generateBoundaryString()
         
-        let url = URL(string: "https://bugitapp.atlassian.net/rest/api/2/issue/\(issue.key!)/attachments")!
+        let url = URL(string: "\(jiraUrl!)/issue/\(issue.id!)/attachments")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; name='file'; filename='screenshot.jpg'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")

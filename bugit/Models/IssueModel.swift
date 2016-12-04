@@ -48,11 +48,12 @@ class IssueModel: NSObject {
         if let labels = labels {
             json["labels"] = labels
         }
-        if let environment = environment {
-            json["environment"] = environment
-        }
         if let issueDescription = issueDescription {
-            json["description"] = issueDescription
+            var desc = issueDescription
+            if let env = environment {
+                desc += "\nEnvironment:\n \(env)"
+            }
+            json["description"] = desc
         }
         if let issueType = issueTypeId {
             json["issuetype"] = ["name" : issueType]

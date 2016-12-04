@@ -22,8 +22,8 @@ class AppearanceManager {
         UINavigationBar.appearance().tintColor = lightBlueThemeColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName: UIFont(name: "SFUIText-Light", size: 21)!]
         
-        UIButton.appearance().backgroundColor = brightBlueThemeColor
-        UIButton.appearance().tintColor = lightBlueThemeColor
+        //UIButton.appearance().backgroundColor = brightBlueThemeColor
+        //UIButton.appearance().tintColor = lightBlueThemeColor
         
         UILabel.appearance().font = UIFont(name: "SFUIText-Light", size: 17)!
         
@@ -31,7 +31,7 @@ class AppearanceManager {
         
         ScreenshotSectionHeaderView.appearance().backgroundColor = lightBlueThemeColor
         
-        window?.tintColor = brightBlueThemeColor
+        //window?.tintColor = brightBlueThemeColor
     }
     
 }

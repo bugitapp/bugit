@@ -19,15 +19,25 @@ enum ToolsInTray: Int {
 
 class EditorViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    //@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trayViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolButtonView: HorizontalButtonView!
+    let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    
+    @IBOutlet weak var selectedColorView: UIView!
+    @IBOutlet weak var colorSlider: UISlider!
+    @IBOutlet weak var colorbarImageView: UIImageView!
+
     
     var screenshotAssetModel: ScreenshotAssetModel?
     
     var panBegan = CGPoint(x:0, y:0)
     var panEnded = CGPoint(x:0, y:0)
+    
+    var selectedColor: UIColor = UIColor.black
     
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowButton: UIButton!
@@ -74,10 +84,10 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         dlog("screenshot: \(screenshotAssetModel)")
         
-        self.scrollView.minimumZoomScale = 0.5;
-        self.scrollView.maximumZoomScale = 6.0;
-        self.scrollView.contentSize = canvasImageView.frame.size;
-        self.scrollView.delegate = self;
+//        self.scrollView.minimumZoomScale = 0.5;
+//        self.scrollView.maximumZoomScale = 6.0;
+//        self.scrollView.contentSize = canvasImageView.frame.size;
+//        self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
         //canvasImageView.addBlurEffect()
@@ -120,6 +130,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             changeTool(foundView as! UIButton)
         }
         
+        toolButtonView.tag = 2
+        toolButtonView.buttonDelegate = self
+
         print("selectedTool = \(selectedTool)")
         
         setupToolbox()
@@ -128,7 +141,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
+        trayTravelDiff = trayViewHeightConstraint.constant - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
     }
     
@@ -141,8 +154,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         //trayView.layer.shadowRadius = 3;
         //trayView.layer.shadowOpacity = 0.5;
         
-        trayView.layer.borderWidth = 1
-        trayView.layer.borderColor = UIColor.black.cgColor
+        //trayView.layer.borderWidth = 1
+        //trayView.layer.borderColor = UIColor.black.cgColor
         
         // Put Tray into Down position
         /*
@@ -197,6 +210,15 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Gestures
     
+    
+    @IBAction func onCanvasViewPinch(_ sender: UIPinchGestureRecognizer) {
+        
+        dlog("sender.scale: \(sender.scale)")
+        
+        canvasImageView.transform = canvasImageView.transform.scaledBy(x: sender.scale, y: sender.scale)
+        sender.scale = 1
+    }
+    
     // Using Simultaneous Gesture Recognizers
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -208,7 +230,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         let translation = sender.translation(in: view)
         
         if sender.state == .began {
-            trayOriginalCenter = trayView.center
+            //trayOriginalCenter = trayView.center
             bottomConstraintStartY = self.trayViewBottomConstraint.constant
             //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
         } else if sender.state == .changed {
@@ -262,13 +284,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping:0.2, initialSpringVelocity:0.0, options: options,
                        animations: { () -> Void in
-                        self.trayViewBottomConstraint.constant = (-self.trayView.frame.height + self.travViewClosedPeekOutDistance)
+                        self.trayViewBottomConstraint.constant = (-self.trayViewHeightConstraint.constant + self.travViewClosedPeekOutDistance)
                         self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
                         self.view.layoutIfNeeded()
             },
                        completion: { (done: Bool) -> Void in
                         self.isTrayOpen = false
-                        dlog("trayView.center: \(self.trayView.center)")
+                        dlog("trayView bottom constraint: \(self.trayViewBottomConstraint.constant)")
         })
     }
     
@@ -286,7 +308,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             },
                        completion: { (done: Bool) -> Void in
                         self.isTrayOpen = true
-                        dlog("trayView.center: \(self.trayView.center), topFrame: \(self.trayView.frame.origin.y)")
+                        dlog("trayView bottom constraint: \(self.trayViewBottomConstraint.constant)")
+
                         
         })
     }
@@ -317,16 +340,17 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         print("changeTool.sender.tag = \(sender.tag)")
         
         // Clear previous button backgrounds
+        /*
         for view in trayToolsView.subviews as [UIView] {
             if let btn = view as? UIButton {
                 btn.backgroundColor = UIColor.clear
                 btn.tintColor = UIColor.blue
             }
         }
-        
+        */
         // Selected object has palette background color
-        sender.backgroundColor = trayView.backgroundColor
-        sender.tintColor = UIColor.white
+        //sender.backgroundColor = trayView.backgroundColor
+        //sender.tintColor = UIColor.white
         
         if sender.tag == 701 {
             // Arrow
@@ -379,7 +403,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 print("Text field: \(textField?.text)")
                 
-                let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
+                let textView = TextView(origin: point, paletteColor: self.selectedColor)
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
                 
                 let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
@@ -393,7 +417,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Square
         if selectedTool == ToolsInTray.Square {
-            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Square)
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             self.canvasImageView.addSubview(shapeView)
             
             
@@ -413,7 +437,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Circle
         if selectedTool == ToolsInTray.Circle {
-            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Circle)
             self.canvasImageView.addSubview(shapeView)
         }
         
@@ -487,7 +511,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         shapeLayer.path = arrow.cgPath
         //shapeLayer.fillColor = UIColor.red.cgColor
-        shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
+        shapeLayer.fillColor = selectedColor.cgColor // this is set by each pencil tap
         
         canvasImageView.layer.addSublayer(shapeLayer)
     }
@@ -499,7 +523,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         path.move(to: point)
         
         shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = trayView.backgroundColor?.cgColor
+        shapeLayer.strokeColor = selectedColor.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor // Note this has to be clear otherwise fill will form webs in between points
         shapeLayer.lineWidth = 4.0 //  TODO: Control the width of this line
         canvasImageView.layer.addSublayer(shapeLayer)
@@ -513,7 +537,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     // MARK: Drawing a path
     
     func drawPoint() {
-        self.trayView.backgroundColor?.setStroke()
+        self.selectedColor.setStroke()
         self.path.lineWidth = 10.0 // TODO: Allow manipulation
         self.path.lineCapStyle = .round // TODO: Allow change to different styles
         self.path.stroke()
@@ -521,7 +545,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        self.trayView.backgroundColor?.setStroke()
+        self.selectedColor.setStroke()
         self.path.lineWidth = 10.0 // TODO: Allow manipulation
         self.path.lineCapStyle = .round // TODO: Allow change to different styles
         self.path.stroke()
@@ -531,12 +555,30 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Allows pinching of photo to resize it
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.canvasImageView
-    }
+    //func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    //    return self.canvasImageView
+    //}
     
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    //func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         // empty
-    }
+    //}
     
+    @IBAction func sliderChanged(sender: AnyObject) {
+        let colorValue = colorArray[Int(colorSlider.value)]
+        let selectedColor = UIColor(netHex: colorValue)
+        selectedColorView.backgroundColor = selectedColor
+        colorSlider.thumbTintColor = selectedColor
+        self.selectedColor = selectedColor
+    }
+
 }
+
+extension EditorViewController: HorizontalButtonViewDelegate {
+    
+    func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
+        dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
+        
+        selectedTool = ToolsInTray(rawValue: button.tag)
+    }
+}
+
