@@ -56,14 +56,21 @@ class ExportViewController: UIViewController {
     func startNetworkActivity() {
         jiraMgr.loadProjects(success: { (projects: [ProjectsModel]) in
                 if projects.count != 0 {
-                    self.projectButton.titleLabel?.text = projects[0].key
+                    self.projectButton.setTitle(projects[0].key, for: UIControlState.normal)
                 }
             }, failure: { (error: NSError) in
                 
         })
         jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
             if issueTypes.count != 0 {
-                self.issueTypeButton.titleLabel?.text = issueTypes[0].name
+                self.issueTypeButton.setTitle(issueTypes[0].name, for: UIControlState.normal)
+            }
+            }, failure: { (error: NSError) in
+                
+        })
+        jiraMgr.loadPriorities(success: { (priorityTypes: [PriorityTypeModel]) in
+            if priorityTypes.count != 0 {
+                self.priority.setTitle(priorityTypes[0].name, for: UIControlState.normal)
             }
             }, failure: { (error: NSError) in
                 

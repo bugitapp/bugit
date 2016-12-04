@@ -27,6 +27,7 @@ extension Data {
 class JiraManager: AFHTTPSessionManager {
     // TODO: use plist to save constant info like url paths
     static let projectsPath = "project"
+    static let priorityTypesPath = "priority"
     static let issueTypesPath = "issuetype"
     static let issueMetadataPath = "issue/createmeta"
     static let issueCreatePath = "issue"
@@ -148,6 +149,25 @@ class JiraManager: AFHTTPSessionManager {
                         issueTypes.append(type)
                     }
                     success(issueTypes)
+            },
+                failure: { (task:URLSessionDataTask?, error: Error) in
+                    print("Error: \(error)")
+                    failure(error as NSError)
+        })
+    }
+    
+    func loadPriorities(success: @escaping ([PriorityTypeModel]) -> (), failure: @escaping (NSError) -> ()) {
+        _ = get(JiraManager.priorityTypesPath, parameters: nil, progress: nil,
+                success: { (task: URLSessionDataTask, response: Any?) in
+                    print("Task: \(task) PriorityTypes: \(response)")
+                    var priorityTypes = [PriorityTypeModel]()
+                    let prioritiesResponse = response as! Array<Dictionary<String, Any>>
+                    for dict: Dictionary<String, Any> in prioritiesResponse {
+                        print(dict)
+                        let type = PriorityTypeModel(dict: dict)
+                        priorityTypes.append(type)
+                    }
+                    success(priorityTypes)
             },
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")

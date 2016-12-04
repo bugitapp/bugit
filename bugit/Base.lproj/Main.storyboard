@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -430,7 +430,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLn-Mw-zMh">
-                                        <rect key="frame" x="197" y="-52" width="93" height="30"/>
+                                        <rect key="frame" x="197" y="-52" width="139" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Button"/>
@@ -464,7 +464,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7g-yb-LRj">
-                                        <rect key="frame" x="197" y="-8" width="93" height="30"/>
+                                        <rect key="frame" x="197" y="-8" width="139" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Button"/>
@@ -512,7 +512,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZf-dw-d5C">
-                                        <rect key="frame" x="197" y="31" width="93" height="30"/>
+                                        <rect key="frame" x="197" y="31" width="139" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Button"/>
@@ -652,13 +652,13 @@
         <image name="Pen-LightGreen" width="53" height="332"/>
         <image name="Pen-Red" width="53" height="332"/>
         <image name="Pen-Yellow" width="53" height="332"/>
-        <image name="arrow.png" width="118" height="133"/>
-        <image name="blur.png" width="189" height="120"/>
-        <image name="circle.png" width="146" height="146"/>
+        <image name="arrow.png" width="117" height="132"/>
+        <image name="blur.png" width="204" height="210"/>
+        <image name="circle.png" width="127" height="127"/>
         <image name="down_arrow" width="20" height="14"/>
-        <image name="freehand.png" width="140" height="129"/>
+        <image name="freehand.png" width="125" height="115"/>
         <image name="jiralogo.png" width="846" height="821"/>
-        <image name="square.png" width="146" height="146"/>
-        <image name="text.png" width="134" height="108"/>
+        <image name="square.png" width="107" height="108"/>
+        <image name="text.png" width="127" height="102"/>
     </resources>
 </document>
