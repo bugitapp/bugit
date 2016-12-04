@@ -178,7 +178,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             self.performSegue(withIdentifier: "LoginSegue", sender: self)
         }
         else {
-            self.performSegue(withIdentifier: "ExportSegue", sender: self)
+            self.performSegue(withIdentifier: "CreateIssueSegue", sender: self)
         }
     }
     

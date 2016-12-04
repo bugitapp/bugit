@@ -47,6 +47,8 @@
 		1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */; };
 		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */; };
+		1BD882911DF3EC6900E38F91 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD882901DF3EC6900E38F91 /* CreateIssueViewController.swift */; };
+		1BD882941DF3F38A00E38F91 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD882931DF3F38A00E38F91 /* SelectionCell.swift */; };
 		1BEC3A391DF3987D0056702B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A341DF3987D0056702B /* arrow.png */; };
 		1BEC3A3A1DF3987D0056702B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A351DF3987D0056702B /* circle.png */; };
 		1BEC3A3B1DF3987D0056702B /* freehand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A361DF3987D0056702B /* freehand.png */; };
@@ -118,6 +120,8 @@
 		1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsModel.swift; path = Models/ProjectsModel.swift; sourceTree = "<group>"; };
 		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueModel.swift; path = Models/IssueModel.swift; sourceTree = "<group>"; };
+		1BD882901DF3EC6900E38F91 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
+		1BD882931DF3F38A00E38F91 /* SelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionCell.swift; path = Cells/SelectionCell.swift; sourceTree = "<group>"; };
 		1BEC3A341DF3987D0056702B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		1BEC3A351DF3987D0056702B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		1BEC3A361DF3987D0056702B /* freehand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freehand.png; sourceTree = "<group>"; };
@@ -222,10 +226,12 @@
 		17CD94411DDACCC2001928B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1BD882921DF3F36400E38F91 /* Cells */,
 				17CD94421DDACCC2001928B5 /* EditorViewController.swift */,
 				17CD94431DDACCC2001928B5 /* ExportViewController.swift */,
 				17CD94441DDACCC2001928B5 /* GalleryViewController.swift */,
 				1B3E22071DEEAF8600E9CB9B /* LoginViewController.swift */,
+				1BD882901DF3EC6900E38F91 /* CreateIssueViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -279,6 +285,14 @@
 				1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1BD882921DF3F36400E38F91 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1BD882931DF3F38A00E38F91 /* SelectionCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		1BEC3A331DF3987D0056702B /* sidebarbuttons */ = {
@@ -547,8 +561,10 @@
 				1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */,
 				844EFD8E1DE370C200A3A236 /* TextView.swift in Sources */,
 				17CD945D1DDACCC2001928B5 /* ExportViewController.swift in Sources */,
+				1BD882941DF3F38A00E38F91 /* SelectionCell.swift in Sources */,
 				1BEC3A411DF3B31D0056702B /* IssueTypeModel.swift in Sources */,
 				170E509C1DEFE81800E0C830 /* Step1ViewController.swift in Sources */,
+				1BD882911DF3EC6900E38F91 /* CreateIssueViewController.swift in Sources */,
 				1BEC3A431DF3C6AC0056702B /* PriorityTypeModel.swift in Sources */,
 				D2D37F421DED398E00D58A0C /* ScreenshotCollectionViewCell.swift in Sources */,
 				D2D37F3C1DED380800D58A0C /* ScreenshotAssetSearchResultsModel.swift in Sources */,
