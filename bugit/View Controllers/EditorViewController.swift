@@ -80,6 +80,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
+        //canvasImageView.addBlurEffect()
+        //canvasImageView.image = canvasImageView.image?.pixellated(scale: 20)
         
         // Gesture overload if we use swipes
         //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Collage"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(goToGallery))

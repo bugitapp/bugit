@@ -15,7 +15,6 @@ class ScreenshotAssetModel: CustomStringConvertible, CustomDebugStringConvertibl
     var screenshotAsset: PHAsset?
     var editedImage: UIImage?
     
-    
     var description: String {
         return debugDescription
     }
@@ -23,6 +22,5 @@ class ScreenshotAssetModel: CustomStringConvertible, CustomDebugStringConvertibl
     var debugDescription: String {
         return "screenShot date: \(screenshotAsset?.creationDate), size: \(screenshotImage?.size)"
     }
-
     
 }
