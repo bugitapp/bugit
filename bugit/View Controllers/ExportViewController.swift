@@ -64,6 +64,7 @@ class ExportViewController: UIViewController {
         jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
             if issueTypes.count != 0 {
                 self.issueTypeButton.setTitle(issueTypes[0].name, for: UIControlState.normal)
+                self.issueTypeButton.tag = issueTypes[0].id!
             }
             }, failure: { (error: NSError) in
                 
@@ -86,24 +87,25 @@ class ExportViewController: UIViewController {
     
     @IBAction func onCreateIssueTapped(_ sender: AnyObject) {
         let issue = IssueModel()
-        issue.project = "TPO"
-        issue.issueTypeId = "Bug"
-        issue.summary = "Fox jumps over dog"
-        issue.issueDescription = "A quick brown fox jumped over the lazy dog."
-        issue.labels = ["canines"]
-//        JiraManager.sharedInstance.createIssue(issue: issue,
-//                                               success: { (issue: IssueModel) in
-//                                                print("Created Issue: \(issue)")
-//                                                JiraManager.sharedInstance.attach(image: UIImage(named: "sample") , issue: issue, success: {
-//                                                    MBProgressHUD.hide(for: self.view, animated: true)
-//                                                    print("Attached image to \(issue)")
-//                                                }) { (error: Error) in
-//                                                    MBProgressHUD.hide(for: self.view, animated: true)
-//                                                    print("Erorr attaching image: \(error)")
-//                                                }
-//        }) { (error: Error) in
-//            print("Erorr creating issue: \(error)")
-//        }
+        issue.project = projectButton.currentTitle
+        issue.issueTypeId = issueTypeButton.currentTitle
+        issue.summary = summaryTextView.text
+        issue.issueDescription = descriptionTextView.text
+        issue.environment = environmentTextView.text
+        
+        jiraMgr.createIssue(issue: issue,
+                            success: { (issue: IssueModel) in
+                            print("Created Issue: \(issue)")
+                            self.jiraMgr.attach(image: UIImage(named: "sample") , issue: issue, success: {
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                                print("Attached image to \(issue)")
+                            }) { (error: Error) in
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                                print("Erorr attaching image: \(error)")
+                            }
+                            }) { (error: Error) in
+                                print("Erorr creating issue: \(error)")
+                            }
         MBProgressHUD.showAdded(to: self.view, animated: true)
     }
 }
