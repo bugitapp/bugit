@@ -45,6 +45,11 @@
 		1B3E220A1DEEBF4F00E9CB9B /* ProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */; };
 		1B98F94D1DDC39540003BB12 /* JiraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98F94C1DDC39540003BB12 /* JiraManager.swift */; };
 		1BCAE9A51DDECAEF00518D78 /* IssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */; };
+		1BEC3A391DF3987D0056702B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A341DF3987D0056702B /* arrow.png */; };
+		1BEC3A3A1DF3987D0056702B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A351DF3987D0056702B /* circle.png */; };
+		1BEC3A3B1DF3987D0056702B /* freehand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A361DF3987D0056702B /* freehand.png */; };
+		1BEC3A3C1DF3987D0056702B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A371DF3987D0056702B /* square.png */; };
+		1BEC3A3D1DF3987D0056702B /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC3A381DF3987D0056702B /* text.png */; };
 		1BFFD0BE1DD1661900858992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BD1DD1661900858992 /* AppDelegate.swift */; };
 		1BFFD0C01DD1661900858992 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFD0BF1DD1661900858992 /* ViewController.swift */; };
 		1BFFD0C31DD1661900858992 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFD0C11DD1661900858992 /* Main.storyboard */; };
@@ -107,6 +112,11 @@
 		1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsModel.swift; path = Models/ProjectsModel.swift; sourceTree = "<group>"; };
 		1B98F94C1DDC39540003BB12 /* JiraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiraManager.swift; sourceTree = "<group>"; };
 		1BCAE9A41DDECAEF00518D78 /* IssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueModel.swift; path = Models/IssueModel.swift; sourceTree = "<group>"; };
+		1BEC3A341DF3987D0056702B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		1BEC3A351DF3987D0056702B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		1BEC3A361DF3987D0056702B /* freehand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freehand.png; sourceTree = "<group>"; };
+		1BEC3A371DF3987D0056702B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		1BEC3A381DF3987D0056702B /* text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text.png; sourceTree = "<group>"; };
 		1BFFD0BA1DD1661900858992 /* bugit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bugit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFFD0BD1DD1661900858992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFFD0BF1DD1661900858992 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 		17CD94271DDACCC2001928B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BEC3A331DF3987D0056702B /* sidebarbuttons */,
 				1B3E22041DEEA93200E9CB9B /* Jira */,
 				D2D37F3D1DED396400D58A0C /* Constants.swift */,
 				17CD94281DDACCC2001928B5 /* SF-UI-Display */,
@@ -256,6 +267,18 @@
 				1B3E22091DEEBF4F00E9CB9B /* ProjectsModel.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1BEC3A331DF3987D0056702B /* sidebarbuttons */ = {
+			isa = PBXGroup;
+			children = (
+				1BEC3A341DF3987D0056702B /* arrow.png */,
+				1BEC3A351DF3987D0056702B /* circle.png */,
+				1BEC3A361DF3987D0056702B /* freehand.png */,
+				1BEC3A371DF3987D0056702B /* square.png */,
+				1BEC3A381DF3987D0056702B /* text.png */,
+			);
+			path = sidebarbuttons;
 			sourceTree = "<group>";
 		};
 		1BFFD0B11DD1661900858992 = {
@@ -401,6 +424,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BFFD0C81DD1661900858992 /* LaunchScreen.storyboard in Resources */,
+				1BEC3A3B1DF3987D0056702B /* freehand.png in Resources */,
+				1BEC3A391DF3987D0056702B /* arrow.png in Resources */,
 				17CD94471DDACCC2001928B5 /* SF-UI-Display-Heavy.otf in Resources */,
 				17CD944B1DDACCC2001928B5 /* SF-UI-Display-Semibold.otf in Resources */,
 				17CD94501DDACCC2001928B5 /* SF-UI-Text-Heavy.otf in Resources */,
@@ -412,6 +437,7 @@
 				17CD94511DDACCC2001928B5 /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				17CD94551DDACCC2001928B5 /* SF-UI-Text-MediumItalic.otf in Resources */,
 				17CD94461DDACCC2001928B5 /* SF-UI-Display-Bold.otf in Resources */,
+				1BEC3A3C1DF3987D0056702B /* square.png in Resources */,
 				17CD94491DDACCC2001928B5 /* SF-UI-Display-Medium.otf in Resources */,
 				17CD94591DDACCC2001928B5 /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				170E50911DEFE55000E0C830 /* IntroGuide.storyboard in Resources */,
@@ -426,6 +452,8 @@
 				17CD94521DDACCC2001928B5 /* SF-UI-Text-Light.otf in Resources */,
 				1BFFD0C31DD1661900858992 /* Main.storyboard in Resources */,
 				17CD944C1DDACCC2001928B5 /* SF-UI-Display-Thin.otf in Resources */,
+				1BEC3A3D1DF3987D0056702B /* text.png in Resources */,
+				1BEC3A3A1DF3987D0056702B /* circle.png in Resources */,
 				17CD94531DDACCC2001928B5 /* SF-UI-Text-LightItalic.otf in Resources */,
 				17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */,
 			);
