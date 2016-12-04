@@ -74,10 +74,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/22/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-35-eQt">
-<<<<<<< HEAD
                                             <rect key="frame" x="154" y="10" width="68" height="16"/>
-=======
->>>>>>> 82827fdcc8fd52c1269920607b50851426fafb6e
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -172,10 +169,7 @@
                                 </connections>
                             </imageView>
                             <view alpha="0.94999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFS-yr-toi" userLabel="TrayView">
-<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="496" width="375" height="171"/>
-=======
->>>>>>> 82827fdcc8fd52c1269920607b50851426fafb6e
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnN-9d-5Gd" userLabel="TrayUpDownButton">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -201,7 +195,6 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YI2-jy-Sut" userLabel="ColorSliderView">
-<<<<<<< HEAD
                                         <rect key="frame" x="0.0" y="90" width="375" height="81"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KF2-bd-yqD">
@@ -212,13 +205,6 @@
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-s6-NzF">
                                                         <rect key="frame" x="13" y="10" width="319" height="31"/>
-=======
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KF2-bd-yqD">
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorbar" translatesAutoresizingMaskIntoConstraints="NO" id="Hd8-Hg-0X6" userLabel="BarImageView"/>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-s6-NzF">
->>>>>>> 82827fdcc8fd52c1269920607b50851426fafb6e
                                                         <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
