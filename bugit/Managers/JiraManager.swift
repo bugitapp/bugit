@@ -136,11 +136,18 @@ class JiraManager: AFHTTPSessionManager {
         })
     }
 
-    func loadIssueTypes(success: @escaping ([String]) -> (), failure: @escaping (NSError) -> ()) {
+    func loadIssueTypes(success: @escaping ([IssueTypeModel]) -> (), failure: @escaping (NSError) -> ()) {
         _ = get(JiraManager.issueTypesPath, parameters: nil, progress: nil,
                 success: { (task: URLSessionDataTask, response: Any?) in
                     print("Task: \(task) IssueTypes: \(response)")
-                    success([])
+                    var issueTypes = [IssueTypeModel]()
+                    let typesResponse = response as! Array<Dictionary<String, Any>>
+                    for dict: Dictionary<String, Any> in typesResponse {
+                        print(dict)
+                        let type = IssueTypeModel(dict: dict)
+                        issueTypes.append(type)
+                    }
+                    success(issueTypes)
             },
                 failure: { (task:URLSessionDataTask?, error: Error) in
                     print("Error: \(error)")

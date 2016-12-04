@@ -61,9 +61,9 @@ class ExportViewController: UIViewController {
             }, failure: { (error: NSError) in
                 
         })
-        jiraMgr.loadIssueTypes(success: { (issueTypes: [String]) in
+        jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
             if issueTypes.count != 0 {
-                self.issueTypeButton.titleLabel?.text = issueTypes[0]
+                self.issueTypeButton.titleLabel?.text = issueTypes[0].name
             }
             }, failure: { (error: NSError) in
                 
