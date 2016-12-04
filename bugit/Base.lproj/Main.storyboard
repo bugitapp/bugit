@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -46,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotCollectionViewCell" id="B2Y-rT-1Em" customClass="ScreenshotCollectionViewCell" customModule="bugit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="36" width="200" height="200"/>
+                                        <rect key="frame" x="88" y="36" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -70,7 +70,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScreenshotSectionHeaderView" id="0RI-Kt-1qs" customClass="ScreenshotSectionHeaderView" customModule="bugit" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="36"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/22/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-35-eQt">
@@ -161,7 +161,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sj2-2C-TJv"/>
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sj2-2C-TJv">
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="eS0-Ip-enX" appends="YES" id="UT4-VZ-wf6"/>
+                                </connections>
+                            </imageView>
                             <view alpha="0.94999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFS-yr-toi" userLabel="TrayView">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnN-9d-5Gd" userLabel="TrayUpDownButton">
@@ -281,6 +286,11 @@
                         <action selector="onTrayPanGesture:" destination="qHP-hN-bFx" id="9C8-6v-EOg"/>
                     </connections>
                 </panGestureRecognizer>
+                <pinchGestureRecognizer id="eS0-Ip-enX">
+                    <connections>
+                        <action selector="onCanvasViewPinch:" destination="qHP-hN-bFx" id="Bvj-WS-4Jq"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-650.39999999999998" y="1341.6791604197902"/>
         </scene>

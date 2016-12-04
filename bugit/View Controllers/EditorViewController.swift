@@ -210,6 +210,15 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Gestures
     
+    
+    @IBAction func onCanvasViewPinch(_ sender: UIPinchGestureRecognizer) {
+        
+        dlog("sender.scale: \(sender.scale)")
+        
+        canvasImageView.transform = canvasImageView.transform.scaledBy(x: sender.scale, y: sender.scale)
+        sender.scale = 1
+    }
+    
     // Using Simultaneous Gesture Recognizers
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -532,13 +541,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Allows pinching of photo to resize it
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.canvasImageView
-    }
+    //func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    //    return self.canvasImageView
+    //}
     
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    //func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         // empty
-    }
+    //}
     
     @IBAction func sliderChanged(sender: AnyObject) {
         let colorValue = colorArray[Int(colorSlider.value)]
