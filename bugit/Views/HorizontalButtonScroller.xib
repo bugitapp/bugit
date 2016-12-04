@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HorizontalButtonScroller" customModule="bugit" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonScrollView" destination="SJT-ua-78b" id="qM7-DY-Dqm"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="VuN-c4-LwQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJT-ua-78b" userLabel="ButtonScrollView">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JC-wr-ixG" userLabel="ButtonHolderView">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYI-dv-4SS">
+                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Red"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="Bwe-zj-Bhi"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phu-Io-miH">
+                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Green"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="6QR-Md-2vL"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSB-h3-cA5">
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Blue"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="aoP-qf-CDY"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV8-k6-Sew">
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Black"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="TrM-5P-7mg"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-PE-kox">
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <state key="normal" title="Gray"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="PTC-8W-8a5"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gui-f1-T4v">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Erase"/>
+                                    <connections>
+                                        <action selector="onScrollButtonPressed:" destination="-1" eventType="touchUpInside" id="Ug1-eN-q4j"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="mYI-dv-4SS" secondAttribute="bottom" id="0bc-ze-su2"/>
+                                <constraint firstAttribute="height" constant="100" id="12r-XF-UcW"/>
+                                <constraint firstAttribute="bottom" secondItem="Gui-f1-T4v" secondAttribute="bottom" id="2fU-jA-usS"/>
+                                <constraint firstItem="Gui-f1-T4v" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="3sF-ce-VgK"/>
+                                <constraint firstItem="aLG-PE-kox" firstAttribute="width" secondItem="mYI-dv-4SS" secondAttribute="width" id="6q1-dG-CnT"/>
+                                <constraint firstItem="GSB-h3-cA5" firstAttribute="width" secondItem="mYI-dv-4SS" secondAttribute="width" id="8Vj-SL-got"/>
+                                <constraint firstItem="hV8-k6-Sew" firstAttribute="width" secondItem="mYI-dv-4SS" secondAttribute="width" id="ClR-mi-Crx"/>
+                                <constraint firstItem="hV8-k6-Sew" firstAttribute="leading" secondItem="GSB-h3-cA5" secondAttribute="trailing" id="R4O-eI-X2T"/>
+                                <constraint firstItem="mYI-dv-4SS" firstAttribute="leading" secondItem="0JC-wr-ixG" secondAttribute="leading" id="RCm-gW-W8X"/>
+                                <constraint firstItem="mYI-dv-4SS" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="RXd-dd-puQ"/>
+                                <constraint firstItem="hV8-k6-Sew" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="Rhk-0w-jTr"/>
+                                <constraint firstAttribute="bottom" secondItem="Phu-Io-miH" secondAttribute="bottom" id="U1L-Kg-bQN"/>
+                                <constraint firstAttribute="bottom" secondItem="hV8-k6-Sew" secondAttribute="bottom" id="XO0-Hz-h5y"/>
+                                <constraint firstAttribute="trailing" secondItem="Gui-f1-T4v" secondAttribute="trailing" id="ZF6-t1-Lpm"/>
+                                <constraint firstItem="aLG-PE-kox" firstAttribute="leading" secondItem="hV8-k6-Sew" secondAttribute="trailing" id="bot-ky-ufJ"/>
+                                <constraint firstItem="Gui-f1-T4v" firstAttribute="leading" secondItem="aLG-PE-kox" secondAttribute="trailing" id="bq8-dP-kDd"/>
+                                <constraint firstAttribute="bottom" secondItem="GSB-h3-cA5" secondAttribute="bottom" id="cyz-SJ-zBw"/>
+                                <constraint firstItem="GSB-h3-cA5" firstAttribute="leading" secondItem="Phu-Io-miH" secondAttribute="trailing" id="dWC-vY-e9f"/>
+                                <constraint firstItem="Gui-f1-T4v" firstAttribute="width" secondItem="mYI-dv-4SS" secondAttribute="width" id="hiI-sb-D22"/>
+                                <constraint firstItem="GSB-h3-cA5" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="i9Z-rh-KJj"/>
+                                <constraint firstItem="aLG-PE-kox" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="ieW-sB-wIM"/>
+                                <constraint firstAttribute="bottom" secondItem="aLG-PE-kox" secondAttribute="bottom" id="jbq-5Z-W0k"/>
+                                <constraint firstItem="Phu-Io-miH" firstAttribute="top" secondItem="0JC-wr-ixG" secondAttribute="top" id="lNl-jI-Rj4"/>
+                                <constraint firstItem="Phu-Io-miH" firstAttribute="leading" secondItem="mYI-dv-4SS" secondAttribute="trailing" id="r16-XR-VDB"/>
+                                <constraint firstItem="Phu-Io-miH" firstAttribute="width" secondItem="mYI-dv-4SS" secondAttribute="width" id="w4V-gh-waY"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="0JC-wr-ixG" firstAttribute="leading" secondItem="SJT-ua-78b" secondAttribute="leading" id="Eho-Q2-RTc"/>
+                        <constraint firstItem="0JC-wr-ixG" firstAttribute="top" secondItem="SJT-ua-78b" secondAttribute="top" id="Snr-wC-Zwe"/>
+                        <constraint firstAttribute="bottom" secondItem="0JC-wr-ixG" secondAttribute="bottom" id="VlB-Wx-ZqX"/>
+                        <constraint firstItem="0JC-wr-ixG" firstAttribute="centerX" secondItem="SJT-ua-78b" secondAttribute="centerX" id="Z10-ER-sRD"/>
+                        <constraint firstAttribute="trailing" secondItem="0JC-wr-ixG" secondAttribute="trailing" id="tVw-aO-quX"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SJT-ua-78b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0zd-0s-wwf"/>
+                <constraint firstItem="SJT-ua-78b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Hqh-y2-f6E"/>
+                <constraint firstAttribute="trailing" secondItem="SJT-ua-78b" secondAttribute="trailing" id="JC1-1J-5Et"/>
+                <constraint firstAttribute="bottom" secondItem="SJT-ua-78b" secondAttribute="bottom" id="QpJ-bp-3Vs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-199" y="-87"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P9w-6n-woc">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal" title="Button"/>
+        </button>
+    </objects>
+</document>

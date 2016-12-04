@@ -22,6 +22,12 @@ class EditorViewController: UIViewController {
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var toolButtonView: HorizontalButtonView!
+    let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    
+    @IBOutlet weak var selectedColorView: UIView!
+    @IBOutlet weak var colorSlider: UISlider!
+    @IBOutlet weak var colorbarImageView: UIImageView!
     var screenshotAssetModel: ScreenshotAssetModel?
     
     var panBegan = CGPoint(x:0, y:0)
@@ -73,6 +79,7 @@ class EditorViewController: UIViewController {
         
         dlog("screenshot: \(screenshotAssetModel)")
         
+        
         canvasImageView.image = screenshotAssetModel?.screenshotImage
         
         // Gesture overload if we use swipes
@@ -111,8 +118,11 @@ class EditorViewController: UIViewController {
         if let foundView = view.viewWithTag(701) {
             changeTool(foundView as! UIButton)
         }
-        
-        print("selectedTool = \(selectedTool)")
+       
+        toolButtonView.tag = 2
+        toolButtonView.buttonDelegate = self
+
+        dlog("selectedTool = \(selectedTool)")
         
         setupToolbox()
     }
@@ -122,6 +132,8 @@ class EditorViewController: UIViewController {
         
         trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
+        
+        
         
     }
 
@@ -294,7 +306,7 @@ class EditorViewController: UIViewController {
     // MARK: - Toolbox
     
     @IBAction func changeColor(_ sender: UIButton) {
-        print("changeColor.sender.tag = \(sender.tag)")
+        dlog("changeColor.sender.tag = \(sender.tag)")
         
         if sender.tag == 801 {
             trayView.backgroundColor = UIColor.init(netHex: 0xC0C0C0) // grey
@@ -314,7 +326,7 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func changeTool(_ sender: UIButton) {
-        print("changeTool.sender.tag = \(sender.tag)")
+        dlog("changeTool.sender.tag = \(sender.tag)")
         
         // Clear previous button backgrounds
         for view in trayToolsView.subviews as [UIView] {
@@ -344,7 +356,7 @@ class EditorViewController: UIViewController {
             // Freehand
             selectedTool = ToolsInTray(rawValue: 4)
         }
-        print("changeTool.selectedTool = \(selectedTool)")
+        dlog("changeTool.selectedTool = \(selectedTool)")
     }
     
     // MARK: - Draw
@@ -359,9 +371,9 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {
-        print("tapped")
-        print("didTap.sender.state = \(sender.state)")
-        print("didTap.selectedTool = \(selectedTool)")
+        dlog("tapped")
+        dlog("didTap.sender.state = \(sender.state)")
+        dlog("didTap.selectedTool = \(selectedTool)")
         
         let point = sender.location(in: canvasImageView) as CGPoint
         
@@ -374,7 +386,7 @@ class EditorViewController: UIViewController {
             // Entry for text
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-                print("Text field: \(textField?.text)")
+                dlog("Text field: \(textField?.text)")
                 
                 let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
@@ -402,24 +414,24 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
-        print("panned")
-        print("onPan.sender.state = \(sender.state)")
+        dlog("panned")
+        dlog("onPan.sender.state = \(sender.state)")
         
         //let translation = sender.translation(in: view)
         let point = sender.location(in: canvasImageView) as CGPoint
-        //print("point = \(point)")
+        //dlog("point = \(point)")
         
         if sender.state == UIGestureRecognizerState.began {
-            print("onPan.began")
+            dlog("onPan.began")
             panBegan = point as CGPoint
-            print("panBegan = \(panBegan)")
+            dlog("panBegan = \(panBegan)")
             
             if selectedTool == ToolsInTray.Freehand {
                 drawStartAtPoint(point: point)
             }
             
         } else if sender.state == .changed {
-            print("onPan.changed")
+            dlog("onPan.changed")
             
             if selectedTool == ToolsInTray.Arrow {
                 // draw the arrow as the gesture changes so user can see where they will be drawing the arrow
@@ -435,12 +447,12 @@ class EditorViewController: UIViewController {
             }
             
         } else if sender.state == UIGestureRecognizerState.ended {
-            print("onPan.ended")
+            dlog("onPan.ended")
             
             if selectedTool == ToolsInTray.Arrow {
                 panEnded = point as CGPoint
-                print("tapEnded = \(panEnded)")
-                print("tapBegan = \(panBegan)")
+                dlog("tapEnded = \(panEnded)")
+                dlog("tapBegan = \(panBegan)")
                 
                 // Draw Arrow
                 drawArrow(from: panBegan, to: panEnded, layer: nil)
@@ -508,5 +520,25 @@ class EditorViewController: UIViewController {
         context?.addPath(self.path as! CGPath)
     }
     
+    @IBAction func sliderChanged(sender: AnyObject) {
+        let colorValue = colorArray[Int(colorSlider.value)]
+        selectedColorView.backgroundColor = UIColor(netHex: colorValue)
+    }
     
 }
+
+extension EditorViewController: HorizontalButtonViewDelegate {
+    
+    func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
+        dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
+    }
+}
+
+extension EditorViewController: VerticalButtonViewDelegate {
+    
+    func onVButtonPressed(buttonView: VerticalButtonView, button: UIButton) {
+        dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
+    }
+}
+
+
