@@ -81,6 +81,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         //canvasImageView.image = UIImage.init(named: "sample")
         
         navigationItem.title = "Annotate Screenshot"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         dlog("screenshot: \(screenshotAssetModel)")
         

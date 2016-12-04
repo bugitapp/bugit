@@ -22,7 +22,6 @@ import Photos
 
 class GalleryViewController: UIViewController {
 
-    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var permissionView: UIView!
@@ -56,7 +55,7 @@ class GalleryViewController: UIViewController {
         //navigationItem.titleView = titleLabel
         
         navigationItem.title = "Screenshot Gallery"
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(launchIntroGuide))
         
         if let willLaunchIntroGuide = UserDefaults.standard.value(forKey: "ud1_launch_intro_guide") as! Bool! {

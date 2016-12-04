@@ -48,6 +48,7 @@ class ExportViewController: UIViewController {
         titleLabel.attributedText = titleText
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         dlog("screenshot: \(screenshotAssetModel)")
         attachmentImageView.image = screenshotAssetModel?.editedImage
