@@ -12,7 +12,7 @@
         <scene sceneID="gyu-7Q-qQW">
             <objects>
                 <navigationController id="SCW-OT-Ow7" userLabel="MainNavigationController" customClass="EditorNavigationController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wD-Y2-zXK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3wD-Y2-zXK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -542,6 +542,33 @@
                                     <outlet property="valueLabel" destination="jbn-cI-Fl2" id="8Lu-8U-wOf"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="143" id="XQx-Yx-RxR" customClass="TextViewCell" customModule="bugit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="208" width="375" height="143"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XQx-Yx-RxR" id="cEt-fW-e9T">
+                                    <frame key="frameInset" width="375" height="142"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xLX-9A-HaX">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="99" id="p9W-xs-lnH"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xLX-9A-HaX" firstAttribute="bottom" secondItem="cEt-fW-e9T" secondAttribute="bottomMargin" constant="-27" id="Dfa-Y2-JkZ"/>
+                                        <constraint firstItem="xLX-9A-HaX" firstAttribute="trailing" secondItem="cEt-fW-e9T" secondAttribute="trailingMargin" id="T31-w1-4TJ"/>
+                                        <constraint firstItem="xLX-9A-HaX" firstAttribute="top" secondItem="cEt-fW-e9T" secondAttribute="topMargin" id="Ygt-Yz-2A7"/>
+                                        <constraint firstItem="xLX-9A-HaX" firstAttribute="leading" secondItem="cEt-fW-e9T" secondAttribute="leadingMargin" id="aum-1t-CrT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoTextView" destination="xLX-9A-HaX" id="dVg-Ql-Wd2"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="nmK-HZ-kux" id="uBG-by-GtX"/>
@@ -552,7 +579,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="382-JF-wpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167" y="1927"/>
+            <point key="canvasLocation" x="1165.5999999999999" y="1926.3868065967017"/>
         </scene>
         <!--Login-->
         <scene sceneID="vrH-vl-nKw">
