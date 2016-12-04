@@ -52,24 +52,6 @@ class HorizontalButtonView: UIView {
                 b.titleLabel?.text = ""
                 buttonArray.append(b)
                 buttonState.append(0)
-
-                /*
-                if i == 0 {
-                    buttonColorMap[i] = [UIColor.gray, UIColor.black]
-                }
-                else if i == 1 {
-                    buttonColorMap[i] = [UIColor(netHex:0x800000), UIColor(netHex:0xFF0000)]
-                }
-                else if i == 2 {
-                    buttonColorMap[i] = [UIColor(netHex:0x008000), UIColor(netHex:0x00FF00)]
-                }
-                else if i == 3 {
-                    buttonColorMap[i] = [UIColor(netHex:0x000080), UIColor(netHex:0x0000FF)]
-                }
-                else if i == 4 {
-                    buttonColorMap[i] = [UIColor.lightGray, UIColor.white]
-                }
-                */
                 dlog("added button i: \(i)")
             }
         }
@@ -87,27 +69,27 @@ class HorizontalButtonView: UIView {
                 b.setImage(img, for: .normal)
             }
             else if i == 1 {
-                let img = UIImage(named: "circle")
+                let img = UIImage(named: "text")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
             }
             else if i == 2 {
-                let img = UIImage(named: "blur")
+                let img = UIImage(named: "circle")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
             }
             else if i == 3 {
-                let img = UIImage(named: "freehand")
-                b.setImage(img, for: .normal)
-                buttonState.append(0)
-            }
-            else if i == 4 {
                 let img = UIImage(named: "square")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
             }
+            else if i == 4 {
+                let img = UIImage(named: "freehand")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+            }
             else if i == 5 {
-                let img = UIImage(named: "text")
+                let img = UIImage(named: "blur")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
             }

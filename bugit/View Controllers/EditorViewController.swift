@@ -37,6 +37,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     var panBegan = CGPoint(x:0, y:0)
     var panEnded = CGPoint(x:0, y:0)
     
+    var selectedColor: UIColor = UIColor.black
+    
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowButton: UIButton!
     @IBOutlet weak var trayToolsView: UIView!
@@ -392,7 +394,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 print("Text field: \(textField?.text)")
                 
-                let textView = TextView(origin: point, paletteColor: self.trayView.backgroundColor!)
+                let textView = TextView(origin: point, paletteColor: self.selectedColor)
                 //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
                 
                 let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
@@ -406,13 +408,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Square
         if selectedTool == ToolsInTray.Square {
-            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Square)
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             self.canvasImageView.addSubview(shapeView)
         }
         
         // Circle
         if selectedTool == ToolsInTray.Circle {
-            let shapeView = ShapeView(origin: point, paletteColor: trayView.backgroundColor!, shapeType: ShapeType.Circle)
+            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Circle)
             self.canvasImageView.addSubview(shapeView)
         }
         
@@ -486,7 +488,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         shapeLayer.path = arrow.cgPath
         //shapeLayer.fillColor = UIColor.red.cgColor
-        shapeLayer.fillColor = trayView.backgroundColor?.cgColor // this is set by each pencil tap
+        shapeLayer.fillColor = selectedColor.cgColor // this is set by each pencil tap
         
         canvasImageView.layer.addSublayer(shapeLayer)
     }
@@ -498,7 +500,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         path.move(to: point)
         
         shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = trayView.backgroundColor?.cgColor
+        shapeLayer.strokeColor = selectedColor.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor // Note this has to be clear otherwise fill will form webs in between points
         shapeLayer.lineWidth = 4.0 //  TODO: Control the width of this line
         canvasImageView.layer.addSublayer(shapeLayer)
@@ -512,7 +514,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     // MARK: Drawing a path
     
     func drawPoint() {
-        self.trayView.backgroundColor?.setStroke()
+        self.selectedColor.setStroke()
         self.path.lineWidth = 10.0 // TODO: Allow manipulation
         self.path.lineCapStyle = .round // TODO: Allow change to different styles
         self.path.stroke()
@@ -520,7 +522,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        self.trayView.backgroundColor?.setStroke()
+        self.selectedColor.setStroke()
         self.path.lineWidth = 10.0 // TODO: Allow manipulation
         self.path.lineCapStyle = .round // TODO: Allow change to different styles
         self.path.stroke()
@@ -543,6 +545,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         let selectedColor = UIColor(netHex: colorValue)
         selectedColorView.backgroundColor = selectedColor
         colorSlider.thumbTintColor = selectedColor
+        self.selectedColor = selectedColor
     }
 
 }
@@ -551,6 +554,8 @@ extension EditorViewController: HorizontalButtonViewDelegate {
     
     func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
         dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
+        
+        selectedTool = ToolsInTray(rawValue: button.tag)
     }
 }
 
