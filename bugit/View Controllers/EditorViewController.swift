@@ -19,10 +19,18 @@ enum ToolsInTray: Int {
 
 class EditorViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    //@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trayViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolButtonView: HorizontalButtonView!
+    let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    
+    @IBOutlet weak var selectedColorView: UIView!
+    @IBOutlet weak var colorSlider: UISlider!
+    @IBOutlet weak var colorbarImageView: UIImageView!
+
     
     var screenshotAssetModel: ScreenshotAssetModel?
     
@@ -74,10 +82,10 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         dlog("screenshot: \(screenshotAssetModel)")
         
-        self.scrollView.minimumZoomScale = 0.5;
-        self.scrollView.maximumZoomScale = 6.0;
-        self.scrollView.contentSize = canvasImageView.frame.size;
-        self.scrollView.delegate = self;
+//        self.scrollView.minimumZoomScale = 0.5;
+//        self.scrollView.maximumZoomScale = 6.0;
+//        self.scrollView.contentSize = canvasImageView.frame.size;
+//        self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
         
@@ -118,6 +126,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             changeTool(foundView as! UIButton)
         }
         
+        toolButtonView.tag = 2
+        toolButtonView.buttonDelegate = self
+
         print("selectedTool = \(selectedTool)")
         
         setupToolbox()
@@ -126,7 +137,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        trayTravelDiff = trayView.frame.size.height - travViewClosedPeekOutDistance
+        trayTravelDiff = trayViewHeightConstraint.constant - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
     }
     
@@ -139,8 +150,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         //trayView.layer.shadowRadius = 3;
         //trayView.layer.shadowOpacity = 0.5;
         
-        trayView.layer.borderWidth = 1
-        trayView.layer.borderColor = UIColor.black.cgColor
+        //trayView.layer.borderWidth = 1
+        //trayView.layer.borderColor = UIColor.black.cgColor
         
         // Put Tray into Down position
         /*
@@ -206,7 +217,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         let translation = sender.translation(in: view)
         
         if sender.state == .began {
-            trayOriginalCenter = trayView.center
+            //trayOriginalCenter = trayView.center
             bottomConstraintStartY = self.trayViewBottomConstraint.constant
             //trayArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI / 180))
         } else if sender.state == .changed {
@@ -260,13 +271,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping:0.2, initialSpringVelocity:0.0, options: options,
                        animations: { () -> Void in
-                        self.trayViewBottomConstraint.constant = (-self.trayView.frame.height + self.travViewClosedPeekOutDistance)
+                        self.trayViewBottomConstraint.constant = (-self.trayViewHeightConstraint.constant + self.travViewClosedPeekOutDistance)
                         self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
                         self.view.layoutIfNeeded()
             },
                        completion: { (done: Bool) -> Void in
                         self.isTrayOpen = false
-                        dlog("trayView.center: \(self.trayView.center)")
+                        dlog("trayView bottom constraint: \(self.trayViewBottomConstraint.constant)")
         })
     }
     
@@ -284,7 +295,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             },
                        completion: { (done: Bool) -> Void in
                         self.isTrayOpen = true
-                        dlog("trayView.center: \(self.trayView.center), topFrame: \(self.trayView.frame.origin.y)")
+                        dlog("trayView bottom constraint: \(self.trayViewBottomConstraint.constant)")
+
                         
         })
     }
@@ -315,16 +327,17 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         print("changeTool.sender.tag = \(sender.tag)")
         
         // Clear previous button backgrounds
+        /*
         for view in trayToolsView.subviews as [UIView] {
             if let btn = view as? UIButton {
                 btn.backgroundColor = UIColor.clear
                 btn.tintColor = UIColor.blue
             }
         }
-        
+        */
         // Selected object has palette background color
-        sender.backgroundColor = trayView.backgroundColor
-        sender.tintColor = UIColor.white
+        //sender.backgroundColor = trayView.backgroundColor
+        //sender.tintColor = UIColor.white
         
         if sender.tag == 701 {
             // Arrow
@@ -523,4 +536,19 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         // empty
     }
     
+    @IBAction func sliderChanged(sender: AnyObject) {
+        let colorValue = colorArray[Int(colorSlider.value)]
+        let selectedColor = UIColor(netHex: colorValue)
+        selectedColorView.backgroundColor = selectedColor
+        colorSlider.thumbTintColor = selectedColor
+    }
+
 }
+
+extension EditorViewController: HorizontalButtonViewDelegate {
+    
+    func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
+        dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
+    }
+}
+
