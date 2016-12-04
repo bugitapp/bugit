@@ -67,37 +67,39 @@ class HorizontalButtonView: UIView {
                 buttonState.append(1)
                 let img = UIImage(named: "arrow")
                 b.setImage(img, for: .normal)
+                b.backgroundColor = lightBlueThemeColor
             }
             else if i == 1 {
                 let img = UIImage(named: "text")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
+                b.backgroundColor = UIColor.white
             }
             else if i == 2 {
                 let img = UIImage(named: "circle")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
+                b.backgroundColor = UIColor.white
             }
             else if i == 3 {
                 let img = UIImage(named: "square")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
+                b.backgroundColor = UIColor.white
             }
             else if i == 4 {
                 let img = UIImage(named: "freehand")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
+                b.backgroundColor = UIColor.white
             }
             else if i == 5 {
                 let img = UIImage(named: "blur")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
+                b.backgroundColor = UIColor.white
             }
-
-            
         }
-        
-        
     }
     
     @IBAction func onButtonPressed(_ sender: UIButton) {
@@ -113,9 +115,11 @@ class HorizontalButtonView: UIView {
                 
                 if b === sender {
                     buttonState[i] = 1
+                    b.backgroundColor = lightBlueThemeColor
                 }
                 else {
                     buttonState[i] = 0
+                    b.backgroundColor = UIColor.white
                 }
             }
             
