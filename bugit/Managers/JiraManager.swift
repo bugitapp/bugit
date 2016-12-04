@@ -210,7 +210,7 @@ class JiraManager: AFHTTPSessionManager {
             print(error.localizedDescription)
         }
         
-        let url = URL(string: "\(jiraUrl)/issue")
+        let url = URL(string: "\(jiraUrl!)/issue")
         var request = URLRequest(url: url!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
