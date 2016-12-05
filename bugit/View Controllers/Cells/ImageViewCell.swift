@@ -10,6 +10,7 @@ import UIKit
 
 class ImageViewCell: UITableViewCell {
 
+    @IBOutlet weak var annotatedImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

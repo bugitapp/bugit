@@ -13,7 +13,8 @@ class CreateIssueViewController: UITableViewController {
     var project: ProjectsModel?
     var issueType: IssueTypeModel?
     var issuePriority: PriorityTypeModel?
-
+    var screenshotAssetModel: ScreenshotAssetModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,6 +73,7 @@ class CreateIssueViewController: UITableViewController {
             return cell
         } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageViewCell
+            cell.annotatedImageView.image = screenshotAssetModel?.editedImage
             return cell
         }
         return UITableViewCell()

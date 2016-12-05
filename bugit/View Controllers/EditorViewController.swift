@@ -218,9 +218,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ExportSegue" {
+        if segue.identifier == "CreateIssueSegue" {
             // Get a reference to the detail view controller
-            let destinationViewController = segue.destination as! ExportViewController
+            let destinationViewController = segue.destination as! CreateIssueViewController
             
             // Pass the flat canvas to export
             
