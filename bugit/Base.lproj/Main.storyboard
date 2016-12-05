@@ -506,15 +506,14 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="143" id="XQx-Yx-RxR" customClass="TextViewCell" customModule="bugit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="208" width="375" height="143"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="XQx-Yx-RxR" id="cEt-fW-e9T">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XQx-Yx-RxR" id="cEt-fW-e9T">
                                     <frame key="frameInset" width="375" height="142"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-9h-LF9">
-                                            <frame key="frameInset" width="1000" height="1000"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-9h-LF9">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="142" id="5HN-E6-7r5"/>
+                                                <constraint firstAttribute="height" constant="142" id="LOp-3w-p0r"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -522,10 +521,10 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="YZ1-9h-LF9" firstAttribute="leading" secondItem="cEt-fW-e9T" secondAttribute="leading" id="4Z9-fC-Y1f"/>
                                         <constraint firstItem="YZ1-9h-LF9" firstAttribute="top" secondItem="cEt-fW-e9T" secondAttribute="top" id="LWx-Ig-X8o"/>
-                                        <constraint firstAttribute="bottom" secondItem="YZ1-9h-LF9" secondAttribute="bottom" id="pyo-JN-voa"/>
+                                        <constraint firstAttribute="trailing" secondItem="YZ1-9h-LF9" secondAttribute="trailing" constant="8" id="hr1-CR-dzb"/>
                                         <constraint firstItem="YZ1-9h-LF9" firstAttribute="leading" secondItem="cEt-fW-e9T" secondAttribute="leading" id="sZv-b6-8I2"/>
-                                        <constraint firstAttribute="trailing" secondItem="YZ1-9h-LF9" secondAttribute="trailing" constant="8" id="ujY-gP-h4t"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -560,10 +559,42 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Create Issue" id="Sa5-yS-Bmq"/>
+                    <connections>
+                        <segue destination="dsc-sm-seM" kind="show" identifier="MakeSelectionSegue" id="9iF-WE-atF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="382-JF-wpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165.5999999999999" y="1926.3868065967017"/>
+        </scene>
+        <!--Please Select-->
+        <scene sceneID="FV3-lz-iIo">
+            <objects>
+                <tableViewController id="dsc-sm-seM" customClass="SelectionViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="IHC-mR-URe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6vA-T7-xSr">
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6vA-T7-xSr" id="koq-Bk-pbC">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dsc-sm-seM" id="xJN-08-yRT"/>
+                            <outlet property="delegate" destination="dsc-sm-seM" id="SzU-HW-iOL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Please Select" id="5CP-Pn-rh9"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I0u-wF-nXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1886" y="1925"/>
         </scene>
         <!--Login-->
         <scene sceneID="vrH-vl-nKw">

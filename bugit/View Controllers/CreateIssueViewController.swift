@@ -89,6 +89,11 @@ class CreateIssueViewController: UITableViewController {
         }
         return ""
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "MakeSelectionSegue", sender: self)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -124,14 +129,16 @@ class CreateIssueViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "MakeSelectionSegue" {
+            // Get a reference to the detail view controller
+            let destinationViewController = segue.destination as! SelectionViewController
+            destinationViewController.options = ["One", "Two", "Three"]
+            destinationViewController.selectedOption = "Three"
+        }
     }
-    */
 
 }
