@@ -41,13 +41,13 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var trayView: UIView!
     @IBOutlet weak var trayArrowButton: UIButton!
-    @IBOutlet weak var trayToolsView: UIView!
+    //@IBOutlet weak var trayToolsView: UIView!
     @IBOutlet weak var trayArrowImageView: UIImageView!
     let travViewClosedPeekOutDistance: CGFloat = 30
-    var trayOriginalCenter: CGPoint!
-    var trayDownOffset: CGFloat!
-    var trayUp: CGPoint!
-    var trayDown: CGPoint!
+    //var trayOriginalCenter: CGPoint!
+    //var trayDownOffset: CGFloat!
+    //var trayUp: CGPoint!
+    //var trayDown: CGPoint!
     var dragArrowLayer = CAShapeLayer()
     var dragDrawLayer = CAShapeLayer()
     
@@ -126,10 +126,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         let drawTap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         self.view.addGestureRecognizer(drawTap)
         
-        // Tool Arrow is default
-        if let foundView = view.viewWithTag(701) {
-            changeTool(foundView as! UIButton)
-        }
         
         toolButtonView.tag = 2
         toolButtonView.buttonDelegate = self
@@ -150,9 +146,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     func setupToolbox() {
         colorSlider.thumbTintColor = selectedColor
         
-        trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
-        trayUp = trayView.center
-        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
+        //trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
+        //trayUp = trayView.center
+        //trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
         
         //trayView.layer.shadowOffset = CGSize(0, 3);
         //trayView.layer.shadowRadius = 3;
@@ -286,7 +282,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         }
         let options: UIViewAnimationOptions = .curveEaseOut
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping:0.2, initialSpringVelocity:0.0, options: options,
+        UIView.animate(withDuration: 0.3, delay: 0, options: options,
                        animations: { () -> Void in
                         self.trayViewBottomConstraint.constant = (-self.trayViewHeightConstraint.constant + self.travViewClosedPeekOutDistance)
                         self.trayArrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
@@ -320,63 +316,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Toolbox
     
-    @IBAction func changeColor(_ sender: UIButton) {
-        print("changeColor.sender.tag = \(sender.tag)")
-        
-        if sender.tag == 801 {
-            trayView.backgroundColor = UIColor.init(netHex: 0xC0C0C0) // grey
-        } else if sender.tag == 802 {
-            trayView.backgroundColor = UIColor.init(netHex: 0x82CAFA) // light blue
-        } else if sender.tag == 803 {
-            trayView.backgroundColor = UIColor.init(netHex: 0x59E817) // light green
-        } else if sender.tag == 804 {
-            trayView.backgroundColor = UIColor.init(netHex: 0xFF0000) // red
-        } else if sender.tag == 805 {
-            trayView.backgroundColor = UIColor.init(netHex: 0xFFFF00) // yellow
-        } else if sender.tag == 806 {
-            trayView.backgroundColor = UIColor.init(netHex: 0x000000) // black
-        } else {
-            // erase
-        }
-    }
-    
-    @IBAction func changeTool(_ sender: UIButton) {
-        print("changeTool.sender.tag = \(sender.tag)")
-        
-        // Clear previous button backgrounds
-        /*
-        for view in trayToolsView.subviews as [UIView] {
-            if let btn = view as? UIButton {
-                btn.backgroundColor = UIColor.clear
-                btn.tintColor = UIColor.blue
-            }
-        }
-        */
-        // Selected object has palette background color
-        //sender.backgroundColor = trayView.backgroundColor
-        //sender.tintColor = UIColor.white
-        
-        if sender.tag == 701 {
-            // Arrow
-            selectedTool = ToolsInTray(rawValue: 0)
-        } else if sender.tag == 702 {
-            // Text
-            selectedTool = ToolsInTray(rawValue: 1)
-        } else if sender.tag == 703 {
-            // Circle
-            selectedTool = ToolsInTray(rawValue: 2)
-        } else if sender.tag == 704 {
-            // Square
-            selectedTool = ToolsInTray(rawValue: 3)
-        } else if sender.tag == 705 {
-            // Freehand
-            selectedTool = ToolsInTray(rawValue: 4)
-        } else if sender.tag == 706 {
-            // Blur
-            selectedTool = ToolsInTray(rawValue: 5)
-        }
-        print("changeTool.selectedTool = \(selectedTool)")
-    }
     
     // MARK: - Draw
     

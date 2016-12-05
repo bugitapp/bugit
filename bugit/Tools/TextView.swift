@@ -78,6 +78,8 @@ class TextView: UIView {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        dlog("newImage: \(newImage), for string: \(text)")
+        
         return newImage!
     }
     
@@ -92,6 +94,9 @@ class TextView: UIView {
         textLayer.isWrapped = true
         textLayer.alignmentMode = kCAAlignmentLeft
         textLayer.contentsScale = UIScreen.main.scale
+        
+        dlog("newTextLayer: \(textLayer), for string: \(text)")
+
         
         return textLayer
     }
