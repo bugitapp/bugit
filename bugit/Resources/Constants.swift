@@ -53,6 +53,8 @@ public let lightLightLightGrayThemeColor = UIColor(netHex: 0xFAF9FE)
 public let lightLightGrayThemeColor = UIColor(netHex: 0xEEE9ED)
 public let lightGrayThemeColor = UIColor(netHex: 0xF2E5D5)
 public let lightBlueThemeColor = UIColor(netHex: 0xC2E5F2)
+public let defaultBodyFont = UIFont(name: "SFUIText-Light", size: 17)!
+public let defaultHeadFont = UIFont(name: "SFUIText-Light", size: 21)!
 
 
 let userDidAllowGalleryLoadNotification = Notification.Name(rawValue: "userDidAllowGalleryLoadNotification")
