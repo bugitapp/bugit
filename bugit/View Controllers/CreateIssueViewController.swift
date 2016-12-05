@@ -14,11 +14,16 @@ class CreateIssueViewController: UITableViewController {
     var issueType: IssueTypeModel?
     var issuePriority: PriorityTypeModel?
     var screenshotAssetModel: ScreenshotAssetModel?
+    let jiraMgr = JiraManager(domainName: nil, username: nil, password: nil)
+    var availableProjects: [ProjectsModel]?
+    var availableIssueTypes: [IssueTypeModel]?
+    var availablePriorityTypes: [PriorityTypeModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        startNetworkActivity()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,6 +34,30 @@ class CreateIssueViewController: UITableViewController {
     func setupUI() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+    }
+    
+    func startNetworkActivity() {
+        jiraMgr.loadProjects(success: { (projects: [ProjectsModel]) in
+            self.availableProjects = projects
+            self.project = projects[0]
+            self.tableView.reloadData()
+            }, failure: { (error: NSError) in
+                
+        })
+        jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
+            self.availableIssueTypes = issueTypes
+            self.issueType = issueTypes[0]
+            self.tableView.reloadData()
+            }, failure: { (error: NSError) in
+                
+        })
+        jiraMgr.loadPriorities(success: { (priorityTypes: [PriorityTypeModel]) in
+            self.availablePriorityTypes = priorityTypes
+            self.issuePriority = priorityTypes[0]
+            self.tableView.reloadData()
+            }, failure: { (error: NSError) in
+                
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,8 +165,16 @@ class CreateIssueViewController: UITableViewController {
         if segue.identifier == "MakeSelectionSegue" {
             // Get a reference to the detail view controller
             let destinationViewController = segue.destination as! SelectionViewController
-            destinationViewController.options = ["One", "Two", "Three"]
-            destinationViewController.selectedOption = "Three"
+            let selectedIndexPath = tableView.indexPathForSelectedRow
+            if selectedIndexPath?.section == 0 {
+                if selectedIndexPath?.row == 0 {
+                    var options = [String]()
+                    for proj in availableProjects! {
+                        options.append(proj.name!)
+                    }
+                    destinationViewController.options = options
+                }
+            }
         }
     }
 
