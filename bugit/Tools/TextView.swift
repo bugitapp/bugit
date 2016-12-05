@@ -10,13 +10,13 @@ import UIKit
 
 class TextView: UIView {
     
-    let size: CGFloat = 21
+    var cgSize: CGSize = CGSize(width: 100, height: 100)
     var fillColor: UIColor!
     var outlineColor: UIColor!
-    var originClick: CGPoint!
+    var originClick: CGPoint = CGPoint(x: 0, y: 0)
     
     init(origin: CGPoint, paletteColor: UIColor) {
-        super.init(frame: CGRect(0.0, 0.0, size, size))
+        super.init(frame: CGRect(0.0, 0.0, cgSize.width, cgSize.height))
         
         self.outlineColor = paletteColor
         self.fillColor = UIColor.clear
@@ -28,6 +28,21 @@ class TextView: UIView {
         
         initGestureRecognizers()
     }
+    
+    init(origin: CGPoint, size: CGSize, paletteColor: UIColor) {
+        super.init(frame: CGRect(0.0, 0.0, size.width, size.height))
+        
+        self.outlineColor = paletteColor
+        self.fillColor = UIColor.clear
+        
+        originClick = origin
+        self.center = origin
+        
+        self.backgroundColor = UIColor.clear
+        
+        initGestureRecognizers()
+    }
+
     
     func initGestureRecognizers() {
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(didPan))
@@ -85,18 +100,18 @@ class TextView: UIView {
     
     func generateText(drawText text: String) -> CATextLayer {
         let textLayer = CATextLayer()
-        textLayer.frame = CGRect(origin: originClick!, size: CGSize(100, 100)) // image.bounds
+        textLayer.frame = CGRect(origin: originClick, size: cgSize) // image.bounds
         
         //UIFont(name: "SFUIText-Light", size: 17)!
         textLayer.font = CTFontCreateWithName("SFUIText-Light" as CFString?, 17, nil) // TODO: Allow user to change
         dlog("font: \(textLayer.font)")
-        
+        textLayer.fontSize = 17.0
         textLayer.string = text
         
         textLayer.foregroundColor = self.outlineColor.cgColor
         textLayer.isWrapped = true
         textLayer.alignmentMode = kCAAlignmentLeft
-        textLayer.contentsScale = 1 //UIScreen.main.scale
+        textLayer.contentsScale = UIScreen.main.scale
         
         dlog("newTextLayer: \(textLayer), for string: \(text)")
 

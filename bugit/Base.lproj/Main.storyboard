@@ -152,7 +152,7 @@
         <!--Editor View Controller-->
         <scene sceneID="ulv-jy-nR8">
             <objects>
-                <viewController id="qHP-hN-bFx" customClass="EditorViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qHP-hN-bFx" customClass="EditorViewController" customModule="bugit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="deH-GF-CsN"/>
                         <viewControllerLayoutGuide type="bottom" id="YLE-E1-jJE"/>
