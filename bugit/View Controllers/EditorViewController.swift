@@ -419,7 +419,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             point.y += textEntryView.textContainerInset.left
             let textView = TextView(origin: point, size: contentSize, paletteColor: self.selectedColor)
             let newTextLayer = textView.generateText(drawText: entryText)
-            self.canvasImageView.layer.addSublayer(newTextLayer)
+            textView.layer.addSublayer(newTextLayer)
+            self.canvasImageView.addSubview(textView)
         }
     }
     
