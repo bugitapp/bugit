@@ -169,8 +169,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.autocapitalizationType = .sentences
         textEntryView.autocorrectionType = .no
         textEntryView.spellCheckingType = .no
-        textEntryView.textContainerInset = UIEdgeInsets.zero;
-        textEntryView.textContainer.lineFragmentPadding = 0;
+        let inset: CGFloat = 4.0
+        textEntryView.textContainerInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         textEntryView.layer.borderColor = UIColor.black.cgColor
         textEntryView.layer.borderWidth = 2.0
         textEntryView.layer.cornerRadius = 6.0
@@ -436,7 +436,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.text = nil
 
         if let entryText = text {
-            let point = textEntryView.frame.origin
+            var point = textEntryView.frame.origin
+            point.x += 4.0
+            point.y += 4.0
             let textView = TextView(origin: point, size: contentSize, paletteColor: self.selectedColor)
             let newTextLayer = textView.generateText(drawText: entryText)
             self.canvasImageView.layer.addSublayer(newTextLayer)
