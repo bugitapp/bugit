@@ -367,7 +367,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         print("didTap.sender.state = \(sender.state)")
         print("didTap.selectedTool = \(selectedTool)")
         
-        let point = sender.location(in: canvasImageView) as CGPoint
+        let point = sender.location(in: canvasImageView)
         
         // Text
         if selectedTool == ToolsInTray.Text {
@@ -405,7 +405,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func doneTextEntry(sender: AnyObject) {
-        var contentSize = textEntryView.contentSize
+        //food for thot  http://stackoverflow.com/questions/746670/how-to-lose-margin-padding-in-uitextview
+        let contentSize = textEntryView.contentSize
         dlog("done, contentSize: \(contentSize)")
         textEntryView.isHidden = true
         textEntryView.resignFirstResponder()
@@ -414,8 +415,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 
         if let entryText = text {
             var point = textEntryView.frame.origin
-            point.x += EditorViewController.inset
-            point.y += EditorViewController.inset
+            point.x += textEntryView.textContainerInset.left + textEntryView.textContainer.lineFragmentPadding
+            point.y += textEntryView.textContainerInset.left
             let textView = TextView(origin: point, size: contentSize, paletteColor: self.selectedColor)
             let newTextLayer = textView.generateText(drawText: entryText)
             self.canvasImageView.layer.addSublayer(newTextLayer)

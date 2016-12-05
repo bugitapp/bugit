@@ -22,7 +22,7 @@ class TextView: UIView {
         self.fillColor = UIColor.clear
         
         originClick = origin
-        self.center = origin
+        //self.center = origin
         
         self.backgroundColor = UIColor.clear
         
