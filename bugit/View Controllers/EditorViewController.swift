@@ -165,6 +165,15 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.backgroundColor = lightBlueThemeColor
         textEntryView.textColor = UIColor.black
         textEntryView.font = UIFont(name: "SFUIText-Light", size: 17)!
+        textEntryView.keyboardType = .default
+        textEntryView.autocapitalizationType = .sentences
+        textEntryView.autocorrectionType = .no
+        textEntryView.spellCheckingType = .no
+        textEntryView.textContainerInset = UIEdgeInsets.zero;
+        textEntryView.textContainer.lineFragmentPadding = 0;
+        textEntryView.layer.borderColor = UIColor.black.cgColor
+        textEntryView.layer.borderWidth = 2.0
+        textEntryView.layer.cornerRadius = 6.0
         canvasImageView.addSubview(textEntryView)
 
         
@@ -360,6 +369,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         // Text
         if selectedTool == ToolsInTray.Text {
             
+            textEntryView.textColor = selectedColor
+            textEntryView.backgroundColor = UIColor.clear
             textEntryView.frame.origin = point
             textEntryView.isHidden = false
             textEntryView.becomeFirstResponder()
@@ -417,16 +428,16 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     func doneTextEntry(sender: AnyObject) {
         dlog("done")
+        let contentSize = textEntryView.contentSize
+        
         textEntryView.isHidden = true
         textEntryView.resignFirstResponder()
         let text = textEntryView.text
-        let sizeThatFits = textEntryView.sizeThatFits(textEntryView.bounds.size)
-        let csize = textEntryView.intrinsicContentSize
         textEntryView.text = nil
 
         if let entryText = text {
             let point = textEntryView.frame.origin
-            let textView = TextView(origin: point, paletteColor: self.selectedColor)       
+            let textView = TextView(origin: point, size: contentSize, paletteColor: self.selectedColor)
             let newTextLayer = textView.generateText(drawText: entryText)
             self.canvasImageView.layer.addSublayer(newTextLayer)
         }
