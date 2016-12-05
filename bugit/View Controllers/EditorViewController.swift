@@ -60,6 +60,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     var isTrayOpen: Bool = true
     var bottomConstraintStartY: CGFloat = 0.0
     var trayTravelDiff: CGFloat = 0.0
+    static let inset: CGFloat = 2.0
+    let textEntryViewInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+
     
     /*
     override func viewWillAppear(_ animated: Bool) {
@@ -161,19 +164,19 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         toolbar.items = [cancelItem, spaceItem, doneItem]
         toolbar.sizeToFit()
         textEntryView.inputAccessoryView = toolbar
+        textEntryView.backgroundColor = UIColor.clear
         textEntryView.isHidden = true
-        textEntryView.backgroundColor = lightBlueThemeColor
-        textEntryView.textColor = UIColor.black
-        textEntryView.font = UIFont(name: "SFUIText-Light", size: 17)!
+        textEntryView.textColor = selectedColor
+        textEntryView.font = defaultBodyFont
         textEntryView.keyboardType = .default
         textEntryView.autocapitalizationType = .sentences
         textEntryView.autocorrectionType = .no
         textEntryView.spellCheckingType = .no
-        let inset: CGFloat = 4.0
-        textEntryView.textContainerInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        textEntryView.textContainerInset = textEntryViewInset
         textEntryView.layer.borderColor = UIColor.black.cgColor
         textEntryView.layer.borderWidth = 2.0
-        textEntryView.layer.cornerRadius = 6.0
+        textEntryView.layer.cornerRadius = 2.0
+        
         canvasImageView.addSubview(textEntryView)
 
         
@@ -181,12 +184,12 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         //trayUp = trayView.center
         //trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
         
-        //trayView.layer.shadowOffset = CGSize(0, 3);
-        //trayView.layer.shadowRadius = 3;
-        //trayView.layer.shadowOpacity = 0.5;
+        trayView.layer.shadowOffset = CGSize(0, 3);
+        trayView.layer.shadowRadius = 3;
+        trayView.layer.shadowOpacity = 0.5;
         
-        //trayView.layer.borderWidth = 1
-        //trayView.layer.borderColor = UIColor.black.cgColor
+        trayView.layer.borderWidth = 2
+        trayView.layer.borderColor = UIColor.black.cgColor
         
         // Put Tray into Down position
         /*
@@ -370,48 +373,23 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         if selectedTool == ToolsInTray.Text {
             
             textEntryView.textColor = selectedColor
-            textEntryView.backgroundColor = UIColor.clear
             textEntryView.frame.origin = point
             textEntryView.isHidden = false
             textEntryView.becomeFirstResponder()
             
-            /*
-            let alert = UIAlertController(title: "Enter Text to Add", message: "", preferredStyle: .alert)
-            alert.addTextField { (textField) in
-                textField.text = "Hello World!"
-            }
-            // Entry for text
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
-                let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-                print("Text field: \(textField?.text)")
-                
-                let textView = TextView(origin: point, paletteColor: self.selectedColor)
-                //let newImage = textView.textToImage(drawText: (textField?.text!)!, inImage: self.canvasImageView.image!)
-                
-                let newText = textView.generateText(drawText: (textField?.text!)!, inImage: self.canvasImageView!)
-                self.canvasImageView.layer.addSublayer(newText)
-            }))
-            // Back out
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true, completion: nil)
-            */
         }
-        
         // Square
-        if selectedTool == ToolsInTray.Square {
+        else if selectedTool == ToolsInTray.Square {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Square)
             self.canvasImageView.addSubview(shapeView)
         }
-        
         // Circle
-        if selectedTool == ToolsInTray.Circle {
+        else if selectedTool == ToolsInTray.Circle {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Circle)
             self.canvasImageView.addSubview(shapeView)
         }
-        
         // Blur
-        if selectedTool == ToolsInTray.Blur {
+        else if selectedTool == ToolsInTray.Blur {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
             shapeView.applyPixelation(canvas: self.canvasImageView)
             self.canvasImageView.addSubview(shapeView)
@@ -427,9 +405,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func doneTextEntry(sender: AnyObject) {
-        dlog("done")
-        let contentSize = textEntryView.contentSize
-        
+        var contentSize = textEntryView.contentSize
+        dlog("done, contentSize: \(contentSize)")
         textEntryView.isHidden = true
         textEntryView.resignFirstResponder()
         let text = textEntryView.text
@@ -437,8 +414,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 
         if let entryText = text {
             var point = textEntryView.frame.origin
-            point.x += 4.0
-            point.y += 4.0
+            point.x += EditorViewController.inset
+            point.y += EditorViewController.inset
             let textView = TextView(origin: point, size: contentSize, paletteColor: self.selectedColor)
             let newTextLayer = textView.generateText(drawText: entryText)
             self.canvasImageView.layer.addSublayer(newTextLayer)

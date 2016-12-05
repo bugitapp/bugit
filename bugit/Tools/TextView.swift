@@ -32,6 +32,7 @@ class TextView: UIView {
     init(origin: CGPoint, size: CGSize, paletteColor: UIColor) {
         super.init(frame: CGRect(0.0, 0.0, size.width, size.height))
         
+        self.cgSize = size
         self.outlineColor = paletteColor
         self.fillColor = UIColor.clear
         
@@ -100,7 +101,7 @@ class TextView: UIView {
     
     func generateText(drawText text: String) -> CATextLayer {
         let textLayer = CATextLayer()
-        textLayer.frame = CGRect(origin: originClick, size: cgSize) // image.bounds
+        textLayer.frame = CGRect(origin: originClick, size: cgSize)
         
         //UIFont(name: "SFUIText-Light", size: 17)!
         textLayer.font = CTFontCreateWithName("SFUIText-Light" as CFString?, 17, nil) // TODO: Allow user to change

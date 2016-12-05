@@ -20,12 +20,12 @@ class AppearanceManager {
         
         UINavigationBar.appearance().barTintColor = brightBlueThemeColor
         UINavigationBar.appearance().tintColor = lightBlueThemeColor
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName: UIFont(name: "SFUIText-Light", size: 21)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: lightGrayThemeColor, NSFontAttributeName: defaultHeadFont]
         
         //UIButton.appearance().backgroundColor = brightBlueThemeColor
         //UIButton.appearance().tintColor = lightBlueThemeColor
         
-        UILabel.appearance().font = UIFont(name: "SFUIText-Light", size: 17)!
+        UILabel.appearance().font = defaultBodyFont
         
         UICollectionView.appearance().backgroundColor = lightLightLightGrayThemeColor
         
