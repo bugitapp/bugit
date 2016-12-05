@@ -31,6 +31,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var colorSlider: UISlider!
     @IBOutlet weak var colorbarImageView: UIImageView!
     
+    var textEntryView: UITextView!
     var screenshotAssetModel: ScreenshotAssetModel?
     
     var panBegan = CGPoint(x:0, y:0)
@@ -127,13 +128,9 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         self.view.addGestureRecognizer(drawTap)
         
         
-        toolButtonView.tag = 2
-        toolButtonView.buttonDelegate = self
-        toolButtonView.selectedColor = UIColor.red
-
-        print("selectedTool = \(selectedTool)")
-        
         setupToolbox()
+        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +141,32 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setupToolbox() {
+        
+        print("selectedTool = \(selectedTool)")
+        
+        toolButtonView.tag = 2
+        toolButtonView.buttonDelegate = self
+        toolButtonView.selectedColor = selectedColor
+        selectedColorView.backgroundColor = selectedColor
         colorSlider.thumbTintColor = selectedColor
+        
+        let point = CGPoint(x:100, y:100)
+        let tvRect = CGRect(origin: point, size: CGSize(width: 128.0, height: 128.0))
+        textEntryView = UITextView(frame: tvRect)
+        
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTextEntry(sender:)))
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTextEntry(sender:)))
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let toolbar = UIToolbar(frame: CGRect.zero)
+        toolbar.items = [cancelItem, spaceItem, doneItem]
+        toolbar.sizeToFit()
+        textEntryView.inputAccessoryView = toolbar
+        textEntryView.isHidden = true
+        textEntryView.backgroundColor = lightBlueThemeColor
+        textEntryView.textColor = UIColor.black
+        textEntryView.font = UIFont(name: "SFUIText-Light", size: 17)!
+        canvasImageView.addSubview(textEntryView)
+
         
         //trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
         //trayUp = trayView.center
@@ -329,7 +351,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {
-        print("tapped")
+
         print("didTap.sender.state = \(sender.state)")
         print("didTap.selectedTool = \(selectedTool)")
         
@@ -337,6 +359,12 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         // Text
         if selectedTool == ToolsInTray.Text {
+            
+            textEntryView.frame.origin = point
+            textEntryView.isHidden = false
+            textEntryView.becomeFirstResponder()
+            
+            /*
             let alert = UIAlertController(title: "Enter Text to Add", message: "", preferredStyle: .alert)
             alert.addTextField { (textField) in
                 textField.text = "Hello World!"
@@ -356,6 +384,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             self.present(alert, animated: true, completion: nil)
+            */
         }
         
         // Square
@@ -375,6 +404,31 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
             shapeView.applyPixelation(canvas: self.canvasImageView)
             self.canvasImageView.addSubview(shapeView)
+        }
+    }
+    
+    func cancelTextEntry(sender: AnyObject) {
+        dlog("cancel")
+        textEntryView.isHidden = true
+        textEntryView.resignFirstResponder()
+        textEntryView.text = nil
+
+    }
+    
+    func doneTextEntry(sender: AnyObject) {
+        dlog("done")
+        textEntryView.isHidden = true
+        textEntryView.resignFirstResponder()
+        let text = textEntryView.text
+        let sizeThatFits = textEntryView.sizeThatFits(textEntryView.bounds.size)
+        let csize = textEntryView.intrinsicContentSize
+        textEntryView.text = nil
+
+        if let entryText = text {
+            let point = textEntryView.frame.origin
+            let textView = TextView(origin: point, paletteColor: self.selectedColor)       
+            let newTextLayer = textView.generateText(drawText: entryText)
+            self.canvasImageView.layer.addSublayer(newTextLayer)
         }
     }
     

@@ -83,21 +83,23 @@ class TextView: UIView {
         return newImage!
     }
     
-    func generateText(drawText text: String, inImage image: UIImageView) -> CATextLayer {
+    func generateText(drawText text: String) -> CATextLayer {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(origin: originClick!, size: CGSize(100, 100)) // image.bounds
         
-        textLayer.font = CTFontCreateWithName("OpenSans" as CFString?, 12, nil) // TODO: Allow user to change
+        //UIFont(name: "SFUIText-Light", size: 17)!
+        textLayer.font = CTFontCreateWithName("SFUIText-Light" as CFString?, 17, nil) // TODO: Allow user to change
+        dlog("font: \(textLayer.font)")
+        
         textLayer.string = text
         
         textLayer.foregroundColor = self.outlineColor.cgColor
         textLayer.isWrapped = true
         textLayer.alignmentMode = kCAAlignmentLeft
-        textLayer.contentsScale = UIScreen.main.scale
+        textLayer.contentsScale = 1 //UIScreen.main.scale
         
         dlog("newTextLayer: \(textLayer), for string: \(text)")
 
-        
         return textLayer
     }
     

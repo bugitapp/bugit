@@ -200,7 +200,7 @@
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-s6-NzF">
                                                         <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="thumbTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
                                                             <action selector="sliderChangedWithSender:" destination="qHP-hN-bFx" eventType="valueChanged" id="55r-76-8rx"/>
                                                         </connections>
