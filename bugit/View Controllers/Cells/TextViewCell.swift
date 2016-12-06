@@ -8,12 +8,18 @@
 
 import UIKit
 
-class TextViewCell: UITableViewCell {
-    @IBOutlet weak var infoTextView: UITextView!
+protocol TextViewCellDelegate : class {
+    func textViewCell(tvc: TextViewCell, textDidChange text: String?)
+}
 
+class TextViewCell: UITableViewCell, UITextViewDelegate {
+    @IBOutlet weak var infoTextView: UITextView!
+    weak var delegate: TextViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        infoTextView.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,4 +28,7 @@ class TextViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func textViewDidChange(_ textView: UITextView) {
+        delegate?.textViewCell(tvc: self, textDidChange: textView.text)
+    }
 }

@@ -9,11 +9,14 @@
 import UIKit
 import MBProgressHUD
 
-class CreateIssueViewController: UITableViewController, SelectionViewControllerDelegate {
+class CreateIssueViewController: UITableViewController, SelectionViewControllerDelegate, TextViewCellDelegate {
 
     var project: String?
     var issueType: String?
     var issuePriority: String?
+    var issueSummary: String?
+    var issueDesc: String?
+    var issueEnvironment: String?
     var screenshotAssetModel: ScreenshotAssetModel?
     var audioFilename: URL?
     let jiraMgr = JiraManager(domainName: nil, username: nil, password: nil)
@@ -61,22 +64,16 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         print("Create Jira Issue")
         let issueModel = IssueModel()
 
-        let projectCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SelectionCell
-        issueModel.project = projectCell.valueLabel.text
-        
-        let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! SelectionCell
-        issueModel.issueTypeId = typeCell.valueLabel.text
-        
-        let priorityCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! SelectionCell
-        issueModel.priority = priorityCell.valueLabel.text
-        
-        let summaryCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextViewCell
-        issueModel.summary = summaryCell.infoTextView.text
-
-        let descriptionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TextViewCell
-        let environmentCell = tableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! TextViewCell
-        issueModel.issueDescription = descriptionCell.infoTextView.text + environmentCell.infoTextView.text
-        
+        issueModel.project = project
+        issueModel.issueTypeId = issueType
+        issueModel.priority = issuePriority
+        issueModel.summary = issueSummary
+        if let issueDesc = issueDesc {
+            issueModel.issueDescription = issueDesc
+        }
+        if let issueDesc = issueDesc, let issueEnvironment = issueEnvironment {
+            issueModel.issueDescription = issueDesc + "\n" + issueEnvironment
+        }
         jiraMgr.createIssue(issue: issueModel,
                             success: { (issue: IssueModel) in
                                 print("Created Issue: \(issue)")
@@ -133,8 +130,29 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                 cell.config(key: "Priority", value: priorityValue)
                 return cell
             }
-        } else if indexPath.section == 1 || indexPath.section == 2 || indexPath.section == 3  {
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
+            cell.tag = indexPath.section
+            cell.delegate = self
+            if let issueSummary = issueSummary {
+                cell.infoTextView.text = issueSummary
+            }
+            return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
+            cell.tag = indexPath.section
+            cell.delegate = self
+            if let issueDesc = issueDesc {
+                cell.infoTextView.text = issueDesc
+            }
+            return cell
+        } else if indexPath.section == 3  {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
+            cell.tag = indexPath.section
+            cell.delegate = self
+            if let issueEnvironment = issueEnvironment {
+                cell.infoTextView.text = issueEnvironment
+            }
             return cell
         } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageViewCell
@@ -180,6 +198,16 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         } else if vc.context == 2 {
             issuePriority = option
             tableView.reloadData()
+        }
+    }
+    
+    internal func textViewCell(tvc: TextViewCell, textDidChange text: String?) {
+        if tvc.tag == 1 {
+            issueSummary = text
+        } else if tvc.tag == 2 {
+            issueDesc = text
+        } else if tvc.tag == 3 {
+            issueEnvironment = text
         }
     }
     
