@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class CreateIssueViewController: UITableViewController {
 
@@ -25,16 +26,11 @@ class CreateIssueViewController: UITableViewController {
 
         setupUI()
         startNetworkActivity()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     func setupUI() {
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 200
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createJiraIssue))
     }
     
     func startNetworkActivity() {
@@ -60,6 +56,42 @@ class CreateIssueViewController: UITableViewController {
                 
         })
     }
+    
+    func createJiraIssue() {
+        print("Create Jira Issue")
+        let issueModel = IssueModel()
+
+        let projectCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SelectionCell
+        issueModel.project = projectCell.valueLabel.text
+        
+        let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! SelectionCell
+        issueModel.issueTypeId = typeCell.valueLabel.text
+        
+        let priorityCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! SelectionCell
+        issueModel.priority = priorityCell.valueLabel.text
+        
+        let summaryCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextViewCell
+        issueModel.summary = summaryCell.infoTextView.text
+
+        let descriptionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TextViewCell
+        let environmentCell = tableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! TextViewCell
+        issueModel.issueDescription = descriptionCell.infoTextView.text + environmentCell.infoTextView.text
+        
+        jiraMgr.createIssue(issue: issueModel,
+                            success: { (issue: IssueModel) in
+                                print("Created Issue: \(issue)")
+                                self.jiraMgr.attach(image: self.screenshotAssetModel?.editedImage , issue: issue, success: {
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                    print("Attached image to \(issue)")
+                                }) { (error: Error) in
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                    print("Erorr attaching image: \(error)")
+                                }
+        }) { (error: Error) in
+            print("Erorr creating issue: \(error)")
+        }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,6 +148,8 @@ class CreateIssueViewController: UITableViewController {
             return "Description"
         } else if section == 3 {
             return "Environment"
+        } else if section == 4 {
+            return "Attachment"
         }
         return ""
     }
