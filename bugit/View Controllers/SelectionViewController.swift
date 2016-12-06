@@ -55,6 +55,13 @@ class SelectionViewController: UITableViewController {
         selectedOption = options?[indexPath.row]
         tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section < 3 {
+            return 60.0
+        }
+        return 220.0
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
