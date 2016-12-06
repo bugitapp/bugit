@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol SelectionViewControllerDelegate : class {
+    func selectionViewController(vc: SelectionViewController!, didSelectOption option: String!)
+}
+
 class SelectionViewController: UITableViewController {
+    var context: Int?
     var options: [String]?
     var selectedOption: String?
+    weak var delegate: SelectionViewControllerDelegate?
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        delegate = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +65,8 @@ class SelectionViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedOption = options?[indexPath.row]
         tableView.reloadData()
+        delegate?.selectionViewController(vc: self, didSelectOption: selectedOption)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

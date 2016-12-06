@@ -9,11 +9,11 @@
 import UIKit
 import MBProgressHUD
 
-class CreateIssueViewController: UITableViewController {
+class CreateIssueViewController: UITableViewController, SelectionViewControllerDelegate {
 
-    var project: ProjectsModel?
-    var issueType: IssueTypeModel?
-    var issuePriority: PriorityTypeModel?
+    var project: String?
+    var issueType: String?
+    var issuePriority: String?
     var screenshotAssetModel: ScreenshotAssetModel?
     var audioFilename: URL?
     let jiraMgr = JiraManager(domainName: nil, username: nil, password: nil)
@@ -36,21 +36,21 @@ class CreateIssueViewController: UITableViewController {
     func startNetworkActivity() {
         jiraMgr.loadProjects(success: { (projects: [ProjectsModel]) in
             self.availableProjects = projects
-            self.project = projects[0]
+            self.project = projects[0].key
             self.tableView.reloadData()
             }, failure: { (error: NSError) in
                 
         })
         jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
             self.availableIssueTypes = issueTypes
-            self.issueType = issueTypes[0]
+            self.issueType = issueTypes[0].name
             self.tableView.reloadData()
             }, failure: { (error: NSError) in
                 
         })
         jiraMgr.loadPriorities(success: { (priorityTypes: [PriorityTypeModel]) in
             self.availablePriorityTypes = priorityTypes
-            self.issuePriority = priorityTypes[0]
+            self.issuePriority = priorityTypes[0].name
             self.tableView.reloadData()
             }, failure: { (error: NSError) in
                 
@@ -116,17 +116,20 @@ class CreateIssueViewController: UITableViewController {
         if indexPath.section == 0 {
             if (indexPath.row == 0) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SelectionCell", for: indexPath) as! SelectionCell
-                let projValue = project?.key == nil ? "-" : project?.key
+                cell.tag = indexPath.row
+                let projValue = project == nil ? "-" : project
                 cell.config(key: "Project", value: projValue)
                 return cell
             } else if (indexPath.row == 1) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SelectionCell", for: indexPath) as! SelectionCell
-                let typeValue = issueType?.name == nil ? "-" : issueType?.name
+                cell.tag = indexPath.row
+                let typeValue = issueType == nil ? "-" : issueType
                 cell.config(key: "Type", value: typeValue)
                 return cell
             } else if (indexPath.row == 2) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SelectionCell", for: indexPath) as! SelectionCell
-                let priorityValue = issuePriority?.name == nil ? "-" : issuePriority?.name
+                cell.tag = indexPath.row
+                let priorityValue = issuePriority == nil ? "-" : issuePriority
                 cell.config(key: "Priority", value: priorityValue)
                 return cell
             }
@@ -165,6 +168,19 @@ class CreateIssueViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "MakeSelectionSegue", sender: self)
+    }
+    
+    internal func selectionViewController(vc: SelectionViewController!, didSelectOption option: String!) {
+        if vc.context == 0 {
+            project = option
+            tableView.reloadData()
+        } else if vc.context == 1 {
+            issueType = option
+            tableView.reloadData()
+        } else if vc.context == 2 {
+            issuePriority = option
+            tableView.reloadData()
+        }
     }
     
     /*
@@ -208,15 +224,37 @@ class CreateIssueViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MakeSelectionSegue" {
             // Get a reference to the detail view controller
-            let destinationViewController = segue.destination as! SelectionViewController
+            let selectionViewController = segue.destination as! SelectionViewController
+            selectionViewController.context = tableView.indexPathForSelectedRow?.row
+            selectionViewController.delegate = self
             let selectedIndexPath = tableView.indexPathForSelectedRow
             if selectedIndexPath?.section == 0 {
+                // projects selection
                 if selectedIndexPath?.row == 0 {
                     var options = [String]()
                     for proj in availableProjects! {
-                        options.append(proj.name!)
+                        options.append(proj.key!)
                     }
-                    destinationViewController.options = options
+                    selectionViewController.options = options
+                    selectionViewController.selectedOption = project
+                }
+                // issue type selection
+                else if selectedIndexPath?.row == 1 {
+                    var options = [String]()
+                    for issueType in availableIssueTypes! {
+                        options.append(issueType.name!)
+                    }
+                    selectionViewController.options = options
+                    selectionViewController.selectedOption = issueType
+                }
+                // priority selection
+                else if selectedIndexPath?.row == 2 {
+                    var options = [String]()
+                    for priorityType in availablePriorityTypes! {
+                        options.append(priorityType.name!)
+                    }
+                    selectionViewController.options = options
+                    selectionViewController.selectedOption = issuePriority
                 }
             }
         }
