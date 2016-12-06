@@ -9,23 +9,13 @@
 import UIKit
 import AVFoundation
 
-class AudioRecorder: UIViewController, AVAudioRecorderDelegate {
+class AudioRecorder: NSObject, AVAudioRecorderDelegate {
     
-    var recordButton: UIButton!
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     
-    func initRecordTool() {
-        recordButton = UIButton(frame: CGRect(x: 64, y: 64, width: 128, height: 64))
-        recordButton.setTitle("Record", for: .normal)
-        recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
-        view.addSubview(recordButton)
-    }
-
     func recordTapped() {
         recordingSession = AVAudioSession.sharedInstance()
-        
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
@@ -62,7 +52,7 @@ class AudioRecorder: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.delegate = self
             audioRecorder.record()
             
-            recordButton.setTitle("Tap to Stop", for: .normal)
+            //recordButton.setTitle("Tap to Stop", for: .normal)
         } catch {
             finishRecording(success: false)
         }
@@ -79,9 +69,9 @@ class AudioRecorder: UIViewController, AVAudioRecorderDelegate {
         audioRecorder = nil
         
         if success {
-            recordButton.setTitle("Tap to Re-record", for: .normal)
+            //recordButton.setTitle("Tap to Re-record", for: .normal)
         } else {
-            recordButton.setTitle("Tap to Record", for: .normal)
+            //recordButton.setTitle("Tap to Record", for: .normal)
             // recording failed :(
         }
     }

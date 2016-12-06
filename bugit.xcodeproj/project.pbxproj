@@ -12,6 +12,7 @@
 		170E509D1DEFE81800E0C830 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509A1DEFE81800E0C830 /* Step2ViewController.swift */; };
 		170E509E1DEFE81800E0C830 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170E509B1DEFE81800E0C830 /* Step3ViewController.swift */; };
 		17565DCB1DF6723D0028A1B3 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17565DCA1DF6723D0028A1B3 /* AudioRecorder.swift */; };
+		17565DCD1DF678690028A1B3 /* audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 17565DCC1DF678690028A1B3 /* audio.png */; };
 		17AD5F811DF130C60086978D /* xUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AD5F801DF130C60086978D /* xUIImageView.swift */; };
 		17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */; };
 		17CD94461DDACCC2001928B5 /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */; };
@@ -94,6 +95,7 @@
 		170E509A1DEFE81800E0C830 /* Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step2ViewController.swift; path = IntroGuide/Step2ViewController.swift; sourceTree = "<group>"; };
 		170E509B1DEFE81800E0C830 /* Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step3ViewController.swift; path = IntroGuide/Step3ViewController.swift; sourceTree = "<group>"; };
 		17565DCA1DF6723D0028A1B3 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		17565DCC1DF678690028A1B3 /* audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio.png; sourceTree = "<group>"; };
 		17AD5F801DF130C60086978D /* xUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIImageView.swift; sourceTree = "<group>"; };
 		17CD94291DDACCC2001928B5 /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		17CD942A1DDACCC2001928B5 /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		1BEC3A331DF3987D0056702B /* sidebarbuttons */ = {
 			isa = PBXGroup;
 			children = (
+				17565DCC1DF678690028A1B3 /* audio.png */,
 				1BEC3A341DF3987D0056702B /* arrow.png */,
 				1BEC3A351DF3987D0056702B /* circle.png */,
 				1BEC3A3E1DF3AE7A0056702B /* blur.png */,
@@ -510,6 +513,7 @@
 				1BEC3A3D1DF3987D0056702B /* text.png in Resources */,
 				1BEC3A3A1DF3987D0056702B /* circle.png in Resources */,
 				D2E8F22E1DF3E42A00383D4D /* HorizontalButtonView.xib in Resources */,
+				17565DCD1DF678690028A1B3 /* audio.png in Resources */,
 				17CD94531DDACCC2001928B5 /* SF-UI-Text-LightItalic.otf in Resources */,
 				17CD94451DDACCC2001928B5 /* SF-UI-Display-Black.otf in Resources */,
 			);

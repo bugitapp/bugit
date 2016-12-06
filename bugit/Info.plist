@@ -48,8 +48,10 @@
 		<string>SF-UI-Text-Bold.otf</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>Understand your location of bugs.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>BugIt needs access to your bug screenshots</string>
+	<string>Understand your location of bugs.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>BugIt needs access to your screenshots gallery.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ButIt needs access to allow you to record using the audio tool.</string>
 </dict>
 </plist>

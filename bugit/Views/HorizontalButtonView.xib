@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,8 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wEI-fC-jJj">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKc-Op-3ax">
+                            <rect key="frame" x="0.0" y="0.0" width="46.5" height="100"/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
@@ -27,6 +32,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JmD-GX-VT8">
+                            <rect key="frame" x="54.5" y="0.0" width="47" height="100"/>
                             <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
@@ -34,6 +40,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5h-d5-ygv">
+                            <rect key="frame" x="109.5" y="0.0" width="46.5" height="100"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
@@ -41,6 +48,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSz-jP-IZm">
+                            <rect key="frame" x="164" y="0.0" width="47" height="100"/>
                             <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
@@ -48,6 +56,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tr-g0-LqJ">
+                            <rect key="frame" x="219" y="0.0" width="46.5" height="100"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
@@ -55,9 +64,18 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggr-tl-fze">
+                            <rect key="frame" x="273.5" y="0.0" width="47" height="100"/>
                             <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                             <connections>
                                 <action selector="onButtonPressed:" destination="-1" eventType="touchUpInside" id="OOk-hB-AbC"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="6" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEG-Wy-Pgo">
+                            <rect key="frame" x="328.5" y="0.0" width="46.5" height="100"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                            <connections>
+                                <action selector="onButtonPressed:" destination="-1" eventType="touchUpInside" id="aNb-tQ-f1t"/>
                             </connections>
                         </button>
                     </subviews>
