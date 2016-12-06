@@ -32,8 +32,8 @@ class CreateIssueViewController: UITableViewController {
     }
 
     func setupUI() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 200
     }
     
     func startNetworkActivity() {
@@ -119,6 +119,15 @@ class CreateIssueViewController: UITableViewController {
         return ""
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section < 1 {
+            return 60.0
+        } else if indexPath.section < 4 {
+            return 100.0
+        }
+        return 420.0
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "MakeSelectionSegue", sender: self)
     }
