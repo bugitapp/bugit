@@ -12,6 +12,8 @@ import UIKit
 protocol HorizontalButtonViewDelegate {
     
     func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton)
+    
+    func onAudioRecorded(audioFilename: URL)
 }
 
 class HorizontalButtonView: UIView {
@@ -25,6 +27,8 @@ class HorizontalButtonView: UIView {
     var buttonDelegate: HorizontalButtonViewDelegate? = nil
     
     var selectedColor: UIColor = UIColor.red
+    
+    let audioRecorder = AudioRecorder()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -110,8 +114,33 @@ class HorizontalButtonView: UIView {
     }
     
     @IBAction func onRecordPressed(_ sender: UIButton) {
-        let audioRecorder = AudioRecorder()
+        //let audioRecorder = AudioRecorder()
         audioRecorder.recordTapped()
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: "Recording...", message: "", preferredStyle: .alert)
+        
+        let stopAction: UIAlertAction = UIAlertAction(title: "Stop", style: .cancel) { action -> Void in
+            self.audioRecorder.stopRecording()
+            let audioFilename = self.audioRecorder.getAudioFile()
+            
+            // Send it back to Editor
+            self.buttonDelegate?.onAudioRecorded(audioFilename: audioFilename)
+        }
+        actionSheetController.addAction(stopAction)
+        
+        let stopPlayAction: UIAlertAction = UIAlertAction(title: "Stop & Play", style: .default) { action -> Void in
+            self.audioRecorder.stopRecording()
+            let audioFilename = self.audioRecorder.getAudioFile()
+            
+            // Now play it back
+            self.audioRecorder.playAudio()
+            
+            // Send it back to Editor
+            self.buttonDelegate?.onAudioRecorded(audioFilename: audioFilename)
+        }
+        actionSheetController.addAction(stopPlayAction)
+        
+        UIApplication.shared.keyWindow?.rootViewController?.present(actionSheetController, animated: true, completion: nil)
     }
     
     @IBAction func onButtonPressed(_ sender: UIButton) {

@@ -34,6 +34,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     var textEntryView: UITextView!
     var screenshotAssetModel: ScreenshotAssetModel?
+    var audioFilename: URL?
     
     var panBegan = CGPoint(x:0, y:0)
     var panEnded = CGPoint(x:0, y:0)
@@ -223,7 +224,8 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             
             screenshotAssetModel?.editedImage = takeSnapshotOfView(view: canvasImageView)
 
-            destinationViewController.screenshotAssetModel = screenshotAssetModel
+            destinationViewController.screenshotAssetModel = self.screenshotAssetModel
+            destinationViewController.audioFilename = self.audioFilename
         }
     }
     
@@ -389,7 +391,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.isHidden = true
         textEntryView.resignFirstResponder()
         textEntryView.text = nil
-
     }
     
     func doneTextEntry(sender: AnyObject) {
@@ -543,11 +544,17 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 
 extension EditorViewController: HorizontalButtonViewDelegate {
     
-    func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
+    internal func onHButtonPressed(buttonView: HorizontalButtonView, button: UIButton) {
         dlog("btnView: \(buttonView.tag),  buttontag: \(button.tag)")
         
         selectedTool = ToolsInTray(rawValue: button.tag)
         selectedButtonState = button.tag
     }
+    
+    internal func onAudioRecorded(audioFilename: URL) {
+        dlog("audioFilename: \(audioFilename)")
+        
+        self.audioFilename = audioFilename
+    }
+    
 }
-

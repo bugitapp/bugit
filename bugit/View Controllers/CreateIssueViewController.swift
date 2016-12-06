@@ -14,6 +14,7 @@ class CreateIssueViewController: UITableViewController {
     var issueType: IssueTypeModel?
     var issuePriority: PriorityTypeModel?
     var screenshotAssetModel: ScreenshotAssetModel?
+    var audioFilename: URL?
     let jiraMgr = JiraManager(domainName: nil, username: nil, password: nil)
     var availableProjects: [ProjectsModel]?
     var availableIssueTypes: [IssueTypeModel]?
