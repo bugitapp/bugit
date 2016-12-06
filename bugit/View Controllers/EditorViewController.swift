@@ -15,6 +15,7 @@ enum ToolsInTray: Int {
     case Square
     case Freehand
     case Blur
+    case Audio
 }
 
 class EditorViewController: UIViewController, UIScrollViewDelegate {
@@ -228,7 +229,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Gestures
     
-    
     @IBAction func onCanvasViewPinch(_ sender: UIPinchGestureRecognizer) {
         
         dlog("sender.scale: \(sender.scale)")
@@ -377,6 +377,10 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
             let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
             shapeView.applyPixelation(canvas: self.canvasImageView)
             self.canvasImageView.addSubview(shapeView)
+        }
+        // Audio
+        else if selectedTool == ToolsInTray.Audio {
+            // Show Audio controls on Tap?
         }
     }
     

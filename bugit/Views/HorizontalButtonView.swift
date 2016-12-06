@@ -59,6 +59,7 @@ class HorizontalButtonView: UIView {
         
         for (i, b) in buttonArray.enumerated() {
             b.backgroundColor = UIColor.white
+            b.imageView?.contentMode = .scaleAspectFit
             
             if i == 0 {
                 buttonState.append(1)
@@ -98,7 +99,19 @@ class HorizontalButtonView: UIView {
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
             }
+            else if i == 6 {
+                let img = UIImage(named: "audio")
+                b.setImage(img, for: .normal)
+                buttonState.append(0)
+                b.backgroundColor = UIColor.white
+                b.addTarget(self, action: #selector(onRecordPressed), for: .touchUpInside)
+            }
         }
+    }
+    
+    @IBAction func onRecordPressed(_ sender: UIButton) {
+        let audioRecorder = AudioRecorder()
+        audioRecorder.recordTapped()
     }
     
     @IBAction func onButtonPressed(_ sender: UIButton) {
