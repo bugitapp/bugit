@@ -130,21 +130,19 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         let drawTap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         self.view.addGestureRecognizer(drawTap)
         
-        
         setupToolbox()
-        
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        self.closeMenu()
         
         trayTravelDiff = trayViewHeightConstraint.constant - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
     }
     
     func setupToolbox() {
-        
         print("selectedTool = \(selectedTool)")
         
         toolButtonView.tag = 2
@@ -178,11 +176,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.layer.cornerRadius = 2.0
         
         canvasImageView.addSubview(textEntryView)
-
-        
-        //trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
-        //trayUp = trayView.center
-        //trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
         
         trayView.layer.shadowOffset = CGSize(0, 3);
         trayView.layer.shadowRadius = 3;
@@ -190,15 +183,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         trayView.layer.borderWidth = 2
         trayView.layer.borderColor = UIColor.black.cgColor
-        
-        // Put Tray into Down position
-        /*
-        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
-                       animations: { () -> Void in
-                        self.trayView.center = self.trayDown
-            }, completion: { (finished) -> Void in
-                dlog("down")
-            })*/
     }
 
     override func didReceiveMemoryWarning() {
