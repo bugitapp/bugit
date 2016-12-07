@@ -101,6 +101,11 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     }
     
     func createJiraIssue() {
+        if issueSummary == nil || issueSummary?.characters.count == 0 {
+            showErrorAlert(title: "No Summary", message: "Please enter a summary for the issue")
+            return
+        }
+        
         print("Create Jira Issue")
         let issueModel = IssueModel()
         view.endEditing(true)
@@ -129,7 +134,7 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                                         }) { (error: Error) in
                                             print("Erorr attaching Audio: \(error)")
                                             self.hideProgress()
-                                            self.showErrorAlert(error: error)
+                                            self.showErrorAlert(title: "Failed to upload Audio", message: error.localizedDescription)
                                         }
                                     }
                                     else {
@@ -139,18 +144,18 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                                 }) { (error: Error) in
                                     print("Erorr attaching image: \(error)")
                                     self.hideProgress()
-                                    self.showErrorAlert(error: error)
+                                    self.showErrorAlert(title: "Failed to upload image", message: error.localizedDescription)
                                 }
         }) { (error: Error) in
             self.hideProgress()
             print("Erorr creating issue: \(error)")
-            self.showErrorAlert(error: error)
+            self.showErrorAlert(title: "Failed to create issue", message: error.localizedDescription)
         }
         showProgress()
     }
     
-    func showErrorAlert(error: Error) {
-        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+    func showErrorAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(OKAction)
         present(alertController, animated: true)
