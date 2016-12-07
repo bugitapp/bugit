@@ -97,7 +97,8 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     func createJiraIssue() {
         print("Create Jira Issue")
         let issueModel = IssueModel()
-
+        view.endEditing(true)
+        tableView.setContentOffset(CGPoint(0, 0), animated: true)
         issueModel.project = project
         issueModel.issueTypeId = issueType
         issueModel.priority = issuePriority
@@ -183,7 +184,15 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                 cell.config(key: "Priority", value: priorityValue)
                 return cell
             }
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 1  {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
+            cell.tag = indexPath.section
+            cell.delegate = self
+            if let issueEnvironment = issueEnvironment {
+                cell.infoTextView.text = issueEnvironment
+            }
+            return cell
+        } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
             cell.tag = indexPath.section
             cell.delegate = self
@@ -191,20 +200,12 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                 cell.infoTextView.text = issueSummary
             }
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
             cell.tag = indexPath.section
             cell.delegate = self
             if let issueDesc = issueDesc {
                 cell.infoTextView.text = issueDesc
-            }
-            return cell
-        } else if indexPath.section == 3  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! TextViewCell
-            cell.tag = indexPath.section
-            cell.delegate = self
-            if let issueEnvironment = issueEnvironment {
-                cell.infoTextView.text = issueEnvironment
             }
             return cell
         } else if indexPath.section == 4 {
@@ -217,11 +218,11 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "Summary"
-        } else if section == 2 {
-            return "Description"
-        } else if section == 3 {
             return "Environment"
+        } else if section == 2 {
+            return "Summary"
+        } else if section == 3 {
+            return "Description"
         } else if section == 4 {
             return "Attachment"
         }
@@ -256,11 +257,11 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     
     internal func textViewCell(tvc: TextViewCell, textDidChange text: String?) {
         if tvc.tag == 1 {
-            issueSummary = text
-        } else if tvc.tag == 2 {
-            issueDesc = text
-        } else if tvc.tag == 3 {
             issueEnvironment = text
+        } else if tvc.tag == 2 {
+            issueSummary = text
+        } else if tvc.tag == 3 {
+            issueDesc = text
         }
     }
     
