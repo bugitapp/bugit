@@ -37,6 +37,12 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createJiraIssue))
         issueEnvironment = deviceInfo()
+        if screenshotAssetModel?.editedImage != nil && audioFilename != nil {
+            issueDesc = "Please see the attached image and audio recording."
+        }
+        else if screenshotAssetModel?.editedImage != nil {
+            issueDesc = "Please see the attached image."
+        }
     }
     
     func startNetworkActivity() {
