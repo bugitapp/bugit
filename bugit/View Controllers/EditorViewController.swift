@@ -462,8 +462,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
                     let pimageView = PixelatedImageView(frame: placedRect, image: scaledCanvasImage, regionSize: placedRect.size, containerBounds: self.canvasImageView.bounds)
                     
                     pimageView.applyPixelation()
-                    pimageView.layer.borderWidth = 2
-                    pimageView.layer.borderColor = UIColor.red.cgColor
                     self.canvasImageView.addSubview(pimageView)
                     
                 }
