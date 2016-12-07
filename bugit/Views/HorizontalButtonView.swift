@@ -67,36 +67,42 @@ class HorizontalButtonView: UIView {
                 b.backgroundColor = UIColor.white
                 b.backgroundColor = UIColor.groupTableViewBackground
                 b.tintColor = selectedColor
+                b.imageView?.contentMode = .scaleAspectFit
             }
             else if i == 1 {
                 let img = UIImage(named: "text")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
+                b.imageView?.contentMode = .scaleAspectFit
             }
             else if i == 2 {
                 let img = UIImage(named: "circle")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
+                b.imageView?.contentMode = .scaleAspectFit
             }
             else if i == 3 {
                 let img = UIImage(named: "square")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
+                b.imageView?.contentMode = .scaleAspectFit
             }
             else if i == 4 {
                 let img = UIImage(named: "freehand")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
+                b.imageView?.contentMode = .scaleAspectFit
             }
             else if i == 5 {
                 let img = UIImage(named: "blur")
                 b.setImage(img, for: .normal)
                 buttonState.append(0)
                 b.backgroundColor = UIColor.white
+                b.imageView?.contentMode = .scaleAspectFit
             }
         }
     }

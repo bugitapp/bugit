@@ -9,47 +9,34 @@
 import UIKit
 import AVFoundation
 
-enum ShapeType: Int {
-    case Square
-    case Circle
-    case Triangle
-    case Blur
-}
 
-class ShapeView: UIView {
+class PixelatedImageView: UIView {
     
-    let size: CGFloat = 150
-    let lineWidth: CGFloat = 6
+    var regionSize: CGSize = CGSize(width: 0, height: 0)
+    var containerBounds: CGRect = CGRect.zero
     var fillColor: UIColor!
     var outlineColor: UIColor!
-    var path: UIBezierPath!
+    var canvasImage: UIImage!
     
-    var selectedShape: ShapeType!
-    var canvasImageView: UIImageView!
-    
-    init(origin: CGPoint, paletteColor: UIColor, shapeType: ShapeType) {
-        super.init(frame: CGRect(0.0, 0.0, size, size))
-        
-        self.outlineColor = (shapeType == ShapeType.Blur) ? UIColor.clear : paletteColor
+    init(frame: CGRect, image: UIImage, regionSize: CGSize, containerBounds: CGRect) {
+        super.init(frame: frame)
+        self.canvasImage = image
+        self.regionSize = regionSize
+        self.containerBounds = containerBounds
+        self.outlineColor = UIColor.clear
         self.fillColor = UIColor.clear
-        
-        self.path = selectShape(shapeType: shapeType)
-        self.center = origin
-        
-        selectedShape = shapeType
-        
         self.backgroundColor = UIColor.clear
         
         initGestureRecognizers()
     }
     
-    func scaleImageToImageAspectFit(imageView: UIImageView) -> UIImage? {
+    func scaleImageToImageAspectFit() -> UIImage? {
         
-        if let img = imageView.image {
+        if let img = canvasImage {
             
             dlog("origImageSize: \(img.size)")
             
-            let rect = AVMakeRect(aspectRatio: img.size, insideRect: imageView.bounds)
+            let rect = AVMakeRect(aspectRatio: img.size, insideRect: containerBounds)
             
             dlog("scaledImageRect: \(rect)")
             
@@ -64,32 +51,28 @@ class ShapeView: UIView {
     }
 
     
-    func applyPixelation(canvas: UIImageView) {
-        self.canvasImageView = canvas
+    func applyPixelation() {
+        
         dlog("self.frame: \(self.frame), self.center: \(self.center)")
         
-        let cropRect = CGRect(self.center.x - self.size, self.center.y - self.size, self.size, self.size)
-    
-        let scaledImage = scaleImageToImageAspectFit(imageView: canvas)
-        dlog("scaledImage: \(scaledImage)")
-        let sectionImage = scaledImage?.crop(bounds: cropRect)
+        let scaledRect = AVMakeRect(aspectRatio: canvasImage.size, insideRect: containerBounds)
+        var cropRect = self.frame
+        cropRect.origin.x -= scaledRect.origin.x
+        
+        let sectionImage = canvasImage.crop(bounds: cropRect)
         dlog("scaledSectionImage: \(sectionImage)")
 
-        let pixelatedImageView = UIImageView(image: sectionImage)
+        let pixelatedImage = sectionImage?.pixellated()
+        let pixelatedImageView = UIImageView(image: pixelatedImage)
         pixelatedImageView.contentMode = .scaleAspectFit
-        //pixelatedImageView.center = self.center
         pixelatedImageView.tag = 99
-        //pixelatedImageView.addBlurEffect()
         
         if let v = self.viewWithTag(99) {
             dlog("last frame: \(v.frame), center: \(v.center)")
             v.removeFromSuperview()
         }
         
-        
         self.addSubview(pixelatedImageView)
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -122,38 +105,35 @@ class ShapeView: UIView {
         return path
     }
     
-    func selectShape(shapeType: ShapeType) -> UIBezierPath {
-        let insetRect = self.bounds.insetBy(dx: (shapeType == ShapeType.Blur) ? 0 : lineWidth,
-                                            dy: (shapeType == ShapeType.Blur) ? 0 : lineWidth)
-        
-        if shapeType == ShapeType.Square {
-            return UIBezierPath(roundedRect: insetRect, cornerRadius: 10.0)
-        } else if shapeType == ShapeType.Circle {
-            return UIBezierPath(ovalIn: insetRect)
-        } else if shapeType == ShapeType.Triangle {
-            return trianglePathInRect(rect: insetRect)
-        } else if shapeType == ShapeType.Blur {
-            return UIBezierPath(roundedRect: insetRect, cornerRadius: 0)
-        } else {
-            return UIBezierPath(roundedRect: insetRect, cornerRadius: 0)
-        }
-    }
-    
     func didPan(_ sender: UIPanGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         
+        guard let canvas = self.canvasImage else {
+            return
+        }
+        
         var translation = sender.translation(in: self)
         translation = translation.applying(self.transform)
+
+        let scaledRect = AVMakeRect(aspectRatio: canvas.size, insideRect: containerBounds)
+        let x:CGFloat = self.center.x - self.bounds.width/2.0
         
+        if x >= scaledRect.origin.x {
+            self.applyPixelation()
+        }
+        else {
+            if let v = self.viewWithTag(99) {
+                dlog("last frame: \(v.frame), center: \(v.center)")
+                v.removeFromSuperview()
+            }
+        }
         self.center.x += translation.x
         self.center.y += translation.y
         
+        
         sender.setTranslation(CGPoint.zero, in: self)
         
-        dlog("ShapeView.didPan")
-        if ((canvasImageView) != nil) {
-            self.applyPixelation(canvas: self.canvasImageView)
-        }
+        
     }
     
     func didPinch(_ sender: UIPinchGestureRecognizer) {
@@ -173,17 +153,5 @@ class ShapeView: UIView {
         sender.rotation = 0.0
     }
     
-    override func draw(_ rect: CGRect) {
-        dlog("ShapeView.draw")
         
-        self.fillColor.setFill()
-        self.path.fill()
-        
-        outlineColor.setStroke()
-        
-        path.lineWidth = (selectedShape == ShapeType.Blur) ? 0 : self.lineWidth
-        
-        path.stroke()
-    }
-    
 }

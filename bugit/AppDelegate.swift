@@ -25,6 +25,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "ud1_launch_intro_guide")
         }
         
+        /*
+        NSArray* filters = [CIFilter filterNamesInCategories:nil];
+        for (NSString* filterName in filters)
+        {
+            NSLog(@"Filter: %@", filterName);
+            NSLog(@"Parameters: %@", [[CIFilter filterWithName:filterName] attributes]);
+        }
+ 
+        let ciFilters = CIFilter.filterNames(inCategories: nil)
+        for filterName in ciFilters {
+            
+            dlog("filterName: \(filterName)")
+            let ciFilter = CIFilter(name: filterName)
+            if let filter = ciFilter {
+                let filterAttributes = filter.attributes
+                dlog("filterAttributes: \(filterAttributes)")
+            }
+        }
+         */
+
         return true
     }
 

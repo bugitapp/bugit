@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 enum ToolsInTray: Int {
     case Arrow
@@ -21,6 +23,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 
     //@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
+    var scaledCanvasImage: UIImage!
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var trayViewHeightConstraint: NSLayoutConstraint!
@@ -95,6 +98,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 //        self.scrollView.delegate = self;
         
         canvasImageView.image = screenshotAssetModel?.screenshotImage
+        
         //canvasImageView.addBlurEffect()
         //canvasImageView.image = canvasImageView.image?.pixellated(scale: 20)
         
@@ -143,6 +147,15 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         dlog("trayTravelDiff: \(trayTravelDiff)")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        dlog("screenshot scale: \(self.screenshotAssetModel?.screenshotImage?.scale)")
+        let scaledCanvas = scaleImageToImageAspectFit(imageView: self.canvasImageView)
+        
+        self.scaledCanvasImage = scaledCanvas
+    }
+    
     func setupToolbox() {
         
         print("selectedTool = \(selectedTool)")
@@ -152,6 +165,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         toolButtonView.selectedColor = selectedColor
         selectedColorView.backgroundColor = selectedColor
         colorSlider.thumbTintColor = selectedColor
+        trayArrowButton.backgroundColor = UIColor.lightGray
         
         let point = CGPoint(x:100, y:100)
         let tvRect = CGRect(origin: point, size: CGSize(width: 128.0, height: 128.0))
@@ -178,11 +192,6 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         textEntryView.layer.cornerRadius = 2.0
         
         canvasImageView.addSubview(textEntryView)
-
-        
-        //trayDownOffset = self.view.bounds.size.height-(trayView.frame.origin.y+38)
-        //trayUp = trayView.center
-        //trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
         
         trayView.layer.shadowOffset = CGSize(0, 3);
         trayView.layer.shadowRadius = 3;
@@ -190,15 +199,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         
         trayView.layer.borderWidth = 2
         trayView.layer.borderColor = UIColor.black.cgColor
-        
-        // Put Tray into Down position
-        /*
-        UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
-                       animations: { () -> Void in
-                        self.trayView.center = self.trayDown
-            }, completion: { (finished) -> Void in
-                dlog("down")
-            })*/
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -354,13 +355,64 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Draw
     
     func takeSnapshotOfView(view:UIView) -> UIImage? {
-        UIGraphicsBeginImageContext(CGSize(width: view.frame.size.width, height: view.frame.size.height))
-        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height), afterScreenUpdates: true) // <-- TODO? required?
+        UIGraphicsBeginImageContext(CGSize(width: view.bounds.size.width, height: view.bounds.size.height))
+        view.drawHierarchy(in: CGRect(x: 0.0, y: 0.0, width: view.bounds.size.width, height: view.bounds.size.height), afterScreenUpdates: true) // <-- TODO? required?
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image
     }
+    
+    func scaleImageToImageAspectFit(imageView: UIImageView) -> UIImage? {
+        
+        if let img = imageView.image {
+            
+            dlog("origImageSize: \(img.size)")
+            
+            let rect = AVMakeRect(aspectRatio: img.size, insideRect: imageView.bounds)
+            
+            dlog("scaledImageRect: \(rect)")
+            
+            let scaledImage = img.simpleScale(newSize: rect.size)
+            
+            dlog("scaledImage: \(scaledImage)")
+            
+            return scaledImage
+        }
+        
+        return nil
+    }
+    
+    
+    func scaleImageFillSides(image: UIImage, containerBounds: CGRect) {
+        
+        if let cgImage = image.cgImage {
+            
+            let ctxWidth = containerBounds.width
+            let ctxHeight = containerBounds.height
+            let bitsPerComponent = cgImage.bitsPerComponent
+            let bytesPerRow = cgImage.bytesPerRow
+            let colorSpace = cgImage.colorSpace
+            let bitmapInfo = cgImage.bitmapInfo
+            
+            if let context = CGContext(data: nil, width: Int(ctxWidth), height: Int(ctxHeight), bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue) {
+                
+                context.interpolationQuality = .high
+                let imageRect = CGRect(origin: containerBounds.origin, size: image.size)
+                context.draw(cgImage, in: imageRect)
+                
+                if let scaledCgImage = context.makeImage() {
+                
+                    let uiImage = UIImage(cgImage: scaledCgImage)
+                    
+                    dlog("uiImage: \(uiImage)")
+                }
+                
+            }
+        }
+        
+    }
+ 
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {
 
@@ -390,12 +442,36 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         }
         // Blur
         else if selectedTool == ToolsInTray.Blur {
-            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
-            shapeView.applyPixelation(canvas: self.canvasImageView)
-            self.canvasImageView.addSubview(shapeView)
+            //let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
+            
+            //shapeView.applyPixelation(canvas: self.canvasImageView)
+            //self.canvasImageView.addSubview(shapeView)
+            
+            
+            if let origImageSize = self.screenshotAssetModel?.screenshotImage?.size {
+                
+                let scaledRect = AVMakeRect(aspectRatio: origImageSize, insideRect: self.canvasImageView.bounds)
+                let w:CGFloat = 100.0
+                let h:CGFloat = 50.0
+                let x:CGFloat = point.x - w/2.0
+                let y:CGFloat = point.y - h/2.0
+                
+                if x >= scaledRect.origin.x {
+                    
+                    let placedRect = CGRect(x: x, y: y, width: w, height: h)
+                    let pimageView = PixelatedImageView(frame: placedRect, image: scaledCanvasImage, regionSize: placedRect.size, containerBounds: self.canvasImageView.bounds)
+                    
+                    pimageView.applyPixelation()
+                    pimageView.layer.borderWidth = 2
+                    pimageView.layer.borderColor = UIColor.red.cgColor
+                    self.canvasImageView.addSubview(pimageView)
+                    
+                }
+            }
         }
     }
     
+       
     func cancelTextEntry(sender: AnyObject) {
         dlog("cancel")
         textEntryView.isHidden = true
