@@ -83,13 +83,22 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                                 }) { (error: Error) in
                                     MBProgressHUD.hide(for: self.view, animated: true)
                                     print("Erorr attaching image: \(error)")
+                                    self.showErrorAlert(error: error)
                                 }
         }) { (error: Error) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             print("Erorr creating issue: \(error)")
+            self.showErrorAlert(error: error)
         }
         MBProgressHUD.showAdded(to: self.view, animated: true)
-}
+    }
     
+    func showErrorAlert(error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
