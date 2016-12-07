@@ -239,6 +239,88 @@ class JiraManager: AFHTTPSessionManager {
         issueTask.resume()
     }
     
+    func attachAudio(fileUrl: URL!, issue: IssueModel!, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let request: URLRequest
+        
+        do {
+            request = try createRequest(fileUrl: fileUrl, issue: issue)
+        } catch {
+            print(error)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                // handle error here
+                print(error!)
+                DispatchQueue.main.async {
+                    failure(error!)
+                }
+                return
+            }
+            
+            // if response was JSON, then parse it
+            
+            do {
+                let responseString = String(data: data!, encoding: .utf8)
+                print("Attach Image Response = \(responseString)")
+                let responseDictionary = try JSONSerialization.jsonObject(with: data!)
+                print("success == \(responseDictionary)")
+                DispatchQueue.main.async {
+                    success()
+                }
+            } catch {
+                print(error)
+                let responseString = String(data: data!, encoding: .utf8)
+                print("responseString = \(responseString)")
+                DispatchQueue.main.async {
+                    failure(error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func createRequest(fileUrl: URL!, issue: IssueModel!) throws -> URLRequest {
+        let parameters = [String : String]()  // build your dictionary however appropriate
+        
+        let boundary = generateBoundaryString()
+        
+        let url = URL(string: "\(jiraUrl!)/issue/\(issue.id!)/attachments")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; name='file'; filename='audio.m4a'; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue("no-check", forHTTPHeaderField: "X-Atlassian-Token")
+        request.setValue(credentails(withUsername: userName, withPassword: password), forHTTPHeaderField: JiraManager.authHeader)
+        request.httpBody = try createBody(with: parameters, filePathKey: "file", fileUrl: fileUrl, boundary: boundary)
+        
+        return request
+    }
+    
+    func createBody(with parameters: [String: String]?, filePathKey: String, fileUrl: URL!, boundary: String) throws -> Data {
+        var body = Data()
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.append("\(value)\r\n")
+            }
+        }
+        
+        let data =  FileManager.default.contents(atPath: fileUrl.path)
+        let mimetype = "audio/m4a"
+        
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"audio.m4a\"\r\n")
+        body.append("Content-Type: \(mimetype)\r\n\r\n")
+        body.append(data!)
+        body.append("\r\n")
+        
+        body.append("--\(boundary)--\r\n")
+        return body
+    }
+
     func attach(image: UIImage!, issue: IssueModel!, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         let request: URLRequest

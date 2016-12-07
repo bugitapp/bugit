@@ -111,11 +111,25 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         }
         jiraMgr.createIssue(issue: issueModel,
                             success: { (issue: IssueModel) in
+                                
                                 print("Created Issue: \(issue)")
                                 self.jiraMgr.attach(image: self.screenshotAssetModel?.editedImage , issue: issue, success: {
                                     print("Attached image to \(issue)")
-                                    self.hideProgress()
-                                    _ = self.navigationController?.popToRootViewController(animated: true)
+                                    if self.audioFilename != nil {
+                                        self.jiraMgr.attachAudio(fileUrl: self.audioFilename , issue: issue, success: {
+                                            print("Attached Audio to \(issue)")
+                                            self.hideProgress()
+                                            _ = self.navigationController?.popToRootViewController(animated: true)
+                                        }) { (error: Error) in
+                                            print("Erorr attaching Audio: \(error)")
+                                            self.hideProgress()
+                                            self.showErrorAlert(error: error)
+                                        }
+                                    }
+                                    else {
+                                        self.hideProgress()
+                                        _ = self.navigationController?.popToRootViewController(animated: true)                                        
+                                    }
                                 }) { (error: Error) in
                                     print("Erorr attaching image: \(error)")
                                     self.hideProgress()
