@@ -110,11 +110,12 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                             success: { (issue: IssueModel) in
                                 print("Created Issue: \(issue)")
                                 self.jiraMgr.attach(image: self.screenshotAssetModel?.editedImage , issue: issue, success: {
-                                    self.hideProgress()
                                     print("Attached image to \(issue)")
-                                }) { (error: Error) in
                                     self.hideProgress()
+                                    _ = self.navigationController?.popToRootViewController(animated: true)
+                                }) { (error: Error) in
                                     print("Erorr attaching image: \(error)")
+                                    self.hideProgress()
                                     self.showErrorAlert(error: error)
                                 }
         }) { (error: Error) in
