@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum ToolsInTray: Int {
     case Arrow
@@ -22,6 +23,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
 
     //@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var canvasImageView: UIImageView!
+    var scaledCanvasImage: UIImage!
     
     @IBOutlet weak var trayViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var trayViewHeightConstraint: NSLayoutConstraint!
@@ -143,6 +145,16 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         trayTravelDiff = trayViewHeightConstraint.constant - travViewClosedPeekOutDistance
         dlog("trayTravelDiff: \(trayTravelDiff)")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        dlog("screenshot scale: \(self.screenshotAssetModel?.screenshotImage?.scale)")
+        let scaledCanvas = scaleImageToImageAspectFit(imageView: self.canvasImageView)
+        
+        self.scaledCanvasImage = scaledCanvas
+    }
+
     
     func setupToolbox() {
         print("selectedTool = \(selectedTool)")
@@ -348,6 +360,21 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         return image
     }
     
+    func scaleImageToImageAspectFit(imageView: UIImageView) -> UIImage? {
+        
+        if let img = imageView.image {
+            dlog("origImageSize: \(img.size)")
+            let rect = AVMakeRect(aspectRatio: img.size, insideRect: imageView.bounds)
+            dlog("scaledImageRect: \(rect)")
+            let scaledImage = img.simpleScale(newSize: rect.size)
+            dlog("scaledImage: \(scaledImage)")
+            return scaledImage
+        }
+        
+        return nil
+    }
+
+    
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {
 
         print("didTap.sender.state = \(sender.state)")
@@ -376,9 +403,23 @@ class EditorViewController: UIViewController, UIScrollViewDelegate {
         }
         // Blur
         else if selectedTool == ToolsInTray.Blur {
-            let shapeView = ShapeView(origin: point, paletteColor: self.selectedColor, shapeType: ShapeType.Blur)
-            shapeView.applyPixelation(canvas: self.canvasImageView)
-            self.canvasImageView.addSubview(shapeView)
+            if let origImageSize = self.screenshotAssetModel?.screenshotImage?.size {
+                
+                let scaledRect = AVMakeRect(aspectRatio: origImageSize, insideRect: self.canvasImageView.bounds)
+                let w:CGFloat = 100.0
+                let h:CGFloat = 75.0
+                let x:CGFloat = point.x - w/2.0
+                let y:CGFloat = point.y - h/2.0
+                
+                if x >= scaledRect.origin.x {
+                    
+                    let placedRect = CGRect(x: x, y: y, width: w, height: h)
+                    let pimageView = PixelatedImageView(frame: placedRect, image: scaledCanvasImage, regionSize: placedRect.size, containerBounds: self.canvasImageView.bounds)
+                    
+                    pimageView.applyPixelation()
+                    self.canvasImageView.addSubview(pimageView)
+                }
+            }
         }
         // Audio
         else if selectedTool == ToolsInTray.Audio {
