@@ -23,6 +23,7 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     var availableProjects: [ProjectsModel]?
     var availableIssueTypes: [IssueTypeModel]?
     var availablePriorityTypes: [PriorityTypeModel]?
+    var networkActivities = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,27 +38,58 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     }
     
     func startNetworkActivity() {
-        jiraMgr.loadProjects(success: { (projects: [ProjectsModel]) in
-            self.availableProjects = projects
-            self.project = projects[0].key
-            self.tableView.reloadData()
-            }, failure: { (error: NSError) in
-                
+        showProgress()
+        jiraMgr.loadProjects(
+            success:{ (projects: [ProjectsModel]) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
+                self.availableProjects = projects
+                self.project = projects[0].key
+                self.tableView.reloadData()
+            },
+            failure: { (error: NSError) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
         })
-        jiraMgr.loadIssueTypes(success: { (issueTypes: [IssueTypeModel]) in
-            self.availableIssueTypes = issueTypes
-            self.issueType = issueTypes[0].name
-            self.tableView.reloadData()
-            }, failure: { (error: NSError) in
-                
+        networkActivities += 1
+        jiraMgr.loadIssueTypes(
+            success: { (issueTypes: [IssueTypeModel]) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
+                self.availableIssueTypes = issueTypes
+                self.issueType = issueTypes[0].name
+                self.tableView.reloadData()
+            },
+            failure: { (error: NSError) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
         })
-        jiraMgr.loadPriorities(success: { (priorityTypes: [PriorityTypeModel]) in
-            self.availablePriorityTypes = priorityTypes
-            self.issuePriority = priorityTypes[0].name
-            self.tableView.reloadData()
-            }, failure: { (error: NSError) in
-                
+        networkActivities += 1
+        jiraMgr.loadPriorities(
+            success: { (priorityTypes: [PriorityTypeModel]) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
+                self.availablePriorityTypes = priorityTypes
+                self.issuePriority = priorityTypes[0].name
+                self.tableView.reloadData()
+            },
+            failure: { (error: NSError) in
+                self.networkActivities -= 1
+                if self.networkActivities == 0 {
+                    self.hideProgress()
+                }
         })
+        networkActivities += 1
     }
     
     func createJiraIssue() {
@@ -78,19 +110,19 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
                             success: { (issue: IssueModel) in
                                 print("Created Issue: \(issue)")
                                 self.jiraMgr.attach(image: self.screenshotAssetModel?.editedImage , issue: issue, success: {
-                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                    self.hideProgress()
                                     print("Attached image to \(issue)")
                                 }) { (error: Error) in
-                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                    self.hideProgress()
                                     print("Erorr attaching image: \(error)")
                                     self.showErrorAlert(error: error)
                                 }
         }) { (error: Error) in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgress()
             print("Erorr creating issue: \(error)")
             self.showErrorAlert(error: error)
         }
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgress()
     }
     
     func showErrorAlert(error: Error) {
@@ -99,6 +131,15 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         alertController.addAction(OKAction)
         present(alertController, animated: true)
     }
+    
+    func showProgress() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+    }
+    
+    func hideProgress() {
+        MBProgressHUD.hide(for: self.view, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
