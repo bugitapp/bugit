@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import CoreTelephony
 
 class CreateIssueViewController: UITableViewController, SelectionViewControllerDelegate, TextViewCellDelegate {
 
@@ -35,6 +36,7 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     func setupUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createJiraIssue))
+        issueEnvironment = deviceInfo()
     }
     
     func startNetworkActivity() {
@@ -262,6 +264,13 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
         }
     }
     
+    func deviceInfo() -> String {
+        return "Model: \(UIDevice.current.model) \n" +
+                "Type: \(UIDevice.current.modelName) \n" +
+                "Version: \(UIDevice.current.systemName) - \(UIDevice.current.systemVersion) \n" +
+                "Battery Level: \(UIDevice.current.batteryLevel * 100) %\n"
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
