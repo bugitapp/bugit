@@ -106,7 +106,7 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
             issueModel.issueDescription = issueDesc
         }
         if let issueDesc = issueDesc, let issueEnvironment = issueEnvironment {
-            issueModel.issueDescription = issueDesc + "\n" + issueEnvironment
+            issueModel.issueDescription = issueDesc + "\n\n*Environment*\n" + issueEnvironment
         }
         jiraMgr.createIssue(issue: issueModel,
                             success: { (issue: IssueModel) in
@@ -265,10 +265,10 @@ class CreateIssueViewController: UITableViewController, SelectionViewControllerD
     }
     
     func deviceInfo() -> String {
-        return "Model: \(UIDevice.current.model) \n" +
-                "Type: \(UIDevice.current.modelName) \n" +
-                "Version: \(UIDevice.current.systemName) - \(UIDevice.current.systemVersion) \n" +
-                "Battery Level: \(UIDevice.current.batteryLevel * 100) %\n"
+        return  "* Model: \(UIDevice.current.model) \n" +
+                "* Type: \(UIDevice.current.modelName) \n" +
+                "* Version: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion) \n" +
+                "* Battery Level: \(UIDevice.current.batteryLevel * 100) %\n"
     }
 
     /*
