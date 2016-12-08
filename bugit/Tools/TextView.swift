@@ -77,7 +77,7 @@ class TextView: UIView {
     
     func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
         let textColor = UIColor.white
-        let textFont = UIFont(name: "OpenSans", size: 12)! // TODO: Allow configuration of this in Alert box?
+        let textFont = UIFont(name: "HelveticaNeue-Bold", size: 14)! // TODO: Allow configuration of this in Alert box?
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
